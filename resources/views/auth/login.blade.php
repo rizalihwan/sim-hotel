@@ -1,58 +1,46 @@
-@extends('layouts.app', ['title' => 'Login | Inventory'])
-@section('logincontent')
-<div class="page-content--bge5">
-    <div class="container">
-        <center>
-            <div class="login-wrap">
-                <div class="login-content">
-                    <div class="login-logo">
-                        <img src="{{ asset('assets/images/logo/Inventory.png') }}" style="height: 150px; width: 270px; object-fit: cover;" alt="Login Img">
-                    </div>
-                    <div class="login-form">
-                        <form action="{{ route('login') }}" method="post">
-                            @csrf
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-user"></i>
-                                    </div>
-                                    <input class="form-control au-input au-input--full @error('username') is-invalid @enderror" type="text" autofocus name="username" placeholder="Username" value="{{ old('username') }}" required>
-                                </div>
-                                @error('username')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group mb-4">
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-key"></i>
-                                    </div>
-                                    <input class="form-control au-input au-input--full @error('password') is-invalid @enderror" type="password" name="password" placeholder="Password" required>
-                                </div>
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="login-checkbox">
-                                <label>
-                                    <input type="checkbox" name="remember">Remember Me
-                                </label>
-                            </div>
-                            <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
-                            @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                            @endif
-                        </form>
-                    </div>
+@extends('layouts.loglayout', ['title' => 'HRI-HOTEL | Login'])
+@section('content')
+<!-- login page start-->
+  <div class="row">
+    <div class="col-12">     
+      <div class="login-card">
+        <div>
+          <div class="login-main"> 
+            <form action="{{ route('login') }}" method="post" class="theme-form">
+              @csrf
+              <div class="logo"><img class="img-fluid for-light" src="{{ asset('assets/images/logo/login.png') }}" alt="looginpage"><img class="img-fluid for-dark" src="{{ asset('assets/images/logo/logo_dark.png') }}" alt="looginpage"></div>
+              <div class="form-group">
+                <label class="col-form-label" for="username">Username</label>
+                <input class="form-control @error('username') is-invalid @enderror" type="text" name="username" id="username" value="{{ old('username') }}" autofocus required placeholder="your username">
+                @error('username')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>Username / Password yang dimasukan salah!</strong>
+                    </span>
+                @enderror
+              </div>
+              <div class="form-group">
+                <label class="col-form-label" for="password">Password</label>
+                <input class="form-control" type="password" name="password" id="password" required placeholder="*********">
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+              </div>
+              <div class="form-group mb-0">
+                <div class="checkbox p-0">
+                  <input id="checkbox1" type="checkbox" name="remember">
+                  <label class="text-muted" for="checkbox1">Remember Me</label>
                 </div>
-            </div>
-        </center>
+                @if (Route::has('password.request'))
+                    <a class="link" href="{{ route('password.request') }}">Forgot password?</a>
+                @endif
+                <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 @endsection
