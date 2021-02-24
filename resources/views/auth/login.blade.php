@@ -16,17 +16,13 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-user"></i>
                                     </div>
-                                    <input class="form-control au-input au-input--full" type="text" autofocus name="username" placeholder="Username" value="{{ old('username') }}" required>
+                                    <input class="form-control au-input au-input--full @error('username') is-invalid @enderror" type="text" autofocus name="username" placeholder="Username" value="{{ old('username') }}" required>
                                 </div>
-                                {{-- @error('username')
-                                    {{ alert()->success("aksas", "example", "message")->persistent('Ok') }}
-                                @enderror --}}
-                                {{-- @error('username')
-                                    {{ alert()->success('kasnkasn') }}
-                                    {{-- <span class="invalid-feedback" role="alert">
-                                        <strong>Username / Password yang dimasukan tidak valid!</strong>
-                                    </span> --}}
-                                {{-- @enderror --}}
+                                @error('username')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="form-group mb-4">
                                 <div class="input-group">
