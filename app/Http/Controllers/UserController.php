@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -36,9 +37,11 @@ class UserController extends Controller
             auth()->user()->update([
                 'password' => bcrypt(request('password'))
             ]);
+            Alert::success('Message Information', 'Password Updated');
             return redirect()->route('home');
         } else {
-            return back()->withErrors(['old_password' => 'Password lama Tidak Valid!']);
+            Alert::error('Message Information', 'Password fail to Updated!');
+            return back();
         }
     }
 
@@ -107,6 +110,7 @@ class UserController extends Controller
             'name' => request('name'),
             'avatar' => $thumbnail
         ]);
+        Alert::success('Message Information', 'Profile Updated');
         return back();
     }
 
