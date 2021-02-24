@@ -28,17 +28,31 @@
                 </li>
                 <li class="maximize"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
                 <li class="profile-nav onhover-dropdown p-0 mr-0">
-                    <div class="media profile-media"><img class="b-r-10" src="{{ asset('assets/images/dashboard/profile.jpg') }}" alt="">
-                        <div class="media-body"><span>Emay Walter</span>
+                    <div class="media profile-media">
+                        @empty(auth()->user()->avatar)
+                            <img class="b-r-10" src="{{ asset('assets/images/avatar/avatar-default.png') }}" width="40" alt="avatar">
+                        @else
+                            <img class="b-r-10" src="{{ auth()->user()->ImgProfile }}" style="width: 40px; height: 40px; object-fit: cover; object-position: top;" alt="avatar">
+                        @endempty
+                        <div class="media-body"><span>{{ auth()->user()->name }}</span>
                             <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
                         </div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
                         <li><a href="#"><i data-feather="user"></i><span>Account </span></a></li>
-                        <li><a href="#"><i data-feather="mail"></i><span>Inbox</span></a></li>
-                        <li><a href="#"><i data-feather="file-text"></i><span>Taskboard</span></a></li>
-                        <li><a href="#"><i data-feather="settings"></i><span>Settings</span></a></li>
-                        <li><a href="#"><i data-feather="log-in"> </i><span>Log in</span></a></li>
+                        <li><a href="{{ route('logout') }}" onclick="return logout(event);"><i data-feather="log-out"> </i><span>Log Out</span></a></li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                        </form>
+                        <script type="text/javascript">
+                            function logout(event){
+                                event.preventDefault();
+                                let check = confirm("Apa anda yakin untuk keluar?");
+                                if(check){
+                                    document.getElementById('logout-form').submit();
+                                }
+                             }
+                        </script>
                     </ul>
                 </li>
             </ul>
@@ -56,73 +70,4 @@
         </script>
     </div>
 </div>
-{{-- <header class="header-desktop">
-    <div class="section__content section__content--p30">
-        <div class="container-fluid">
-            <div class="header-wrap">
-                <form class="form-header" action="" method="POST">
-                    <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
-                    <button class="au-btn--submit" type="submit">
-                        <i class="zmdi zmdi-search"></i>
-                    </button>
-                </form>
-                <div class="header-button">
-                    <div class="account-wrap">
-                        <div class="account-item clearfix js-item-menu">
-                            <div class="image">
-                                @empty(auth()->user()->avatar)
-                                    <img src="{{ asset('assets/images/avatar/avatar-default.png') }}" alt="Avatar" />
-                                @else
-                                    <img src="{{ auth()->user()->ImgProfile }}" style="object-fit: cover; object-position: top;" alt="Avatar" />
-                                @endempty
-                            </div>
-                            <div class="content">
-                                <a class="js-acc-btn" href="{{ route('profile.setting') }}">{{ auth()->user()->name }}</a>
-                            </div>
-                            <div class="account-dropdown js-dropdown">
-                                <div class="info clearfix">
-                                    <div class="image">
-                                        <a href="{{ route('profile.setting') }}">
-                                            @empty(auth()->user()->avatar)
-                                                <img src="{{ asset('assets/images/avatar/avatar-default.png') }}" alt="Avatar" />
-                                            @else
-                                                <img src="{{ auth()->user()->ImgProfile }}" style="object-fit: cover; object-position: top;" alt="Avatar" />
-                                            @endempty
-                                        </a>
-                                    </div>
-                                    <div class="content">
-                                        <h5 class="name">
-                                            <a href="{{ route('profile.setting') }}">{{ auth()->user()->name }}</a>
-                                        </h5>
-                                        <span class="email">@if(auth()->user()->level == 'admin') ADMIN @endif</span>
-                                    </div>
-                                </div>
-                                <div class="account-dropdown__body">
-                                    <div class="account-dropdown__item">
-                                        <a href="{{ route('profile.setting') }}">
-                                            <i class="zmdi zmdi-account"></i>   Akun Saya</a>
-                                    </div>
-                                </div>
-                                <div class="account-dropdown__footer">
-                                    <a href="{{ route('logout') }}" onclick="return logout(event);"><i class="zmdi zmdi-power"></i>Logout</a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                        @csrf
-                                    </form>
-                                    <script type="text/javascript">
-                                        function logout(event){
-                                            event.preventDefault();
-                                            let check = confirm("Apa anda yakin untuk keluar?");
-                                            if(check){
-                                                document.getElementById('logout-form').submit();
-                                            }
-                                         }
-                                    </script>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header> --}}
+
