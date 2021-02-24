@@ -13,7 +13,7 @@
         </form>
         <div class="header-logo-wrapper">
             <div class="logo-wrapper">
-                <a href="index.html"><img class="img-fluid" src="{{ asset('assets/images/logo/logo.png') }}" alt=""></a>
+                <a href="index.html"><img class="img-fluid" src="{{ asset('assets/images/logo/logoweb.png') }}" alt="logowebsite"></a>
             </div>
             <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="sliders"></i></div>
         </div>
