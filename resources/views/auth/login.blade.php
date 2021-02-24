@@ -1,12 +1,12 @@
-@extends('layouts.app', ['title' => 'Login | Inventory'])
+@extends('layouts.app', ['title' => 'Login | HRI HOTEL Best Relaxing Place'])
 @section('logincontent')
-<div class="page-content--bge5">
-    <div class="container">
-        <center>
-            <div class="login-wrap">
+    <div class="page-content--bge5">
+        <div class="container">
+            <div class="login-wrap center">
                 <div class="login-content">
                     <div class="login-logo">
-                        <img src="{{ asset('assets/images/logo/Inventory.png') }}" style="height: 150px; width: 270px; object-fit: cover;" alt="Login Img">
+                        <img src="{{ asset('assets/images/logo/Inventory.png') }}"
+                            style="height: 150px; width: 270px; object-fit: cover;" alt="Login Img">
                     </div>
                     <div class="login-form">
                         <form action="{{ route('login') }}" method="post">
@@ -16,7 +16,8 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-user"></i>
                                     </div>
-                                    <input class="form-control au-input au-input--full" type="text" autofocus name="username" placeholder="Username" value="{{ old('username') }}" required>
+                                    <input class="form-control au-input au-input--full" type="text" autofocus
+                                        name="username" placeholder="Username" value="{{ old('username') }}" required>
                                 </div>
                                 {{-- @error('username')
                                     {{ alert()->success("aksas", "example", "message")->persistent('Ok') }}
@@ -33,7 +34,9 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-key"></i>
                                     </div>
-                                    <input class="form-control au-input au-input--full @error('password') is-invalid @enderror" type="password" name="password" placeholder="Password" required>
+                                    <input
+                                        class="form-control au-input au-input--full @error('password') is-invalid @enderror"
+                                        type="password" name="password" placeholder="Password" required>
                                 </div>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -56,7 +59,6 @@
                     </div>
                 </div>
             </div>
-        </center>
+        </div>
     </div>
-</div>
 @endsection

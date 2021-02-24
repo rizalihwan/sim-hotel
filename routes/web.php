@@ -5,11 +5,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 })->middleware('guest');
+
 Auth::routes();
 
 Route::middleware('auth')->group(function(){
     // dashboard
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/dashboard', 'HomeController@index')->name('home');
     // profil user
     Route::prefix('profile')->name('profile.')->group(function(){
         Route::get('/setting', 'UserController@edit')->name('setting');
