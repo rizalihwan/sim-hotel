@@ -7,11 +7,7 @@
             <ul class="list-unstyled navbar__list">
                 <li class="{{ request()->is('home') ? 'active' : '' }}">
                     <a href="{{ route('home') }}">
-                        <i class="fas fa-home"></i>Dashboard</a>
-                </li>
-                <li class="{{ request()->is('admin') ? 'active' : '' }}">
-                    <a href="{{ route('home') }}">
-                        <i class="fas fa-users"></i>Admin</a>
+                        <i class="fas fa-users"></i>Dashboard</a>
                 </li>
             </ul>
         </nav>
