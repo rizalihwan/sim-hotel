@@ -8,7 +8,7 @@
           <div class="login-main">
             <form action="{{ route('login') }}" method="post" class="theme-form">
               @csrf
-              <div class="logo"><img class="img-fluid for-light" src="{{ asset('assets/images/logo/login.png') }}" alt="looginpage"><img class="img-fluid for-dark" src="{{ asset('assets/images/logo/logo_dark.png') }}" alt="looginpage"></div>
+              <div class="logo"><img class="img-fluid for-light" src="{{ asset('assets/images/logo/logoweb.png') }}" alt="looginpage" style="height: 100px; width: 300px; object-fit: cover;"><img class="img-fluid for-dark" src="{{ asset('assets/images/logo/logoweb.png') }}" alt="looginpage" style="height: 100px; width: 300px; object-fit: cover;"></div>
               <div class="form-group">
                 <label class="col-form-label" for="username">Username</label>
                 <input class="form-control @error('username') is-invalid @enderror" type="text" name="username" id="username" value="{{ old('username') }}" autofocus required placeholder="your username">
