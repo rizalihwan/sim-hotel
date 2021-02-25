@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                   <strong>Ganti Password</strong>
+                    <h4 class="card-title mb-0">Change Password</h4>
                 </div>
                 <form action="{{ route('password.edit') }}" method="post">
                     @csrf

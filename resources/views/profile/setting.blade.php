@@ -21,7 +21,7 @@
             @method('PATCH')
             <div class="card">
                 <div class="card-header">
-                    <strong>Profile Saya</strong>
+                    <h4 class="card-title mb-0">Edit Profile</h4>
                 </div>
                 <div class="card-body card-block">
                     <div class="row form-group">

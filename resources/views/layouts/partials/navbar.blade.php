@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
-                        <li><a href="#"><i data-feather="user"></i><span>Account </span></a></li>
+                        <li><a href="{{ route('profile.setting') }}" class="active"><i data-feather="user"></i><span>Account </span></a></li>
                         <li><a href="{{ route('logout') }}" onclick="return logout(event);"><i data-feather="log-out"> </i><span>Log Out</span></a></li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                             @csrf
