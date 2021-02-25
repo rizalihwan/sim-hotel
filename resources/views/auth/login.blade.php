@@ -1,4 +1,4 @@
-@extends('layouts.loglayout', ['title' => 'Login'])
+@extends('layouts.loglayout', ['title' => 'HRI-HOTEL | Login'])
 @section('content')
 <!-- login page start-->
   <div class="row">
