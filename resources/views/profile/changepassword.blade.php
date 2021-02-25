@@ -39,7 +39,7 @@
                         <a href="{{ route('profile.setting', auth()->user()->id) }}" class="btn btn-danger btn-sm">
                             <i class="fa fa-step-backward"></i> Kembali
                         </a>
-                        <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-save"></i> Simpan</button>
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Simpan</button>
                     </div>
                 </form>
             </div>
