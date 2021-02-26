@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#exampleModalfat" data-whatever="@mdo">Add</button>
+                    <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal">Add</button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -22,11 +22,11 @@
                             <tbody>
                                 <tr>
                                     <th>1.</th>
-                                    <th>poto satu</th>
+                                    <td>poto satu</td>
                                     <td>Rizal Ganteng</td>
                                     <td>rizalihwan94@gmail.com</td>
                                     <td>rizalihwan</td>
-                                    <td>DILINDUNGI</td>
+                                    <td><span class="badge badge-light">DILINDUNGI</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -36,7 +36,7 @@
         </div>
     </div>
     {{-- add data modal --}}
-    <div class="modal fade" id="exampleModalfat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -48,7 +48,7 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label class="col-form-label" for="avatar">Image (Not Mandatory):</label>
+                      <label class="col-form-label" for="avatar">Image (Nullable):</label>
                       <input class="form-control" type="file" name="avatar" id="avatar" placeholder>
                     </div>
                   </div>
@@ -63,7 +63,7 @@
             </div>
             <div class="modal-footer">
               <button class="btn btn-warning" type="button" data-dismiss="modal">Close</button>
-              <button class="btn btn-primary" type="button">Send message</button>
+              <button class="btn btn-primary" type="button">Save</button>
             </div>
           </div>
         </div>
