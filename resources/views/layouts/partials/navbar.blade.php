@@ -33,13 +33,16 @@
                             data-feather="maximize"></i></a></li>
                 <li class="profile-nav onhover-dropdown p-0 mr-0">
                     <div class="media profile-media">
-                        @empty(auth()->user()->avatar)
-                            <img class="b-r-10" src="{{ asset('assets/images/avatar/avatar-default.png') }}" width="40"
-                                alt="avatar">
-                        @else
-                            <img class="b-r-10" src="{{ auth()->user()->ImgProfile }}"
-                                style="width: 40px; height: 40px; object-fit: cover; object-position: top;" alt="avatar">
-                        @endempty
+                        <div class="avatars">
+                            <div class="avatar">
+                                @empty(auth()->user()->avatar)
+                                    <img class="rounded-circle" src="{{ asset('assets/images/avatar/avatar-default.png') }}" width="50" alt="avatar">
+                                @else
+                                    <img class="rounded-circle" src="{{ auth()->user()->ImgProfile }}" style="width: 50px; height: 50px; object-fit: cover; object-position: top;" alt="avatar">
+                                @endempty
+                                <div class="status"></div>
+                            </div>
+                        </div>
                         <div class="media-body"><span>{{ auth()->user()->name }}</span>
                             <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
                         </div>
