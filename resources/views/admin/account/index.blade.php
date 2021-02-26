@@ -1,5 +1,4 @@
 @extends('layouts.app', ['title' => 'HRI-HOTEL | Register'])
-
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -13,13 +12,21 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Avatar</th>
                                     <th>Name</th>
+                                    <th>E-Mail</th>
+                                    <th>Username</th>
+                                    <th>Password</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <th>1.</th>
+                                    <th>poto satu</th>
                                     <td>Rizal Ganteng</td>
+                                    <td>rizalihwan94@gmail.com</td>
+                                    <td>rizalihwan</td>
+                                    <td>DILINDUNGI</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -30,21 +37,27 @@
     </div>
     {{-- add data modal --}}
     <div class="modal fade" id="exampleModalfat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel2">New message</h5>
+              <h5 class="modal-title" id="exampleModalLabel2">Add New Account</h5>
               <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label class="col-form-label" for="recipient-name">Recipient:</label>
-                  <input class="form-control" type="text" value="@fat">
-                </div>
-                <div class="form-group">
-                  <label class="col-form-label" for="message-text">Message:</label>
-                  <textarea class="form-control" id="message-text"></textarea>
+              <form method="POST" enctype="multipart/form-data">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="col-form-label" for="avatar">Image (Not Mandatory):</label>
+                      <input class="form-control" type="file" name="avatar" id="avatar" placeholder>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="col-form-label" for="name">Name:</label>
+                      <input class="form-control" type="text" name="name" id="name" placeholder>
+                    </div>
+                  </div>
                 </div>
               </form>
             </div>
