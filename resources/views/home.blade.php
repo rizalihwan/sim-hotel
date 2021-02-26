@@ -88,18 +88,7 @@
                                     <h5>90%</h5>
                                     <p class="font-roboto">This Month Sale</p>
                                 </div>
-                                <div class="col-xl-12 p-0 left-btn"><button type="submit" onclick="test()" class="btn btn-gradient">Summary</button></div>
-                                <script>
-                                    function test()
-                                    {
-                                        swal({
-                                        title: "Good job!",
-                                        text: "You clicked the button!",
-                                        icon: "success",
-                                        button: "Aww yiss!",
-                                        });
-                                    }
-                                </script>
+                                <div class="col-xl-12 p-0 left-btn"><button type="submit" class="btn btn-gradient">Summary</button></div>
                             </div>
                         </div>
                         <div class="col-xl-9 p-0">
