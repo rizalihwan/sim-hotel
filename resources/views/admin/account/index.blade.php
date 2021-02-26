@@ -12,6 +12,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Role</th>
                                     <th>Avatar</th>
                                     <th>Name</th>
                                     <th>E-Mail</th>
@@ -22,11 +23,12 @@
                             <tbody>
                                 <tr>
                                     <th>1.</th>
+                                    <td><span class="badge badge-danger">ADMIN<span></td>
                                     <td>poto satu</td>
                                     <td>Rizal Ganteng</td>
                                     <td>rizalihwan94@gmail.com</td>
                                     <td>rizalihwan</td>
-                                    <td><span class="badge badge-light">DILINDUNGI</span></td>
+                                    <td><span class="badge badge-light">DILINDUNGI<span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -63,7 +65,7 @@
             </div>
             <div class="modal-footer">
               <button class="btn btn-warning" type="button" data-dismiss="modal">Close</button>
-              <button class="btn btn-primary" type="button">Save</button>
+              <button class="btn btn-primary" type="button">Send message</button>
             </div>
           </div>
         </div>
