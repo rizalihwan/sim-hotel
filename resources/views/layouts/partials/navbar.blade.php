@@ -4,8 +4,10 @@
             <div class="form-group w-100">
                 <div class="Typeahead Typeahead--twitterUsers">
                     <div class="u-posRelative">
-                        <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text" placeholder="Search Cuba .." name="q" title="" autofocus>
-                        <div class="spinner-border Typeahead-spinner" role="status"><span class="sr-only">Loading...</span></div><i class="close-search" data-feather="x"></i>
+                        <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text"
+                            placeholder="Search Cuba .." name="q" title="" autofocus>
+                        <div class="spinner-border Typeahead-spinner" role="status"><span
+                                class="sr-only">Loading...</span></div><i class="close-search" data-feather="x"></i>
                     </div>
                     <div class="Typeahead-menu"></div>
                 </div>
@@ -13,7 +15,8 @@
         </form>
         <div class="header-logo-wrapper">
             <div class="logo-wrapper">
-                <a href="index.html"><img class="img-fluid" src="{{ asset('assets/images/logo/logoweb.png') }}" alt="logowebsite"></a>
+                <a href="index.html"><img class="img-fluid" src="{{ asset('assets/images/logo/logoweb.png') }}"
+                        alt="logowebsite"></a>
             </div>
             <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="sliders"></i></div>
         </div>
@@ -26,33 +29,25 @@
                 <li>
                     <div class="mode"><i class="fa fa-moon-o"></i></div>
                 </li>
-                <li class="maximize"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
+                <li class="maximize"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i
+                            data-feather="maximize"></i></a></li>
                 <li class="profile-nav onhover-dropdown p-0 mr-0">
                     <div class="media profile-media">
                         @empty(auth()->user()->avatar)
-                            <img class="b-r-10" src="{{ asset('assets/images/avatar/avatar-default.png') }}" width="40" alt="avatar">
+                            <img class="b-r-10" src="{{ asset('assets/images/avatar/avatar-default.png') }}" width="40"
+                                alt="avatar">
                         @else
-                            <img class="b-r-10" src="{{ auth()->user()->ImgProfile }}" style="width: 40px; height: 40px; object-fit: cover; object-position: top;" alt="avatar">
+                            <img class="b-r-10" src="{{ auth()->user()->ImgProfile }}"
+                                style="width: 40px; height: 40px; object-fit: cover; object-position: top;" alt="avatar">
                         @endempty
                         <div class="media-body"><span>{{ auth()->user()->name }}</span>
                             <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
                         </div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
-                        <li><a href="{{ route('profile.setting') }}" class="active"><i data-feather="user"></i><span>Account </span></a></li>
-                        <li><a href="{{ route('logout') }}" onclick="return logout(event);"><i data-feather="log-out"> </i><span>Log Out</span></a></li>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                            @csrf
-                        </form>
-                        <script type="text/javascript">
-                            function logout(event){
-                                event.preventDefault();
-                                let check = confirm("Apa anda yakin untuk keluar?");
-                                if(check){
-                                    document.getElementById('logout-form').submit();
-                                }
-                             }
-                        </script>
+                        <li><a href="{{ route('profile.setting') }}" class="active"><i
+                                    data-feather="user"></i><span>Account </span></a></li>
+                        <li><a data-toggle="modal" data-target="#exampleModalCenter"></i><span>Log Out</span></a></li>
                     </ul>
                 </li>
             </ul>
@@ -71,3 +66,28 @@
     </div>
 </div>
 
+{{-- modal logout --}}
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Perhatian !</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <p>Jika Anda menekean logout Anda akan keluar dari aplikasi. Apakah anda yakin? jika iyaa maka tekan
+                    "Logout"</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" data-dismiss="modal">Kembali</button>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+          document.getElementById('logout-form').submit();" class="btn btn-danger">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+<form id="logout-form" action="{{ route('logout') }}" method="POST">
+    @csrf
+</form>
