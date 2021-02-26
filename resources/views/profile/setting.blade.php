@@ -9,7 +9,7 @@
                 </center>
             </div>
             <div class="card-footer">
-                <a href="{{ route('password.edit') }}" class="btn btn-primary btn-sm">
+                <a href="{{ route('password.edit') }}" class="btn btn-secondary btn-sm">
                     <i class="fa fa-lock"></i><br/>
                     Change Password
                 </a>
@@ -49,11 +49,11 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ route('home') }}" class="btn btn-danger btn-sm">
-                        <i class="fa fa-step-backward"></i> Kembali
+                    <a href="{{ route('home') }}" class="btn btn-warning btn-sm">
+                        Kembali
                     </a>
                     <button type="submit" class="btn btn-primary btn-sm">
-                        <i class="fa fa-save"></i> Update
+                       Update
                     </button>
                 </div>
             </div>
