@@ -47,7 +47,7 @@
                     <ul class="profile-dropdown onhover-show-div">
                         <li><a href="{{ route('profile.setting') }}" class="active"><i
                                     data-feather="user"></i><span>Account </span></a></li>
-                        <li><a data-toggle="modal" data-target="#exampleModalCenter"></i><span>Log Out</span></a></li>
+                        <li><a data-toggle="modal" data-target="#exampleModalCenter"><i data-feather="log-in"> </i></i><span>Log Out</span></a></li>
                     </ul>
                 </li>
             </ul>
@@ -82,8 +82,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" type="button" data-dismiss="modal">Kembali</button>
-                <a href="{{ route('logout') }}" onclick="event.preventDefault();
-          document.getElementById('logout-form').submit();" class="btn btn-danger">Logout</a>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-danger">Logout</a>
             </div>
         </div>
     </div>
