@@ -15,7 +15,7 @@
                                 </div>
                                 <div class="media-body">
                                     <div class="right-chart-content">
-                                        <h4>1001</h4><span>purchase </span>
+                                        <h4>14</h4><span>Count Accounts</span>
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +88,6 @@
                                     <h5>90%</h5>
                                     <p class="font-roboto">This Month Sale</p>
                                 </div>
-                                <div class="col-xl-12 p-0 left-btn"><button type="submit" class="btn btn-gradient">Summary</button></div>
                             </div>
                         </div>
                         <div class="col-xl-9 p-0">
