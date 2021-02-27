@@ -96,8 +96,11 @@ class UserController extends Controller
     {
         $this->validate(request(), [
             'name' => 'required|min:3|max:50|string',
-            'avatar' => 'mimes:png,jpg,jpeg,ico,svg|max:2048'
+            'avatar' => 'mimes:png,jpg,jpeg,ico,svg|max:2048',
+            'email' => 'required|string',
+            'username' => 'required|string'
         ]);
+
         $user = auth()->user();
         if ($user->avatar == null) {
             if (request()->file('avatar')) {
@@ -113,9 +116,12 @@ class UserController extends Controller
                 $thumbnail = $user->avatar;
             }
         }
+
         $user->update([
             'name' => request('name'),
-            'avatar' => $thumbnail
+            'avatar' => $thumbnail,
+            'email' => request('email'),
+            'username' => request('username')
         ]);
         Alert::success('Message Information', 'Profile Updated');
         return back();
