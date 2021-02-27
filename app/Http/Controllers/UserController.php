@@ -12,6 +12,7 @@ class UserController extends Controller
     protected function messages()
     {
         return [
+            'avatar.max' => 'Image Over Size. Maximum 2048 MB!',
             'password.confirmed' => 'password konfirmasi tidak sama!'
         ];
     }
@@ -99,7 +100,7 @@ class UserController extends Controller
             'avatar' => 'mimes:png,jpg,jpeg,ico,svg|max:2048',
             'email' => 'required|string',
             'username' => 'required|string'
-        ]);
+        ], $this->messages());
 
         $user = auth()->user();
         if ($user->avatar == null) {
