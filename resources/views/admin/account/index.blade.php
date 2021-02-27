@@ -5,6 +5,14 @@
             <div class="card">
                 <div class="card-header">
                     <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal">Add</button>
+                    @if (session()->has('success'))
+                      <b>{{ session()->get('success') }}</b>
+                    @endif
+                    @if($errors->any())
+                      @foreach ($errors->all() as $err)
+                          {{ $err }}
+                      @endforeach
+                    @endif
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -45,14 +53,14 @@
               <h5 class="modal-title" id="exampleModalLabel2">Add New Account</h5>
               <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
-            <form action="#" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.account.register.store') }}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="modal-body">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                       <label class="col-form-label" for="avatar">Image (Nullable):</label>
-                      <input class="form-control" type="file" name="avatar" id="avatar" required>
+                      <input class="form-control" type="file" name="avatar" id="avatar">
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -61,7 +69,13 @@
                       <input class="form-control" type="text" name="name" id="name" placeholder="your name" required>
                     </div>
                   </div>
-                  <div class="col-md-12">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="col-form-label" for="email">E-Mail:</label>
+                      <input class="form-control" type="email" name="email" id="email" placeholder="your email" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
                     <div class="form-group">
                       <label class="col-form-label" for="role">Role:</label>
                       <select name="role" id="role" class="form-control custom-select" required>
