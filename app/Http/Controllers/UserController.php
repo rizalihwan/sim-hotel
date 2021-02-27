@@ -9,6 +9,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
+    protected function messages()
+    {
+        return [
+            'password.confirmed' => 'password konfirmasi tidak sama!'
+        ];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,10 +32,11 @@ class UserController extends Controller
      */
     public function updatePassword()
     {
+        
         $this->validate(request(), [
             'old_password' => 'required',
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        ], $this->messages());
         $currentPassword = auth()->user()->password;
         $old_password = request('old_password');
 

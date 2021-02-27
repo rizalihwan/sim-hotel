@@ -33,13 +33,16 @@
                             data-feather="maximize"></i></a></li>
                 <li class="profile-nav onhover-dropdown p-0 mr-0">
                     <div class="media profile-media">
-                        @empty(auth()->user()->avatar)
-                            <img class="b-r-10" src="{{ asset('assets/images/avatar/avatar-default.png') }}" width="40"
-                                alt="avatar">
-                        @else
-                            <img class="b-r-10" src="{{ auth()->user()->ImgProfile }}"
-                                style="width: 40px; height: 40px; object-fit: cover; object-position: top;" alt="avatar">
-                        @endempty
+                        <div class="avatars">
+                            <div class="avatar">
+                                @empty(auth()->user()->avatar)
+                                    <img class="rounded-circle" src="{{ asset('assets/images/avatar/avatar-default.png') }}" width="50" alt="avatar">
+                                @else
+                                    <img class="rounded-circle" src="{{ auth()->user()->ImgProfile }}" style="width: 50px; height: 50px; object-fit: cover; object-position: top;" alt="avatar">
+                                @endempty
+                                <div class="status"></div>
+                            </div>
+                        </div>
                         <div class="media-body"><span>{{ auth()->user()->name }}</span>
                             <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
                         </div>
@@ -47,7 +50,7 @@
                     <ul class="profile-dropdown onhover-show-div">
                         <li><a href="{{ route('profile.setting') }}" class="active"><i
                                     data-feather="user"></i><span>Account </span></a></li>
-                        <li><a data-toggle="modal" data-target="#exampleModalCenter"></i><span>Log Out</span></a></li>
+                        <li><a data-toggle="modal" data-target="#exampleModalCenter"><i data-feather="log-in"> </i></i><span>Log Out</span></a></li>
                     </ul>
                 </li>
             </ul>
@@ -69,7 +72,7 @@
 {{-- modal logout --}}
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Perhatian !</h5>
@@ -77,13 +80,12 @@
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <p>Jika Anda menekean logout Anda akan keluar dari aplikasi. Apakah anda yakin? jika iyaa maka tekan
+                <p>Jika Anda menekan logout Anda akan keluar dari aplikasi. Apakah anda yakin? jika iyaa maka tekan
                     "Logout"</p>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" type="button" data-dismiss="modal">Kembali</button>
-                <a href="{{ route('logout') }}" onclick="event.preventDefault();
-          document.getElementById('logout-form').submit();" class="btn btn-danger">Logout</a>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-danger">Logout</a>
             </div>
         </div>
     </div>

@@ -36,6 +36,7 @@
     <link id="color" rel="stylesheet" href="{{ asset('assets/css/color-1.css') }}" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive.css') }}">
+    @stack('style')
 </head>
 <body onload="startTime()">
     <!-- tap on top starts-->
@@ -68,6 +69,8 @@
     <!-- page-wrapper End-->
     <!-- swal vendor-->
     @include('sweetalert::alert')
+    {{-- vanilla js --}}
+    @stack('script')
     <!-- latest jquery-->
     <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
     <!-- Bootstrap js-->

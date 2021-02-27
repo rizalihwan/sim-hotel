@@ -47,13 +47,13 @@ class LoginController extends Controller
 
     public function authenticated(Request $request)
     {
-        toast('Selamat Anda Berhasil login','success');
+        toast('Welcome ' . auth()->user()->name,'success');
     }
 
     public function logout()
     {
         $this->guard()->logout();
-        toast('Logout Berhasil','success');
+        toast('Logout Success!','success');
         return redirect()->route('login');
     }
 

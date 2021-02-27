@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Ganti Password'])
+@extends('layouts.app', ['title' => 'HRI-HOTEL | Password'])
 
 @section('content')
 <div class="container">
@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title mb-0">Change Password</h4>
+                    <h5 class="card-title mb-0">Change Password</h5>
                 </div>
                 <form action="{{ route('password.edit') }}" method="post">
                     @csrf
@@ -36,10 +36,10 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('profile.setting', auth()->user()->id) }}" class="btn btn-danger btn-sm">
-                            <i class="fa fa-step-backward"></i> Kembali
+                        <a href="{{ route('profile.setting', auth()->user()->id) }}" class="btn btn-warning btn-sm">
+                            Kembali
                         </a>
-                        <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-save"></i> Simpan</button>
+                        <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
                     </div>
                 </form>
             </div>
