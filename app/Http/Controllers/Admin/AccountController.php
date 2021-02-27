@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\User;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AccountController extends Controller
 {
@@ -55,8 +56,10 @@ class AccountController extends Controller
         $attr['password'] = bcrypt($request->password);
         $thumb = request()->file('avatar') ? request()->file('avatar')->store("images/avatar") : null;
         $attr['avatar'] = $thumb;
-        User::create($attr);
-        return back()->with('success', 'Data Berhasil Disimpan');
+        $user = User::create($attr);
+        $user->assignRole(request('role'));
+        Alert::success('data saved', 'success');
+        return back();
     }
 
     /**
