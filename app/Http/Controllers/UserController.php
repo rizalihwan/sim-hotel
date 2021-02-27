@@ -12,7 +12,6 @@ class UserController extends Controller
     protected function messages()
     {
         return [
-            'avatar.max' => 'Image Over Size. Maximum 2048 MB!',
             'password.confirmed' => 'password konfirmasi tidak sama!'
         ];
     }

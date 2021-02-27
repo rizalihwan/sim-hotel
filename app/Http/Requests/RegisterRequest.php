@@ -35,8 +35,7 @@ class RegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'password.min' => 'Password Cannot Be Less than 3!',
-            'avatar.max' => 'Image Over Size. Maximum 2048 MB!'
+            'password.min' => 'Password Cannot Be Less than 3!'
         ];
     }
 }
