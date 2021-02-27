@@ -28,14 +28,15 @@ class RegisterRequest extends FormRequest
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'min:3'],
-            'avatar' => ['mimes:png,jpg,jpeg,svg']
+            'avatar' => ['mimes:png,jpg,jpeg,svg', 'max:2048']
         ];
     }
 
     public function messages()
     {
         return [
-            'password.min' => 'Password Cannot Be Less than 3!'
+            'password.min' => 'Password Cannot Be Less than 3!',
+            'avatar.max' => 'Image Over Size. Maximum 2048 MB!'
         ];
     }
 }

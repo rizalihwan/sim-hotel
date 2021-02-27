@@ -77,4 +77,20 @@ class User extends Authenticatable
     {
         return "/storage/".$this->avatar;
     }
+
+    public function getRoleSectionAttribute()
+    {
+        if($this->hasRole('admin'))
+        {
+            return '<span class="badge badge-danger">ADMIN<span>';
+        } else if($this->hasRole('customer'))
+        {
+            return '<span class="badge badge-info">CUSTOMER<span>';
+        } else if($this->hasRole('boss'))
+        {
+            return '<span class="badge badge-success">BOSS<span>';
+        } else {
+            return '<span class="badge badge-light">Not Have Role<span>';
+        }
+    }
 }

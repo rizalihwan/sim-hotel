@@ -28,20 +28,33 @@
                                     <th>Password</th>
                                 </tr>
                             </thead>
+                            @forelse ($accounts as $account)
                             <tbody>
                                 <tr>
-                                    <th>1.</th>
-                                    <td><span class="badge badge-danger">ADMIN<span></td>
-                                    <td>poto satu</td>
-                                    <td>Rizal Ganteng</td>
-                                    <td>rizalihwan94@gmail.com</td>
-                                    <td>rizalihwan</td>
+                                    <th>{{ $loop->iteration + $accounts->firstItem() - 1 . '.' }}</th>
+                                    <td>{!! $account->RoleSection !!}</td>
+                                    <td>
+                                      @empty($account->avatar)
+                                          <img class="rounded-circle" src="{{ asset('assets/images/avatar/avatar-default.png') }}" width="60" alt="avatar">
+                                      @else
+                                          <img class="rounded-circle" src="{{ auth()->user()->ImgProfile }}" style="width: 60px; height: 60px; object-fit: cover; object-position: center;" alt="avatar">
+                                      @endempty
+                                    </td>
+                                    <td>{{ $account->name }}</td>
+                                    <td>{{ $account->email }}</td>
+                                    <td>{{ $account->username }}</td>
                                     <td><span class="badge badge-light">DILINDUNGI<span></td>
                                 </tr>
                             </tbody>
+                            @empty
+                                
+                            @endforelse
                         </table>
                     </div>
                 </div>
+                <div class="card-footer">
+                {{ $accounts->links() }}
+              </div>
             </div>
         </div>
     </div>
