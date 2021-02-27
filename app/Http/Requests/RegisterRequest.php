@@ -31,4 +31,11 @@ class RegisterRequest extends FormRequest
             'avatar' => ['mimes:png,jpg,jpeg,svg']
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'password.min' => 'Password Cannot Be Less than 3!'
+        ];
+    }
 }
