@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
+use App\User;
 
 class AccountController extends Controller
 {
@@ -47,9 +49,14 @@ class AccountController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request)
+    public function store(RegisterRequest $request)
     {
-        //
+        $attr = $request->all();
+        $attr['password'] = bcrypt($request->password);
+        $thumb = request()->file('avatar') ? request()->file('avatar')->store("images/avatar") : null;
+        $attr['avatar'] = $thumb;
+        User::create($attr);
+        return back()->with('success', 'Data Berhasil Disimpan');
     }
 
     /**
