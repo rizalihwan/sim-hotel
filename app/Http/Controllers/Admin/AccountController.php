@@ -60,7 +60,7 @@ class AccountController extends Controller
         $attr['avatar'] = $thumb;
         $user = User::create($attr);
         $user->assignRole(request('role'));
-        Alert::success('data saved', 'success');
+        Alert::success('Information Message', 'Data Saved');
         return back();
     }
 
@@ -106,6 +106,15 @@ class AccountController extends Controller
      */
     public function destroy($id)
     {
-       //
+       $user = User::findOrFail($id);
+       if($user == auth()->user()->id)
+       {
+        Alert::error('Information Message', 'Can not delete, because the user is active!');
+        return back();
+       } else {
+        $user->delete();
+        Alert::success('Information Message', 'Data Deleted');
+        return back();
+       }
     }
 }
