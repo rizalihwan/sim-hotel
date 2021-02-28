@@ -46,7 +46,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <a href="{{ route('admin.account.register.index') }}" class="btn btn-light">Back</a>
+                            <a href="{{ route('admin.account.register.index') }}" class="btn btn-light for-light">Back</a>
+                            <a href="{{ route('admin.account.register.index') }}" class="btn btn-secondary for-dark">Back</a>
                             <button class="btn btn-primary" type="submit">Update</button>
                         </div>
                     </form>
