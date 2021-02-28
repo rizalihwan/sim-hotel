@@ -37,6 +37,30 @@ class AccountController extends Controller
         ]);
     }
 
+    public function index_latest()
+    {
+        $account = User::where('id', '!=', auth()->user()->id)->latest()->paginate(5);
+        return view('admin.account.index', [
+            'accounts' => $account
+        ]);
+    }
+
+    public function index_ascending()
+    {
+        $account = User::where('id', '!=', auth()->user()->id)->orderBy('name', 'ASC')->paginate(5);
+        return view('admin.account.index', [
+            'accounts' => $account
+        ]);
+    }
+
+    public function index_descending()
+    {
+        $account = User::where('id', '!=', auth()->user()->id)->orderBy('name', 'DESC')->paginate(5);
+        return view('admin.account.index', [
+            'accounts' => $account
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -13,10 +13,10 @@
                       <div class="dropdown-menu">
                         <small class="dropdown-item text-secondary" aria-disabled="true">View based on</small>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Default</a>
-                        <a class="dropdown-item" href="#">Latest</a>
-                        <a class="dropdown-item" href="#">Alphabet(A-Z)</a>
-                        <a class="dropdown-item" href="#">Alphabet(Z-A)</a>
+                        <a class="dropdown-item" href="{{ route('admin.account.register.index') }}">Default</a>
+                        <a class="dropdown-item" href="{{ route('admin.account.latest') }}">Latest</a>
+                        <a class="dropdown-item" href="{{ route('admin.account.asc') }}">Alphabet(A-Z)</a>
+                        <a class="dropdown-item" href="{{ route('admin.account.desc') }}">Alphabet(Z-A)</a>
                       </div>
                     </div>
                   </div>
