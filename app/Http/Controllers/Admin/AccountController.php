@@ -109,6 +109,10 @@ class AccountController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
+        if($user->avatar)
+        {
+            \Storage::delete($user->avatar);
+        }
         $user->delete();
         Alert::success('Information Message', 'Data Deleted');
         return back();
