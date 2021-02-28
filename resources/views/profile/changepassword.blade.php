@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('profile.setting', auth()->user()->id) }}" class="btn btn-warning btn-sm">
+                        <a href="{{ route('profile.setting', auth()->user()->id) }}" class="btn btn-secondary btn-sm">
                             Kembali
                         </a>
                         <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
