@@ -31,7 +31,7 @@ class AccountController extends Controller
      */
     public function index()
     {
-        $account = User::where('id', '!=', auth()->user()->id)->latest()->paginate(5);
+        $account = User::where('id', '!=', auth()->user()->id)->paginate(5);
         return view('admin.account.index', [
             'accounts' => $account
         ]);

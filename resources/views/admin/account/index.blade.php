@@ -5,8 +5,20 @@
             <div class="card">
                 <div class="card-header">
                   <div class="d-flex justify-content-between">
-                    <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal">Add</button>
-                    something
+                    <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i></button>
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-light btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-filter"></i> 
+                      </button>
+                      <div class="dropdown-menu">
+                        <small class="dropdown-item text-secondary" aria-disabled="true">View based on</small>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Default</a>
+                        <a class="dropdown-item" href="#">Latest</a>
+                        <a class="dropdown-item" href="#">Alphabet(A-Z)</a>
+                        <a class="dropdown-item" href="#">Alphabet(Z-A)</a>
+                      </div>
+                    </div>
                   </div>
                     @if (session()->has('success'))
                       <b>{{ session()->get('success') }}</b>
