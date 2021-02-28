@@ -95,9 +95,34 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, $id)
+    public function update($id)
     {
-        //
+        $attr = $this->validate(request(), [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$id],
+            'username' => ['required', 'string', 'max:255', 'unique:users,username,'.$id],
+            'avatar' => ['mimes:png,jpg,jpeg,svg', 'max:2048']
+        ]);
+        $user = User::findOrFail($id);
+        if ($user->avatar == null) {
+            if (request()->file('avatar')) {
+                $thumbnail = request()->file('avatar')->store("images/avatar");
+            } else {
+                $thumbnail = null;
+            }
+        } else {
+            if (request()->file('avatar')) {
+                \Storage::delete($user->avatar);
+                $thumbnail = request()->file('avatar')->store("images/avatar");
+            } else {
+                $thumbnail = $user->avatar;
+            }
+        }
+        $attr['avatar'] = $thumbnail;
+        $user->syncRoles(request('role'));
+        $user->update($attr);
+        Alert::success('Message Information', 'Data Updated');
+        return redirect()->route('admin.account.register.index');
     }
 
     /**
