@@ -31,8 +31,9 @@ class AccountController extends Controller
      */
     public function index()
     {
+        $account = User::where('id', '!=', auth()->user()->id)->latest()->paginate(5);
         return view('admin.account.index', [
-            'accounts' => User::latest()->paginate(5)
+            'accounts' => $account
         ]);
     }
 
@@ -83,7 +84,8 @@ class AccountController extends Controller
      */
     public function edit($id)
     {
-       //
+       $user = User::findOrFail($id);
+       return view('admin.account.edit', compact('user'));
     }
 
     /**
@@ -106,15 +108,9 @@ class AccountController extends Controller
      */
     public function destroy($id)
     {
-       $user = User::findOrFail($id);
-       if($user == auth()->user()->id)
-       {
-        Alert::error('Information Message', 'Can not delete, because the user is active!');
-        return back();
-       } else {
+        $user = User::findOrFail($id);
         $user->delete();
         Alert::success('Information Message', 'Data Deleted');
         return back();
-       }
     }
 }
