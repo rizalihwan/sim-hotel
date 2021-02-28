@@ -24,10 +24,9 @@
                                     <div class="form-group">
                                     <label class="col-form-label" for="role">Role:</label>
                                     <select name="role" id="role" class="form-control custom-select" required>
-                                        <option disabled selected>Select Role</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="customer">Customer</option>
-                                        <option value="boss">Boss</option>
+                                        <option value="admin" @if($user->hasRole('admin')) selected @endif>Admin</option>
+                                        <option value="customer" @if($user->hasRole('customer')) selected @endif>Customer</option>
+                                        <option value="boss" @if($user->hasRole('boss')) selected @endif>Boss</option>
                                     </select>
                                     </div>
                                 </div>
