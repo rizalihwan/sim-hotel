@@ -4,6 +4,17 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
+                  @if($errors->any())
+                    <div class="alert alert-danger inverse alert-dismissible fade show" role="alert"><i
+                      class="icon-alert txt-light"></i>
+                        <ul>
+                          @foreach ($errors->all() as $err)
+                            <li>&middot; {{ $err }}</li>
+                          @endforeach
+                        </ul>
+                        <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                  @endif
                   <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i></button>
                     <div class="btn-group">
@@ -23,14 +34,6 @@
                       </div>
                     </div>
                   </div>
-                    @if (session()->has('success'))
-                      <b>{{ session()->get('success') }}</b>
-                    @endif
-                    @if($errors->any())
-                      @foreach ($errors->all() as $err)
-                          {{ $err }}
-                      @endforeach
-                    @endif
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
