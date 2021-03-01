@@ -7,7 +7,10 @@
                   <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i></button>
                     <div class="btn-group">
-                      <button type="button" class="btn btn-light btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button type="button" class="btn btn-light btn-sm for-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-filter"></i> 
+                      </button>
+                      <button type="button" class="btn btn-secondary btn-sm for-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-filter"></i> 
                       </button>
                       <div class="dropdown-menu">
