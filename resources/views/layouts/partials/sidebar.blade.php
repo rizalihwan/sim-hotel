@@ -20,7 +20,7 @@
                 @endrole
                 @role('admin')
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('home') }}"><i data-feather="home"> </i><span>Dashboard</span></a></li>  
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="user"></i><span>Management Account</span></a>
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="users"></i><span>Management Account</span></a>
                         <ul class="sidebar-submenu">
                             <li><a href="{{ route('admin.account.register.index') }}">Register Account</a></li>
                             <li><a href="{{ route('admin.account.admin') }}">Admin Account</a></li>
@@ -28,9 +28,13 @@
                             <li><a href="{{ route('admin.account.boss') }}">Boss Account</a></li>
                         </ul>
                     </li>   
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="bar-chart"></i><span>Report</span></a>
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="wind"> </i><span>Room</span></a></li>
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="layers"> </i><span>Category</span></a></li> 
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="log-in"> </i><span>Booking</span></a></li>   
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="activity"> </i><span>Payment</span></a></li>   
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="pie-chart"> </i><span>Report</span></a>
                         <ul class="sidebar-submenu">
-                            <li><a href="#">Apex Chart</a></li>
+                            <li><a href="#">Nothing</a></li>
                         </ul>
                     </li>
                 @endrole
