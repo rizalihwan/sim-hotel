@@ -6,12 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\User;
 use RealRashid\SweetAlert\Facades\Alert;
+use Spatie\Permission\Models\Role;
 
 class AccountController extends Controller
 {
     public function admin_index_account()
     {
-        return view('admin.account.admin.index');
+        $account = User::where('id', '!=', auth()->user()->id)->role('admin')->paginate(5);
+        return view('admin.account.admin.index', [
+            'accounts' => $account
+        ]);
     }
 
     public function costumer_index_account()
