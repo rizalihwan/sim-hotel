@@ -4,7 +4,14 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal">Add</button>
+                    <div class="alert alert-danger inverse alert-dismissible fade show" role="alert"><i
+                            class="icon-alert txt-light"></i>
+                        <p>Password minimal tiga, dan avatar gagal di upload</p>
+                        <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-md" data-toggle="modal"
+                        data-target="#addModal">Add</button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -38,36 +45,58 @@
         </div>
     </div>
     {{-- add data modal --}}
-    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel2">Add New Account</h5>
-              <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-            </div>
-            <div class="modal-body">
-              <form method="POST" enctype="multipart/form-data">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="col-form-label" for="avatar">Image (Nullable):</label>
-                      <input class="form-control" type="file" name="avatar" id="avatar" placeholder>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="col-form-label" for="name">Name:</label>
-                      <input class="form-control" type="text" name="name" id="name" placeholder>
-                    </div>
-                  </div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel2">Add New Account</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
                 </div>
-              </form>
+                <div class="modal-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="avatar">Image (Nullable):</label>
+                                    <input class="form-control" type="file" name="avatar" id="avatar" placeholder>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="name">Name:</label>
+                                    <input class="form-control" type="text" name="name" id="name" placeholder="Your name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="name">Email:</label>
+                                    <input class="form-control" type="text" name="name" id="name"
+                                        placeholder="email@email.com">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="name">Username:</label>
+                                    <input class="form-control" type="text" name="name" id="name" placeholder="username">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="name">Password:</label>
+                                    <input class="form-control" type="password" name="name" id="name"
+                                        placeholder="********">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="button">Submit</button>
+                </div>
             </div>
-            <div class="modal-footer">
-              <button class="btn btn-warning" type="button" data-dismiss="modal">Close</button>
-              <button class="btn btn-primary" type="button">Send message</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
 @endsection
