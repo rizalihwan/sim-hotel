@@ -36,10 +36,10 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('profile.setting', auth()->user()->id) }}" class="btn btn-warning btn-sm">
-                            Kembali
+                        <a href="{{ route('profile.setting') }}" class="btn btn-secondary btn-sm mr-1">
+                            Back
                         </a>
-                        <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                        <button type="submit" class="btn btn-primary btn-sm">Update</button>
                     </div>
                 </form>
             </div>

@@ -99,7 +99,7 @@ class UserController extends Controller
             'avatar' => 'mimes:png,jpg,jpeg,ico,svg|max:2048',
             'email' => 'required|string',
             'username' => 'required|string'
-        ]);
+        ], $this->messages());
 
         $user = auth()->user();
         if ($user->avatar == null) {

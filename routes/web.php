@@ -29,7 +29,11 @@ Route::middleware('auth')->group(function(){
             Route::get('/customer', 'AccountController@costumer_index_account')->name('customer');
             Route::get('/boss', 'AccountController@boss_index_account')->name('boss');
             // register account
-            Route::resource('register', 'AccountController')->except(['admin_index_account', 'costumer_index_account', 'boss_index_account']);
+            Route::resource('register', 'AccountController')->except(['admin_index_account', 'costumer_index_account', 'boss_index_account', 'index_latest', 'index_ascending', 'index_descending']);
+            // View based on
+            Route::get('/latest', 'AccountController@index_latest')->name('latest');
+            Route::get('/ascending', 'AccountController@index_ascending')->name('asc');
+            Route::get('/descending', 'AccountController@index_descending')->name('desc');
         });
     });
 });
