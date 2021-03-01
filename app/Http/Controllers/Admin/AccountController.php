@@ -20,12 +20,18 @@ class AccountController extends Controller
 
     public function costumer_index_account()
     {
-        return view('admin.account.customer.index');
+        $account = User::where('id', '!=', auth()->user()->id)->role('customer')->paginate(5);
+        return view('admin.account.customer.index', [
+            'accounts' => $account
+        ]);
     }
     
     public function boss_index_account()
     {
-        return view('admin.account.boss.index');
+        $account = User::where('id', '!=', auth()->user()->id)->role('boss')->paginate(5);
+        return view('admin.account.boss.index', [
+            'accounts' => $account
+        ]);
     }
 
     /**
