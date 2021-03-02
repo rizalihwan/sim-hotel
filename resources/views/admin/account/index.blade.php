@@ -142,7 +142,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label class="col-form-label" for="password">Password:</label>
-                      <input class="form-control" type="password" name="password" id="password" placeholder="********" required>
+                      <input class="form-control" type="password" name="password" id="password" placeholder="****" required>
                     </div>
                   </div>
                 </div>
