@@ -67,7 +67,7 @@ class CategoryController extends Controller
         $attr = $request->all();
 
         $request->validate([
-            'name' => ['required', 'string', 'unique:categories,name,'.$category],
+            'name' => ['required', 'string'],
             'facility' => ['required', 'string'],
             'description' => ['required', 'string',]
         ]);
