@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-
+                    {{ $categories->links() }}
                 </div>
             </div>
         </div>
