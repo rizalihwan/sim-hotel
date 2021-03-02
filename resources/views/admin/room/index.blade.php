@@ -26,19 +26,18 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            {{-- @forelse ($accounts as $account) --}}
+                            @forelse ($rooms as $room)
                             <tbody>
                                 <tr>
-                                    {{-- <th>{{ $loop->iteration + $accounts->firstItem() - 1 . '.' }}</th> --}}
-                                    <th>1.</th>
-                                    <td><span class="badge badge-success">KOSONG<span></td>
-                                    <td>HRM0001</td>
-                                    <td>Mawar</td>
-                                    <td>Image ini</td>
-                                    <td>1</td>
-                                    <td>VIP</td>
-                                    <td>1.000.000</td>
-                                    <td><i class="fa fa-star font-primary"></i></td>
+                                    <th>{{ $loop->iteration + $rooms->firstItem() - 1 . '.' }}</th>
+                                    <td>{!! $room->RoomStatus !!}</td>
+                                    <td>{{ $room->room_code }}</td>
+                                    <td>{{ $room->name }}</td>
+                                    <td><img src="{{ $room->RoomThumbnail }}" style="width: 60px; height: 60px; object-fit: cover; object-position: center;" alt="thumbnail"></td>
+                                    <td>{{ $room->floor }}</td>
+                                    <td>{{ $room->category->name }}</td>
+                                    <td>{{ $room->price }}</td>
+                                    <td>{!! $room->RatingCount !!}</td>
                                     <td>
                                       <a href="#" style="float: left;" class="mr-1"><i class="fa fa-pencil-square-o" style="color: rgb(0, 241, 12);"></i></a>
                                       <form action="#" method="post">
@@ -49,19 +48,19 @@
                                     </td>
                                 </tr>
                             </tbody>
-                            {{-- @empty
+                            @empty
                                 <tbody>
                                   <tr>
                                     <th colspan="10" style="color: red; text-align: center;">Data Empty!</th>
                                   </tr>
                                 </tbody>
-                            @endforelse --}}
+                            @endforelse
                         </table>
                     </div>
                 </div>
-                {{-- <div class="card-footer">
-                    {{ $accounts->links() }}
-                </div> --}}
+                <div class="card-footer">
+                    {{ $rooms->links() }}
+                </div>
             </div>
         </div>
     </div>
@@ -80,7 +79,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label class="col-form-label" for="room">Room Code:</label>
-                        <input class="form-control" type="text" name="room_code" id="room" placeholder="KMR.XXX" required>
+                        <input class="form-control" type="text" value="{{ $kode }}" name="room_code" id="room" readonly required>
                       </div>
                     </div>
                     <div class="col-md-6">

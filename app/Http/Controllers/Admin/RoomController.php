@@ -17,7 +17,28 @@ class RoomController extends Controller
      */
     public function index()
     {
+        $number = Room::count();
+        if($number > 0)
+        {
+            $number = Room::max('room_code');
+            $strnum = substr($number, 3, 4);
+            $strnum = $strnum + 1;
+            if(strlen($strnum) == 4)
+            {
+                $kode = 'KMR' . $strnum;
+            }else if (strlen($strnum) == 3) {
+                $kode = 'KMR' . "0" . $strnum;
+            } else if (strlen($strnum) == 2) {
+                $kode = 'KMR' . "00" . $strnum;
+            } else if (strlen($strnum) == 1) {
+                $kode = 'KMR' . "000" . $strnum;
+            }
+        } else {
+            $kode = 'KMR' . "0001";
+        }
         return view('admin.room.index', [
+            'kode' => $kode,
+            'rooms' => Room::orderBy('room_code', 'ASC')->paginate(5),
             'categories' => Category::orderBy('name', 'ASC')->get()
         ]);
     }
