@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'HRI-HOTEL | Admin'])
+@extends('layouts.app', ['title' => 'HRI-HOTEL | Category'])
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -29,9 +29,9 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            @forelse ($category as $category)
+                            @forelse ($categories as $category)
                                 <tbody>
-                                    <td></td>
+                                    <th>{{ $loop->iteration + $categories->firstItem() - 1 . '.' }}</th>
                                     <td>{{ $category->name }}</td>
                                     <td>{{ $category->description }}</td>
                                     <td>{{ $category->facility }}</td>
@@ -96,7 +96,7 @@
                                 <div class="form-group">
                                     <label class="col-form-label" for="description">Description:</label>
                                     <textarea type="text" class="form-control" name="description"
-                                        id="description"></textarea>
+                                        id="description" required></textarea>
                                 </div>
                             </div>
                         </div>

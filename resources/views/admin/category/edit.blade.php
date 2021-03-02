@@ -7,7 +7,7 @@
                     <form action="{{ route('admin.category.update', $category->id) }}" method="POST">
                         @csrf
                         @method('patch')
-                        <div class="modal-body">
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="col-form-label" for="name">Name:</label>
@@ -43,10 +43,10 @@
                                 </div>
                             </div>
                         </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" type="submit">Update</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="submit">Update</button>
+                    </div>
                 </form>
             </div>
         </div>
