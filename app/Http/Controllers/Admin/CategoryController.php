@@ -87,9 +87,9 @@ class CategoryController extends Controller
    public function destroy($id)
     {
         $category = Category::findOrFail($id);
+        $category->rooms()->delete();
         $category->delete();
         Alert::success('Message Information', 'Data Deleted');
-
-         return redirect()->route('admin.category.index');
+        return redirect()->route('admin.category.index');
     }
 }
