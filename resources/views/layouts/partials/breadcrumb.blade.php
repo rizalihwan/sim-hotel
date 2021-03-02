@@ -19,7 +19,7 @@
                         <li class="breadcrumb-item">Account</li>
                         <li class="breadcrumb-item">Change Password</li>
                     @endif
-                    @if(request()->is('admin/account/register'))
+                    @if(request()->is('admin/account/register') || request()->is('admin/account/latest') || request()->is('admin/account/ascending') || request()->is('admin/account/descending'))
                         <li class="breadcrumb-item">Management Account</li>
                         <li class="breadcrumb-item">Register Account</li>
                     @endif
