@@ -31,7 +31,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string'],
+            'name' => ['required', 'string', 'unique:categories,name'],
             'facility' => ['required', 'string'],
             'description' => ['required', 'string',]
         ]);
@@ -67,7 +67,7 @@ class CategoryController extends Controller
         $attr = $request->all();
 
         $request->validate([
-            'name' => ['required', 'string'],
+            'name' => ['required', 'string', 'unique:categories,name,'.$category],
             'facility' => ['required', 'string'],
             'description' => ['required', 'string',]
         ]);
