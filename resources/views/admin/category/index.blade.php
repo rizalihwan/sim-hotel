@@ -3,21 +3,11 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                @if ($errors->any())
-                    <div class="alert alert-danger inverse alert-dismissible fade show" role="alert"><i
-                            class="icon-alert txt-light"></i>
-                        <ul>
-                            @foreach ($errors->all() as $err)
-                                <li>&middot; {{ $err }}</li>
-                            @endforeach
-                        </ul>
-                        <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span
-                                aria-hidden="true">×</span></button>
-                    </div>
-                @endif
+                <div class="card-header">
+                    @include('layouts.partials.error')
+                    <button type="submit" class="btn btn-primary btn-md mb-3" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i></button>
+                </div>
                 <div class="card-body">
-                    <button type="submit" class="btn btn-primary btn-md mb-3" data-toggle="modal" data-target="#addModal"><i
-                            class="fa fa-plus"></i></button>
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
