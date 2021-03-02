@@ -19,7 +19,7 @@ class CreateRoomsTable extends Migration
             $table->string('name', 50);
             $table->string('thumbnail');
             $table->integer('floor');
-            $table->foreignId('category_id');
+            $table->uuid('category_id');
             $table->integer('price');
             $table->integer('rating')->nullable(); // max 5
             $table->boolean('status'); // 1 = kosong, 0 = diisi

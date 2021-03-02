@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\RoomRequest;
+use App\Room;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RoomController extends Controller
 {
@@ -14,7 +17,9 @@ class RoomController extends Controller
      */
     public function index()
     {
-        return view('admin.room.index');
+        return view('admin.room.index', [
+            'categories' => Category::orderBy('name', 'ASC')->get()
+        ]);
     }
 
     /**
@@ -33,9 +38,14 @@ class RoomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoomRequest $request)
     {
-        //
+        $attr = $request->all();
+        $attr['status'] = 1;
+        $attr['thumbnail'] = request()->file('thumbnail')->store("images/rooms");
+        Room::create($attr);
+        Alert::success('Information Message', 'Data Saved');
+        return redirect()->route('admin.room.index');
     }
 
     /**
@@ -67,7 +77,7 @@ class RoomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
         //
     }
