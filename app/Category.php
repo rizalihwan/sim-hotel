@@ -13,25 +13,7 @@ class Category extends Model
     protected $primaryKey = "id";
     protected $keyType = 'string';
     public $incrementing = false;
-    protected $fillable = [
-        'name', 'description', 'facility'
-    ];
 
-    public function getIncrementing()
-    {
-        return false;
-    }
-
-    /**
-     * Get the auto-incrementing key type.
-     *
-     * @return string
-     */
-    public function getKeyType()
-    {
-        return 'string';
-    }
-
-    
+    protected $guarded = [];
 
 }
