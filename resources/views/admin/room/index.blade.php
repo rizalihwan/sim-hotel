@@ -73,51 +73,64 @@
               <h5 class="modal-title" id="exampleModalLabel2">Add New Account</h5>
               <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('admin.account.register.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.room.store') }}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="modal-body">
                 <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="col-form-label" for="avatar">Image:</label>
-                      <input class="form-control" type="file" name="avatar" id="avatar" required>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="col-form-label" for="room">Room Code:</label>
+                        <input class="form-control" type="text" name="room_code" id="room" placeholder="KMR.XXX" required>
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="col-form-label" for="name">Name:</label>
-                      <input class="form-control" type="text" name="name" id="name" placeholder="your name" required>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label class="col-form-label" for="thumbnail">Image:</label>
+                        <input class="form-control" type="file" name="thumbnail" id="thumbnail" required>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="col-form-label" for="email">E-Mail:</label>
-                      <input class="form-control" type="email" name="email" id="email" placeholder="your email" required>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label class="col-form-label" for="name">Name:</label>
+                        <input class="form-control" type="text" name="name" id="name" placeholder="room name" required>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="col-form-label" for="role">Role:</label>
-                      <select name="role" id="role" class="form-control custom-select" required>
-                        <option disabled selected>Select Role</option>
-                        <option value="admin">Admin</option>
-                        <option value="customer">Customer</option>
-                        <option value="boss">Boss</option>
-                      </select>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label class="col-form-label" for="floor">Floor:</label>
+                        <input class="form-control" type="number" name="floor" maxlength="3" id="floor" placeholder="floor" required>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="col-form-label" for="username">Username:</label>
-                      <input class="form-control" type="text" name="username" id="username" placeholder="username" required>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label class="col-form-label" for="category_id">Category:</label>
+                        <select name="category_id" id="category_id" class="form-control custom-select" required>
+                            <option disabled selected>Select Category</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="col-form-label" for="password">Password:</label>
-                      <input class="form-control" type="password" name="password" id="password" placeholder="****" required>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label class="col-form-label" for="price">Price/Day:</label>
+                        <input class="form-control" type="number" name="price" id="price" placeholder="price" required>
+                        </div>
                     </div>
-                  </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                        <label class="col-form-label" for="rating">Rating(nullable):</label>
+                        <select name="rating" id="rating" class="form-control custom-select">
+                            <option value=""> - </option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        </div>
+                    </div>
                 </div>
               </div>
               <div class="modal-footer">
