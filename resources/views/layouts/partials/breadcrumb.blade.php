@@ -35,6 +35,9 @@
                         <li class="breadcrumb-item">Management Account</li>
                         <li class="breadcrumb-item">Boss Account</li>
                     @endif
+                    @if(request()->is('admin/category'))
+                        <li class="breadcrumb-item">Category</li>
+                    @endif
                 </ol>
             </div>
         </div>
