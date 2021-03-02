@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function(){
         });
         //category
 
-        Route::prefix('categories')->name('category.')->group(function () {
+        Route::prefix('category')->name('category.')->group(function () {
             Route::get('/','CategoryController@index')->name('index');
             Route::get('/create','CategoryController@create')->name('create');
             Route::post('/store','CategoryController@store')->name('store');
