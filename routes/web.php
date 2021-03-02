@@ -41,9 +41,9 @@ Route::middleware('auth')->group(function(){
             Route::get('/','CategoryController@index')->name('index');
             Route::get('/create','CategoryController@create')->name('create');
             Route::post('/store','CategoryController@store')->name('store');
-            Route::get('/{categories}/edit','CategoryController@edit')->name('edit');
-            Route::patch('{categories}/update', 'CategoryController@update')->name('update');
-            Route::delete('/{categories}/delete','CategoryController@destroy')->name('delete');
+            Route::get('/{category}/edit','CategoryController@edit')->name('edit');
+            Route::patch('{category}/update', 'CategoryController@update')->name('update');
+            Route::delete('/{category}/delete','CategoryController@destroy')->name('delete');
         });
     });
 });
