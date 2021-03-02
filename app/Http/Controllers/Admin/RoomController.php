@@ -111,6 +111,13 @@ class RoomController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $room = Room::findOrFail($id);
+        if($room->thumbnail)
+        {
+            \Storage::delete($room->thumbnail);
+        }
+        $room->delete();
+        Alert::success('Information Message', 'Data Deleted');
+        return back();
     }
 }

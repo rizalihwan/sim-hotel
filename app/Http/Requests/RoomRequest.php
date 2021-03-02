@@ -24,7 +24,7 @@ class RoomRequest extends FormRequest
     public function rules()
     {
         return [
-            'room_code' => 'required|min:3',
+            'room_code' => 'required|min:3|unique:rooms,room_code',
             'name' => 'required|max:50',
             'thumbnail' => 'required|mimes:png,jpg,jpeg,svg|max:2048',
             'floor' => 'required|max:3',

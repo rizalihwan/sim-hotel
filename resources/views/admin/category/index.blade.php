@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-header">
                     @include('layouts.partials.error')
-                    <button type="submit" class="btn btn-primary btn-md mb-3" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i></button>
+                    <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i></button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

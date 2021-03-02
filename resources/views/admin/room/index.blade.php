@@ -16,7 +16,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Status</th>
-                                    <th>Room Code</th>
+                                    <th>Code</th>
                                     <th>Name</th>
                                     <th>Image</th>
                                     <th>Floor</th>
@@ -36,13 +36,13 @@
                                     <td><img src="{{ $room->RoomThumbnail }}" style="width: 60px; height: 60px; object-fit: cover; object-position: center;" alt="thumbnail"></td>
                                     <td>{{ $room->floor }}</td>
                                     <td>{{ $room->category->name }}</td>
-                                    <td>{{ $room->price }}</td>
+                                    <td>{{ "Rp " . number_format($room->price, 0,',','.') }}</td>
                                     <td>{!! $room->RatingCount !!}</td>
                                     <td>
                                       <a href="#" style="float: left;" class="mr-1"><i class="fa fa-pencil-square-o" style="color: rgb(0, 241, 12);"></i></a>
-                                      <form action="#" method="post">
-                                        {{-- @csrf
-                                        @method('DELETE') --}}
+                                      <form action="{{ route('admin.room.destroy', $room->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
                                         <button type="submit" onclick="return confirm('Sure for delete this data?')" style="background-color: transparent; border: none;"><i class="icon-trash" style="color: red;"></i></button>
                                       </form>
                                     </td>
@@ -69,7 +69,7 @@
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel2">Add New Account</h5>
+              <h5 class="modal-title" id="exampleModalLabel2">Add New Room</h5>
               <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <form action="{{ route('admin.room.store') }}" method="POST" enctype="multipart/form-data">
