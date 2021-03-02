@@ -38,6 +38,9 @@
                     @if(request()->is('admin/category'))
                         <li class="breadcrumb-item">Category</li>
                     @endif
+                    @if(request()->is('admin/room'))
+                        <li class="breadcrumb-item">Room</li>
+                    @endif
                 </ol>
             </div>
         </div>
