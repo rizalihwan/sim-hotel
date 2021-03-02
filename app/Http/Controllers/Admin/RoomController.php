@@ -88,7 +88,10 @@ class RoomController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.room.edit', [
+            'room' => Room::findOrFail($id),
+            'categories' => Category::orderBy('name', 'ASC')->get()
+        ]);
     }
 
     /**
