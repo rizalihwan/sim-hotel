@@ -17,7 +17,7 @@ class CategoryController extends Controller
     public function index(Category $category)
     {
         return view('admin.category.index',[
-            'category' => $category::latest()->paginate(5),
+            'categories' => $category::latest()->paginate(5),
         ]);
     }
 
