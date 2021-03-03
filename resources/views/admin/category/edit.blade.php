@@ -45,8 +45,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a href="{{ URL::previous() }}" class="btn btn-light for-light">Back</a>
-                        <a href="{{ URL::previous() }}" class="btn btn-secondary for-dark">Back</a>
+                        <a href="{{ route('admin.category.index') }}" class="btn btn-light for-light">Back</a>
+                        <a href="{{ route('admin.category.index') }}" class="btn btn-secondary for-dark">Back</a>
                         <button class="btn btn-primary" type="submit">Update</button>
                     </div>
                 </form>

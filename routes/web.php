@@ -40,8 +40,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->name
         Route::get('/ascending', 'AccountController@index_ascending')->name('asc');
         Route::get('/descending', 'AccountController@index_descending')->name('desc');
     });
-    //category
+    // category
     Route::resource('category', 'CategoryController');
     // room
     Route::resource('room', 'RoomController');
+    // customer
+    Route::resource('customer', 'CustomerController');
 });    
