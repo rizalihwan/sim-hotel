@@ -94,11 +94,12 @@ class UserController extends Controller
      */
     public function update()
     {
+        $id = auth()->user()->id;
         $this->validate(request(), [
             'name' => 'required|min:3|max:50|string',
             'avatar' => 'mimes:png,jpg,jpeg,ico,svg|max:2048',
-            'email' => 'required|string',
-            'username' => 'required|string'
+            'email' => 'required|string|unique:users,email,'.$id,
+            'username' => 'required|string|unique:users,username,'.$id
         ], $this->messages());
 
         $user = auth()->user();
