@@ -15,7 +15,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                   <label class="col-form-label" for="thumbnail">Image:</label>
-                                  <input class="form-control" type="file" name="thumbnail" id="thumbnail" required>
+                                  <input class="form-control" type="file" name="thumbnail" id="thumbnail">
                                   @error('thumbnail')
                                           <span style="color: red;">{{ $message }}</span>
                                   @enderror

@@ -103,7 +103,29 @@ class RoomController extends Controller
      */
     public function update($id)
     {
-        //
+        $room = Room::findOrFail($id);
+        $messages = [
+            'floor.max' => 'Floor Maximum 3 characters!'
+        ];
+        $attr = $this->validate(request(), [
+            'room_code' => 'required|min:3|unique:rooms,room_code,'.$id,
+            'name' => 'required|max:50',
+            'thumbnail' => 'mimes:png,jpg,jpeg,svg|max:2048',
+            'floor' => 'required|max:3',
+            'category_id' => 'required',
+            'price' => 'required|integer',
+            'rating' => 'max:1'
+        ], $messages);
+        if (request()->file('thumbnail')) {
+            \Storage::delete($room->thumbnail);
+            $thumbnail = request()->file('thumbnail')->store("images/rooms");
+        } else {
+            $thumbnail = $room->thumbnail;
+        }
+        $attr['thumbnail'] = $thumbnail;
+        $room->update($attr);
+        Alert::success('Message Information', 'Data Updated');
+        return redirect()->route('admin.room.index');
     }
 
     /**
