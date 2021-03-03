@@ -20,6 +20,11 @@ class Room extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function booking()
+    {
+        return $this->hasOne(Booking::class);
+    }
+
     public function getRoomThumbnailAttribute()
     {
         return "/storage/".$this->thumbnail;
