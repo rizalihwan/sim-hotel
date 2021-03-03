@@ -33,12 +33,10 @@ class CategoryController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'unique:categories,name'],
             'facility' => ['required', 'string'],
-            'description' => ['required', 'string',]
+            'description' => ['required', 'string']
         ]);
-
         $attr = $request->all();
         Category::create($attr);
-
         Alert::success('Information Message', 'Data Saved');
         return redirect()->route('admin.category.index');
     }
