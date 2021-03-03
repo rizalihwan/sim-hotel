@@ -65,16 +65,13 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $attr = $request->all();
-
         $request->validate([
             'name' => ['required', 'string'],
             'facility' => ['required', 'string'],
             'description' => ['required', 'string',]
         ]);
-
         $category->update($attr);
         Alert::success('Message Information', 'Data Updated');
-        
         return redirect()->route('admin.category.index');
     }
 
