@@ -44,7 +44,11 @@
                             </div>
                         </div>
                         <div class="media-body"><span>{{ auth()->user()->name }}</span>
-                            <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
+                            <p class="mb-0 font-roboto">
+                                @if(auth()->user()->hasRole('admin')) Admin @endif 
+                                @if(auth()->user()->hasRole('customer')) Customer @endif
+                                @if(auth()->user()->hasRole('boss')) Manager @endif
+                                <i class="middle fa fa-angle-down"></i></p>
                         </div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
