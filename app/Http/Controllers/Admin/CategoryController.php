@@ -50,8 +50,9 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
+        $category = Category::findOrFail($id);
         return view('admin.category.edit',compact('category'));
     }
 
@@ -62,11 +63,12 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
+        $category = Category::findOrFail($id);
         $attr = $request->all();
         $request->validate([
-            'name' => ['required', 'string'],
+            'name' => ['required', 'string', 'unique:categories,name,'.$id],
             'facility' => ['required', 'string'],
             'description' => ['required', 'string',]
         ]);

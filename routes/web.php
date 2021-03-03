@@ -36,14 +36,7 @@ Route::middleware('auth')->group(function(){
             Route::get('/descending', 'AccountController@index_descending')->name('desc');
         });
         //category
-        Route::prefix('category')->name('category.')->group(function () {
-            Route::get('/','CategoryController@index')->name('index');
-            Route::get('/create','CategoryController@create')->name('create');
-            Route::post('/store','CategoryController@store')->name('store');
-            Route::get('/{category}/edit','CategoryController@edit')->name('edit');
-            Route::patch('{category}/update', 'CategoryController@update')->name('update');
-            Route::delete('/{category}/delete','CategoryController@destroy')->name('delete');
-        });
+        Route::resource('category', 'CategoryController');
         // room
         Route::resource('room', 'RoomController');
     });
