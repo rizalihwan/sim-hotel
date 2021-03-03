@@ -46,6 +46,8 @@
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i
                                 data-feather="log-in"> </i><span>Booking</span></a></li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i
+                        data-feather="user"> </i><span>Customer</span></a></li>
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i
                                 data-feather="activity"> </i><span>Payment</span></a></li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="pie-chart">
                             </i><span>Report</span></a>
