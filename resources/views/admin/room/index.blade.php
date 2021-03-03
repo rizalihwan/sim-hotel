@@ -120,14 +120,14 @@
                     <div class="col-md-12">
                         <div class="form-group">
                         <label class="col-form-label" for="rating">Rating(nullable):</label>
-                        <select name="rating" id="rating" class="form-control custom-select">
-                            <option value=""> - </option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
+                          <select name="rating" id="rating" class="form-control custom-select">
+                              <option value=""> - </option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                          </select>
                         </div>
                     </div>
                 </div>

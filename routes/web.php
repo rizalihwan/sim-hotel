@@ -46,4 +46,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->name
     Route::resource('room', 'RoomController');
     // customer
     Route::resource('customer', 'CustomerController');
+    // booking
+    Route::resource('booking', 'BookingController');
 });    

@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Booking;
+use App\Customer;
+use App\Room;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BookingRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class BookingController extends Controller
 {
@@ -14,7 +20,32 @@ class BookingController extends Controller
      */
     public function index()
     {
-        return view('admin.booking.index');
+        $number = Booking::count();
+        if($number > 0)
+        {
+            $number = Booking::max('booking_code');
+            $strnum = substr($number, 24, 25);
+            $strnum = $strnum + 1;
+            if(strlen($strnum) == 4)
+            {
+                $kode = 'BKNG' . $strnum;
+            }else if (strlen($strnum) == 3) {
+                $kode = 'BKNG' . "0" . $strnum;
+            } else if (strlen($strnum) == 2) {
+                $kode = 'BKNG' . "00" . $strnum;
+            } else if (strlen($strnum) == 1) {
+                $kode = 'BKNG' . "000" . $strnum;
+            }
+        } else {
+            $kode = 'BKNG' . "0001";
+        }
+        return view('admin.booking.index', [
+            'kode' => $kode,
+            'now' => Carbon::now(),
+            'bookings' => Booking::orderBy('booking_code', 'ASC')->paginate(5),
+            'rooms' => Room::where('status', 1)->orderBy('room_code', 'ASC')->get(),
+            'customers' => Customer::orderBy('first_name', 'ASC')->get()
+        ]);
     }
 
     /**
@@ -33,9 +64,17 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BookingRequest $request)
     {
-        //
+        $room = Room::findOrFail($request->room_id);
+        $room->update([
+            'status' => 0
+        ]);
+        $attr = $request->all();
+        $attr['status'] = 0;
+        Booking::create($attr);
+        Alert::success('Information Message', 'Data Saved');
+        return redirect()->route('admin.booking.index');
     }
 
     /**

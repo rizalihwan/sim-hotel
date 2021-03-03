@@ -21,6 +21,7 @@ class CreateBookingsTable extends Migration
             $table->uuid('room_id');
             $table->uuid('customer_id');
             $table->string('payment_type'); 
+            $table->boolean('status');
             $table->timestamps();
         });
     }

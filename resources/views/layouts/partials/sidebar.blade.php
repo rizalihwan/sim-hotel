@@ -43,7 +43,7 @@
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
                             href="{{ route('admin.category.index') }}"><i data-feather="layers">
                             </i><span>Category</span></a></li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('admin.booking.index') }}"><i
                                 data-feather="log-in"> </i><span>Booking</span></a></li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('admin.customer.index') }}"><i
                         data-feather="user"> </i><span>Customer</span></a></li>
