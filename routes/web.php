@@ -28,8 +28,12 @@ Route::middleware('auth')->group(function(){
             Route::get('/admin', 'AccountController@admin_index_account')->name('admin');
             Route::get('/customer', 'AccountController@costumer_index_account')->name('customer');
             Route::get('/boss', 'AccountController@boss_index_account')->name('boss');
+            // edit per view management account
+            Route::get('/admin_edit/{id}/edit', 'AccountController@edit_admin')->name('editadmin');
+            Route::get('/customer_edit/{id}/edit', 'AccountController@edit_customer')->name('editcustomer');
+            Route::get('/boss_edit/{id}/edit', 'AccountController@edit_boss')->name('editboss');
             // register account
-            Route::resource('register', 'AccountController')->except(['admin_index_account', 'costumer_index_account', 'boss_index_account', 'index_latest', 'index_ascending', 'index_descending']);
+            Route::resource('register', 'AccountController')->except(['edit_admin', 'edit_customer', 'edit_boss', 'admin_index_account', 'costumer_index_account', 'boss_index_account', 'index_latest', 'index_ascending', 'index_descending']);
             // View based on
             Route::get('/latest', 'AccountController@index_latest')->name('latest');
             Route::get('/ascending', 'AccountController@index_ascending')->name('asc');

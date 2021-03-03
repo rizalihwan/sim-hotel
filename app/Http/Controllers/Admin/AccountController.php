@@ -72,16 +72,6 @@ class AccountController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -120,6 +110,24 @@ class AccountController extends Controller
     {
        $user = User::findOrFail($id);
        return view('admin.account.edit', compact('user'));
+    }
+
+    public function edit_admin($id)
+    {
+       $user = User::findOrFail($id);
+       return view('admin.account.admin.edit', compact('user'));
+    }
+
+    public function edit_customer($id)
+    {
+       $user = User::findOrFail($id);
+       return view('admin.account.customer.edit', compact('user'));
+    }
+
+    public function edit_boss($id)
+    {
+       $user = User::findOrFail($id);
+       return view('admin.account.boss.edit', compact('user'));
     }
 
     /**

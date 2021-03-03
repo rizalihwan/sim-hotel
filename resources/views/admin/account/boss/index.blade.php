@@ -33,7 +33,7 @@
                                     <td>{{ $account->username }}</td>
                                     <td><span class="badge badge-light">DILINDUNGI<span></td>
                                     <td>
-                                      <a href="{{ route('admin.account.register.edit', $account->id) }}" style="float: left;" class="mr-1"><i class="fa fa-pencil-square-o" style="color: rgb(0, 241, 12);"></i></a>
+                                      <a href="{{ route('admin.account.editboss', $account->id) }}" style="float: left;" class="mr-1"><i class="fa fa-pencil-square-o" style="color: rgb(0, 241, 12);"></i></a>
                                       <form action="{{ route('admin.account.register.destroy', $account->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
