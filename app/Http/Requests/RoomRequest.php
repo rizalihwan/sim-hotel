@@ -33,4 +33,12 @@ class RoomRequest extends FormRequest
             'rating' => 'max:1'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'floor.max' => 'Floor Maximum 3 characters!'
+        ];
+    }
+
 }
