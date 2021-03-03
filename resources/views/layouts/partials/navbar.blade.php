@@ -79,13 +79,12 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Perhatian !</h5>
+                <h5 class="modal-title">Message Information!</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <p>Jika Anda menekan logout Anda akan keluar dari aplikasi. Apakah anda yakin? jika iyaa maka tekan
-                    "Logout"</p>
+                <p>Are you sure you want to exit the application? if yes click "Logout".</p>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" type="button" data-dismiss="modal">Kembali</button>
