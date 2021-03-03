@@ -29,7 +29,7 @@
                                         <a href="{{ route('admin.category.edit', $category->id) }}" style="float: left;"
                                             class="mr-1"><i class="fa fa-pencil-square-o"
                                                 style="color: rgb(0, 241, 12);"></i></a>
-                                        <form action="{{ route('admin.category.delete', $category->id) }}" method="post">
+                                        <form action="{{ route('admin.category.destroy', $category->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" onclick="return confirm('Sure for delete this data?')"
