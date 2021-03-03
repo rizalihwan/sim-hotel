@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'HRI-HOTEL | Customer'])
+@extends('layouts.app', ['title' => 'HRI-HOTEL | Customer Account'])
 @section('content')
     <div class="row">
         <div class="col-md-12">
