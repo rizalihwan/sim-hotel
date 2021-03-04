@@ -23,4 +23,8 @@ class Booking extends Model
         return $this->belongsTo(Customer::class);
     }
     
+    public function getPaymentStatusAttribute()
+    {
+        return $this->status === 0 ? '<span class="badge badge-danger">NOT YET PAID<span>' : '<span class="badge badge-success">ALREADY PAID<span>';
+    }
 }
