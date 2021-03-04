@@ -14,6 +14,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Booking Code</th>
+                                    <th>Payment Status</th>
                                     <th>Checkin</th>
                                     <th>Checkout</th>
                                     <th>Room</th>
@@ -26,6 +27,7 @@
                                 <tbody>
                                     <th>{{ $loop->iteration + $bookings->firstItem() - 1 . '.' }}</th>
                                     <td><u>{{ $booking->booking_code }}</u></td>
+                                    <td>{!! $booking->PaymentStatus !!}</td>
                                     <td>{{ $booking->check_in }}</td>
                                     <td>{{ $booking->check_out }}</td>
                                     <td>
@@ -62,6 +64,29 @@
                 </div>
                 <div class="card-footer">
                     {{ $bookings->links() }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="mb-2"><u>Room Status</u></h6>
+                    <div>
+                        <span class="badge badge-pill badge-success">&middot;</span>
+                        <small class="text-secondary mr-2">Empty Room</small>
+                        <span class="badge badge-pill badge-danger">&middot;</span>
+                        <small class="text-secondary">Room Filled</small>
+                    </div>
+                </div>
+                <div class="card-body">
+                    @foreach ($check_room as $room)
+                        @if ($room->status === 0)
+                            <span class="badge badge-danger">{{ $room->room_code }}</span>
+                        @endif
+                        @if ($room->status === 1)
+                            <span class="badge badge-success">{{ $room->room_code }}</span>
+                        @endif
+                    @endforeach
                 </div>
             </div>
         </div>
