@@ -44,6 +44,7 @@ class BookingController extends Controller
             'now' => Carbon::now(),
             'bookings' => Booking::orderBy('booking_code', 'ASC')->paginate(5),
             'rooms' => Room::where('status', 1)->orderBy('room_code', 'ASC')->get(),
+            'check_room' => Room::orderBy('room_code', 'ASC')->get(),
             'customers' => Customer::orderBy('first_name', 'ASC')->get()
         ]);
     }
