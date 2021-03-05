@@ -119,7 +119,7 @@
                         <option disabled selected>Select Role</option>
                         <option value="admin">Admin</option>
                         <option value="customer">Customer</option>
-                        <option value="boss">Boss</option>
+                        <option value="boss">Manager</option>
                       </select>
                     </div>
                   </div>

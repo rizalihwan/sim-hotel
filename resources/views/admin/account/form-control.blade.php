@@ -31,7 +31,7 @@
                 <select name="role" id="role" class="form-control custom-select" required>
                     <option value="admin" @if($user->hasRole('admin')) selected @endif>Admin</option>
                     <option value="customer" @if($user->hasRole('customer')) selected @endif>Customer</option>
-                    <option value="boss" @if($user->hasRole('boss')) selected @endif>Boss</option>
+                    <option value="boss" @if($user->hasRole('boss')) selected @endif>Manager</option>
                 </select>
             </div>
         </div>
