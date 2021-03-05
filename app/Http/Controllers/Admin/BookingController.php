@@ -111,9 +111,20 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        $attr = $this->validate(request(), [
+            'booking_code' => 'required|min:3|unique:bookings,booking_code,'.$id,
+            'check_in' => ['required', 'date'],
+            'check_out' => ['required', 'date'],
+            'room_id' => ['required'],
+            'customer_id' => ['required'],
+            'payment_type' => ['required', 'max:10']
+        ]);
+        $booking = Booking::findOrFail($id);
+        $booking->update($attr);
+        Alert::success('Message Information', 'Data Updated');
+        return redirect()->route('admin.booking.index');
     }
 
     /**
@@ -124,6 +135,12 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $booking = Booking::findOrFail($id);
+        Room::where('id', $booking->room_id)->update([
+            'status' => 1
+        ]);
+        $booking->delete();
+        Alert::success('Message Information', 'Data Deleted');
+        return back();
     }
 }
