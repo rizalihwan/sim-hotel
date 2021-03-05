@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Booking;
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\Room;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -84,6 +86,8 @@ class CategoryController extends Controller
    public function destroy($id)
     {
         $category = Category::findOrFail($id);
+        $roomIds = Room::where('category_id', $category->id)->pluck('id');
+        Booking::whereIn('room_id', $roomIds)->delete();
         $category->rooms()->delete();
         $category->delete();
         Alert::success('Message Information', 'Data Deleted');
