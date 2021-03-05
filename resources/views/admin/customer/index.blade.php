@@ -23,7 +23,9 @@
                             @forelse ($customers as $customer)
                                 <tbody>
                                     <th>{{ $loop->iteration + $customers->firstItem() - 1 . '.' }}</th>
-                                    <td>{{ $customer->nik }}</td>
+                                    <td>
+                                        <span class="badge badge-pill badge-light">{{ $customer->nik }}</span>
+                                    </td>
                                     <td>{{ $customer->FullName }}</td>
                                     <td>{{ $customer->address }}</td>
                                     <td>{{ $customer->phone }}</td>
