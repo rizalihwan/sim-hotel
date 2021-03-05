@@ -9,19 +9,7 @@
                         @method('patch')
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="col-form-label" for="code">Booking Code:</label>
-                                        <input class="form-control @error('booking_code') is-invalid @enderror" type="text" value="{{ $booking->booking_code ?? old('booking_code') }}" name="booking_code" id="code"
-                                            placeholder="booking code" readonly required>
-                                        @error('booking_code')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="col-form-label" for="customer_id">Customer:</label>
                                         <select name="customer_id" id="customer_id" class="form-control custom-select" required>
@@ -62,16 +50,12 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="col-form-label" for="room_id">Room:</label>
-                                        <select name="room_id" id="room_id" class="form-control custom-select" required>
-                                            <option value="{{ $booking->room_id }}">{{ $booking->room->room_code . " - " .$booking->room->name. " (" .$booking->room->category->name. ")" }}</option>
-                                            @foreach ($rooms as $room)
-                                                <option value="{{ $room->id }}">{{ $room->room_code . " - " .$room->name. " (" .$room->category->name. ")" }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('room_id')
-                                            <span>
-                                                <strong style="color: red;">{{ $message }}</strong>
+                                        <label class="col-form-label" for="code">Booking Code:</label>
+                                        <input class="form-control @error('booking_code') is-invalid @enderror" type="text" value="{{ $booking->booking_code ?? old('booking_code') }}" name="booking_code" id="code"
+                                            placeholder="booking code" readonly required>
+                                        @error('booking_code')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
@@ -85,6 +69,7 @@
                                     </select>
                                     </div>
                                 </div>
+                                <input type="hidden" name="room_id" value="{{ $booking->room_id }}">
                             </div>
                         </div>
                         <div class="modal-footer">
