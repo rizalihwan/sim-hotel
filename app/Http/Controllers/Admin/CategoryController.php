@@ -87,6 +87,6 @@ class CategoryController extends Controller
         $category->rooms()->delete();
         $category->delete();
         Alert::success('Message Information', 'Data Deleted');
-        return redirect()->route('admin.category.index');
+        return back();
     }
 }
