@@ -28,7 +28,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->name
         // per view & role
         Route::get('/admin', 'AccountController@admin_index_account')->name('admin');
         Route::get('/customer', 'AccountController@costumer_index_account')->name('customer');
-        Route::get('/boss', 'AccountController@boss_index_account')->name('boss');
+        Route::get('/manager', 'AccountController@boss_index_account')->name('boss');
         // edit per view management account
         Route::get('/admin_edit/{id}/edit', 'AccountController@edit_admin')->name('editadmin');
         Route::get('/customer_edit/{id}/edit', 'AccountController@edit_customer')->name('editcustomer');

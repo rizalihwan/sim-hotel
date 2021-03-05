@@ -35,7 +35,7 @@
                             <li><a href="{{ route('admin.account.register.index') }}">Register Account</a></li>
                             <li><a href="{{ route('admin.account.admin') }}">Admin Account</a></li>
                             <li><a href="{{ route('admin.account.customer') }}">Customer Account</a></li>
-                            <li><a href="{{ route('admin.account.boss') }}">Boss Account</a></li>
+                            <li><a href="{{ route('admin.account.boss') }}">Manager Account</a></li>
                         </ul>
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('admin.room.index') }}"><i data-feather="wind">
