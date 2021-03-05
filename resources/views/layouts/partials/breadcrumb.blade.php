@@ -31,9 +31,9 @@
                         <li class="breadcrumb-item">Management Account</li>
                         <li class="breadcrumb-item">Customer Account</li>
                     @endif
-                    @if(request()->is('admin/account/boss'))
+                    @if(request()->is('admin/account/manager'))
                         <li class="breadcrumb-item">Management Account</li>
-                        <li class="breadcrumb-item">Boss Account</li>
+                        <li class="breadcrumb-item">Manager Account</li>
                     @endif
                     @if(request()->is('admin/category'))
                         <li class="breadcrumb-item">Category</li>
