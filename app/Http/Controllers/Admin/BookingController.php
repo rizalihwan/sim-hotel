@@ -97,7 +97,11 @@ class BookingController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.booking.edit', [
+            'booking' => Booking::findOrFail($id),
+            'rooms' => Room::where('status', 1)->orderBy('room_code', 'ASC')->get(),
+            'customers' => Customer::orderBy('first_name', 'ASC')->get()
+        ]);
     }
 
     /**
