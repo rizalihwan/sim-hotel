@@ -58,7 +58,7 @@ class User extends Authenticatable
             return '<span class="badge badge-info">CUSTOMER<span>';
         } else if($this->hasRole('boss'))
         {
-            return '<span class="badge badge-success">BOSS<span>';
+            return '<span class="badge badge-success">MANAGER<span>';
         } else {
             return '<span class="badge badge-light">Not Have Role<span>';
         }
