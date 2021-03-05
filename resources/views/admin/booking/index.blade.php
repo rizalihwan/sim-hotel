@@ -31,7 +31,7 @@
                                     <td>{{ $booking->check_in }}</td>
                                     <td>{{ $booking->check_out }}</td>
                                     <td>
-                                        <span class="badge badge-info">{{ Str::upper($booking->room->name) }}<span>
+                                        <span class="badge badge-info">{{ Str::upper($booking->room->name . " (" . $booking->room->category->name . ")") }}<span>
                                     </td>
                                     <td>
                                         <span class="badge badge-warning">{{ Str::upper($booking->customer->FullName) }}<span>
@@ -143,7 +143,7 @@
                                 <select name="room_id" id="room_id" class="form-control custom-select" required>
                                     <option disabled selected>Select Room</option>
                                     @foreach ($rooms as $room)
-                                        <option value="{{ $room->id }}">{{ $room->room_code . " - " .$room->name }}</option>
+                                        <option value="{{ $room->id }}">{{ $room->room_code . " - " .$room->name. " (" .$room->category->name. ")" }}</option>
                                     @endforeach
                                 </select>
                                 </div>
