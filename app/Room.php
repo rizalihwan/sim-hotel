@@ -32,7 +32,7 @@ class Room extends Model
     
     public function getRoomStatusAttribute()
     {
-        return $this->status === 1 ? '<span class="badge badge-success">KOSONG<span>' : '<span class="badge badge-danger">TERISI<span>';
+        return $this->status === 1 ? '<span class="badge badge-success">EMPTY ROOM<span>' : '<span class="badge badge-danger">ROOM FILLED<span>';
     }
     
     public function getRatingCountAttribute()
