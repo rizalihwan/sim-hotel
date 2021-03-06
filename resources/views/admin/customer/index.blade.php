@@ -5,7 +5,8 @@
             <div class="card">
                 <div class="card-header">
                     @include('layouts.partials.error')
-                    <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i></button>
+                    <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal"><i
+                            class="fa fa-plus"></i></button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -27,9 +28,11 @@
                                         <span class="badge badge-pill badge-light">{{ $customer->nik }}</span>
                                     </td>
                                     <td>{{ $customer->FullName }}</td>
-                                    <td>{{ $customer->address }}</td>
+                                    <td>{{ Str::limit($customer->address, 30) }}</td>
                                     <td>{{ $customer->phone }}</td>
                                     <td>
+                                        <a href="{{ route('admin.customer.show', $customer->id) }}" style="float: left;"
+                                            class="mr-1"><i class="fa fa-eye" style="color:#2980b9;"></i></a>
                                         <a href="{{ route('admin.customer.edit', $customer->id) }}" style="float: left;"
                                             class="mr-1"><i class="fa fa-pencil-square-o"
                                                 style="color: rgb(0, 241, 12);"></i></a>
@@ -89,8 +92,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="col-form-label" for="nik">NIK:</label>
-                                    <input class="form-control" type="number" name="nik" id="nik"
-                                        placeholder="your nik" required>
+                                    <input class="form-control" type="number" name="nik" id="nik" placeholder="your nik"
+                                        required>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -103,8 +106,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="col-form-label" for="address">Address:</label>
-                                    <textarea type="text" class="form-control" name="address"
-                                        id="address" required></textarea>
+                                    <textarea type="text" class="form-control" name="address" id="address"
+                                        required></textarea>
                                 </div>
                             </div>
                         </div>

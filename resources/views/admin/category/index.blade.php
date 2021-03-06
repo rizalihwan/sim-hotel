@@ -5,7 +5,8 @@
             <div class="card">
                 <div class="card-header">
                     @include('layouts.partials.error')
-                    <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i></button>
+                    <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal"><i
+                            class="fa fa-plus"></i></button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -26,6 +27,8 @@
                                     <td>{{ $category->description }}</td>
                                     <td>{{ $category->facility }}</td>
                                     <td>
+                                        <a href="{{ route('admin.category.show', $category->id) }}" style="float: left;"
+                                            class="mr-1"><i class="fa fa-eye" style="color:#2980b9;"></i></a>
                                         <a href="{{ route('admin.category.edit', $category->id) }}" style="float: left;"
                                             class="mr-1"><i class="fa fa-pencil-square-o"
                                                 style="color: rgb(0, 241, 12);"></i></a>
@@ -85,8 +88,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="col-form-label" for="description">Description:</label>
-                                    <textarea type="text" class="form-control" name="description"
-                                        id="description" required></textarea>
+                                    <textarea type="text" class="form-control" name="description" id="description"
+                                        required></textarea>
                                 </div>
                             </div>
                         </div>
@@ -100,4 +103,43 @@
             </div>
         </div>
     </div>
-@stop
+    {{-- add data modal end --}}
+    <div class="modal fade" id="memberDetail" tabindex="-1" role="dialog" aria-labelledby="memberDetailLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content" style="border-radius: 10px">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="memberDetailLabel">Member Detail</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="form-modal" action="" method="POST">
+                    @csrf
+                    <div id="buatmethod"></div>
+                    <div class="modal-body">
+                        <div class="col-md-12 mt-2">
+                            <div class="row">
+                                <label class="col-md-2 col-form-label">Name</label>
+                                <div class="col-sm-1 d-none d-md-block"><span>:</span></div>
+                                <div class="col-md-9">
+                                    <p class="form-control bg-light" id="detail-name" disabled></p>
+                                </div>
+                                <label class="col-md-2 col-form-label">Description</label>
+                                <div class="col-sm-1 d-none d-md-block"><span>:</span></div>
+                                <div class="col-md-9">
+                                    <p class="form-control bg-light" id="detail-description" disabled></p>
+                                </div>
+                                <label class="col-md-2 col-form-label">Facility</label>
+                                <div class="col-sm-1 d-none d-md-block"><span>:</span></div>
+                                <div class="col-md-9">
+                                    <p class="form-control bg-light" id="detail-facility" disabled></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
