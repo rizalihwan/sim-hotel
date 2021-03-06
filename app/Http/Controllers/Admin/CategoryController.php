@@ -77,6 +77,11 @@ class CategoryController extends Controller
         return redirect()->route('admin.category.index');
     }
 
+     public function show(Category $category)
+    {
+        return view('admin.category.detail', compact('category'));
+    }
+
     /**
      * Remove the specified resource from storage.
      *
