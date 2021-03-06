@@ -32,7 +32,7 @@
                                     <td>{{ $customer->phone }}</td>
                                     <td>
                                         <a href="{{ route('admin.customer.show', $customer->id) }}" style="float: left;"
-                                            class="mr-1"><i class="fa fa-eye" style="color:#2980b9;"></i></a>
+                                            class="mr-3"><i class="fa fa-eye" style="color:#2980b9;"></i></a>
                                         <a href="{{ route('admin.customer.edit', $customer->id) }}" style="float: left;"
                                             class="mr-1"><i class="fa fa-pencil-square-o"
                                                 style="color: rgb(0, 241, 12);"></i></a>
