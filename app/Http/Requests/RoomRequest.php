@@ -29,7 +29,7 @@ class RoomRequest extends FormRequest
             'thumbnail' => 'required|mimes:png,jpg,jpeg,svg|max:2048',
             'floor' => 'required|max:3',
             'category_id' => 'required',
-            'price' => 'required|integer',
+            'price' => 'required',
             'rating' => 'max:1'
         ];
     }
