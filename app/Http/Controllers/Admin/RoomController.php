@@ -63,6 +63,8 @@ class RoomController extends Controller
     {
         $attr = $request->all();
         $attr['status'] = 1;
+        $rp = $request->price;
+        $attr['price'] = preg_replace('/[Rp. ]/','',$rp);
         $attr['thumbnail'] = request()->file('thumbnail')->store("images/rooms");
         Room::create($attr);
         Alert::success('Information Message', 'Data Saved');
