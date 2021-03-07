@@ -48,4 +48,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->name
     Route::resource('customer', 'CustomerController');
     // booking
     Route::resource('booking', 'BookingController');
+    // payment
+    Route::prefix('payment')->name('payment.')->group(function(){
+        Route::get('/', 'PaymentController@index')->name('index');
+    });
 });    
