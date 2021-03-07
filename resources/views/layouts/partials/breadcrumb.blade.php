@@ -47,6 +47,9 @@
                     @if(request()->is('admin/booking'))
                         <li class="breadcrumb-item">Booking</li>
                     @endif
+                    @if(request()->is('admin/payment'))
+                        <li class="breadcrumb-item">Payment</li>
+                    @endif
                 </ol>
             </div>
         </div>
