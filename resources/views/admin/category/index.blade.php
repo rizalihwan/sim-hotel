@@ -23,8 +23,8 @@
                             @forelse ($categories as $category)
                                 <tbody>
                                     <th>{{ $loop->iteration + $categories->firstItem() - 1 . '.' }}</th>
-                                    <td>{{ $category->name }}</td>
-                                    <td>{{ $category->description }}</td>
+                                    <td>{{ Str::limit($category->name, 30) }}</td>
+                                    <td>{{ Str::limit($category->description, 55) }}</td>
                                     <td>{{ $category->facility }}</td>
                                     <td>
                                         <a href="{{ route('admin.category.show', $category->id) }}" style="float: left;"
