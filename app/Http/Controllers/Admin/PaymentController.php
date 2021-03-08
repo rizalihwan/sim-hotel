@@ -18,10 +18,7 @@ class PaymentController extends Controller
     public function index()
     {
         return view('admin.payment.index', [
-            'bookings' => Booking::orderBy('booking_code', 'ASC')->paginate(5),
-            'rooms' => Room::where('status', 1)->orderBy('room_code', 'ASC')->get(),
-            'check_room' => Room::orderBy('room_code', 'ASC')->get(),
-            'customers' => Customer::orderBy('first_name', 'ASC')->get()
+            'bookings' => Booking::orderBy('booking_code', 'ASC')->paginate(5)
         ]);
     }
 
@@ -30,64 +27,13 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function pay($id)
     {
-        //
+        return view('admin.payment.pay', [
+            'bookings' => Booking::orderBy('booking_code', 'ASC')->paginate(5),
+            'rooms' => Room::where('status', 1)->orderBy('room_code', 'ASC')->get(),
+            'customers' => Customer::orderBy('first_name', 'ASC')->get()
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
