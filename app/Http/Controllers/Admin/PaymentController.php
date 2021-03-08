@@ -30,9 +30,7 @@ class PaymentController extends Controller
     public function pay($id)
     {
         return view('admin.payment.pay', [
-            'bookings' => Booking::orderBy('booking_code', 'ASC')->paginate(5),
-            'rooms' => Room::where('status', 1)->orderBy('room_code', 'ASC')->get(),
-            'customers' => Customer::orderBy('first_name', 'ASC')->get()
+            'booking' => Booking::findOrFail($id)
         ]);
     }
 
