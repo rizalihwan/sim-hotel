@@ -13,7 +13,7 @@
                     @method('PATCH')
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="old_password">*Password Lama</label>
+                            <label for="old_password">*Old Password</label>
                             <input type="password" name="old_password" id="old_password" class="form-control @error('old_password') is-invalid @enderror" value="{{ old('old_password') }}" autofocus required>
                             @error('old_password')
                                 <span class="invalid-feedback" role="alert">
@@ -22,7 +22,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="password">*Password Baru</label>
+                            <label for="password">*New Password</label>
                             <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" required>
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -31,7 +31,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="password_confirmation">*Ulangi Password Baru</label>
+                            <label for="password_confirmation">*Repeat New Password</label>
                             <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required>
                         </div>
                     </div>
