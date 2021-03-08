@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\{Booking, Customer, Room, User};
 
 class HomeController extends Controller
 {
@@ -13,6 +13,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('home', [
+            'users' => User::count(),
+            'rooms' => Room::count(),
+            'bookings' => Booking::count(),
+            'customers' => Customer::count(),
+        ]);
     }
 }
