@@ -12,7 +12,7 @@ class UserController extends Controller
     protected function messages()
     {
         return [
-            'password.confirmed' => 'password konfirmasi tidak sama!'
+            'password.confirmed' => 'password confirmation is not same!'
         ];
     }
     /**
