@@ -52,5 +52,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->name
     Route::prefix('payment')->name('payment.')->group(function(){
         Route::get('/', 'PaymentController@index')->name('index');
         Route::get('/pay/{id}', 'PaymentController@pay')->name('pay');
+        Route::patch('/payment/success/{id}', 'PaymentController@payment_success')->name('success');
     });
 });    
