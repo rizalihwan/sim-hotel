@@ -42,7 +42,7 @@
                                         <span class="badge badge-warning">{{ Str::upper($booking->customer->FullName) }}<span>
                                     </td>
                                     <td>
-                                        <span class="badge badge-light">{{ "Rp " . number_format($price, 0,',','.') }}<span>
+                                        <span class="badge badge-light">{{ "Rp. " . number_format($price, 0,',','.') }}<span>
                                     </td>
                                     <td>
                                         <a href="{{ route('admin.payment.pay', $booking->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-money"></i> Pay</a>
