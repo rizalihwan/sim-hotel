@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Booking;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
-    //
+    public function finance()
+    {
+        return view('report.finance', [
+            'bookings' => Booking::orderBy('booking_code', 'ASC')->paginate(5)
+        ]);
+    }
 }

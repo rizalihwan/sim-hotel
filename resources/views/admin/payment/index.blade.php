@@ -69,11 +69,3 @@
         </div>
     </div>
 @endsection
-@section('script')
-    <script>
-        const clicked = document.querySelector('#alert-tea');
-        clicked.addEventListener('click', function(){
-            alert('hellow guys');
-        });
-    </script>
-@endsection

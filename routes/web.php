@@ -54,4 +54,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->name
         Route::get('/pay/{id}', 'PaymentController@pay')->name('pay');
         Route::patch('/payment/success/{id}', 'PaymentController@payment_success')->name('success');
     });
+    // report management
+    Route::prefix('report')->name('report.')->group(function(){
+        Route::get('/finance', 'ReportController@finance')->name('finance');
+    });
 });    
