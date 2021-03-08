@@ -4,9 +4,9 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="#">
-                        {{-- @csrf
-                        @method('patch') --}}
+                    <form action="{{ route('admin.payment.success', $booking->id) }}" method="POST">
+                        @csrf
+                        @method('patch')
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-6">
