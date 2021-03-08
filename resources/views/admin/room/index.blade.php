@@ -36,7 +36,7 @@
                                     <td><img src="{{ $room->RoomThumbnail }}" style="width: 60px; height: 60px; object-fit: cover; object-position: center;" alt="thumbnail"></td>
                                     <td>{{ $room->floor }}</td>
                                     <td>{{ $room->category->name }}</td>
-                                    <td>{{ "Rp " . number_format($room->price, 0,',','.') }}</td>
+                                    <td>{{ "Rp. " . number_format($room->price, 0,',','.') }}</td>
                                     <td>{!! $room->RatingCount !!}</td>
                                     <td>
                                       <a href="{{ route('admin.room.edit', $room->id) }}" style="float: left;" class="mr-1"><i class="fa fa-pencil-square-o" style="color: rgb(0, 241, 12);"></i></a>
