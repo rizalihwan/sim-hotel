@@ -72,7 +72,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                   <label class="col-form-label" for="price">Price/Day:</label>
-                                  <input class="form-control @error('price') is-invalid @enderror" type="number" name="price" value="{{ $room->price ?? old('price') }}" id="price" placeholder="price" required>
+                                  <input class="form-control @error('price') is-invalid @enderror" type="text" name="price" value="{{ "Rp. " . number_format($room->price, 0,',','.') }}" id="price" placeholder="price" required>
                                   @error('price')
                                       <span class="invalid-feedback" role="alert">
                                           <strong>{{ $message }}</strong>
@@ -110,4 +110,25 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        var rupiah = document.getElementById("price");
+        rupiah.addEventListener("keyup", function(e) {
+          rupiah.value = formatRupiah(this.value, "Rp. ");
+        });
+        function formatRupiah(angka, prefix) {
+          var number_string = angka.replace(/[^,\d]/g, "").toString(),
+            split = number_string.split(","),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+          if (ribuan) {
+            separator = sisa ? "." : "";
+            rupiah += separator + ribuan.join(".");
+          }
+          rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+          return prefix == undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
+        }
+    </script>
 @endsection
