@@ -79,8 +79,9 @@
 @endsection
 @section('script')
     <script>      
+    let btn = document.getElementById('button');
     window.onload = function() {
-        document.getElementById('button').disabled = true
+        btn.hidden = true
     }
     const pay = document.querySelector('#money');
     pay.addEventListener('keyup', function(){
@@ -93,9 +94,9 @@
             returns.value = "0";
         }
         if (parseInt(returns.value) < 0 || money.value == 0) {
-            document.getElementById('button').disabled = true
+            btn.hidden = true
         } else {
-            document.getElementById('button').disabled = false
+            btn.hidden = false
         }
     });
     </script>
