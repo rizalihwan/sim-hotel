@@ -106,9 +106,6 @@ class RoomController extends Controller
     public function update($id)
     {
         $room = Room::findOrFail($id);
-        $messages = [
-            'floor.max' => 'Floor Maximum 3 characters!'
-        ];
         $attr = $this->validate(request(), [
             'room_code' => 'required|min:3|unique:rooms,room_code,'.$id,
             'name' => 'required|max:50',
@@ -117,7 +114,9 @@ class RoomController extends Controller
             'category_id' => 'required',
             'price' => 'required',
             'rating' => 'max:1'
-        ], $messages);
+        ], [
+            'floor.max' => 'Floor Maximum 3 characters!'
+        ]);
         if (request()->file('thumbnail')) {
             \Storage::delete($room->thumbnail);
             $thumbnail = request()->file('thumbnail')->store("images/rooms");
@@ -145,6 +144,7 @@ class RoomController extends Controller
         {
             \Storage::delete($room->thumbnail);
         }
+        $room->booking()->delete();
         $room->delete();
         Alert::success('Information Message', 'Data Deleted');
         return back();
