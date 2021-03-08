@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Booking;
-use App\Customer;
 use App\Http\Controllers\Controller;
-use App\Room;
-use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PaymentController extends Controller
 {
@@ -34,4 +32,19 @@ class PaymentController extends Controller
         ]);
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function payment_success($id)
+    {
+        Booking::findOrFail($id)->update([
+            'status' => 1
+        ]);
+        Alert::success('Message Information', 'Payment is Successfull');
+        return redirect()->route('admin.payment.index');
+    }
 }
