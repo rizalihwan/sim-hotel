@@ -115,7 +115,7 @@ class RoomController extends Controller
             'thumbnail' => 'mimes:png,jpg,jpeg,svg|max:2048',
             'floor' => 'required|max:3',
             'category_id' => 'required',
-            'price' => 'required|integer',
+            'price' => 'required',
             'rating' => 'max:1'
         ], $messages);
         if (request()->file('thumbnail')) {
@@ -124,6 +124,8 @@ class RoomController extends Controller
         } else {
             $thumbnail = $room->thumbnail;
         }
+        $rp = request('price');
+        $attr['price'] = preg_replace('/[Rp. ]/','',$rp);
         $attr['thumbnail'] = $thumbnail;
         $room->update($attr);
         Alert::success('Message Information', 'Data Updated');
