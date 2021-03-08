@@ -40,9 +40,11 @@
                                         <span class="badge badge-light">{{ Str::upper($booking->payment_type) }}<span>
                                     </td>
                                     <td>
+                                        @if($booking->status == 0)
                                         <a href="{{ route('admin.booking.edit', $booking->id) }}" style="float: left;"
                                             class="mr-1"><i class="fa fa-pencil-square-o"
                                                 style="color: rgb(0, 241, 12);"></i></a>
+                                        @endif
                                         <form action="{{ route('admin.booking.destroy', $booking->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
