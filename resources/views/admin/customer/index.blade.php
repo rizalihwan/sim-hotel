@@ -28,7 +28,7 @@
                                         <span class="badge badge-pill badge-light">{{ $customer->nik }}</span>
                                     </td>
                                     <td>{{ $customer->FullName }}</td>
-                                    <td>{{ Str::limit($customer->address, 30) }}</td>
+                                    <td>{{ Str::limit($customer->address, 10) }}</td>
                                     <td>{{ $customer->phone }}</td>
                                     <td>
                                         <a href="{{ route('admin.customer.show', $customer->id) }}" style="float: left;"
