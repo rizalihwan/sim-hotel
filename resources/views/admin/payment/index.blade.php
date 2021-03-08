@@ -21,9 +21,9 @@
                             </thead>
                             @forelse ($bookings as $booking)
                                 @php
-                                    $return = date_create($booking['check_out']);
-                                    $date = date_create(date('Y-m-d'));
-                                    $calculate = date_diff($return, $date);
+                                    $check_out = date_create($booking['check_out']);
+                                    $check_in = date_create($booking['check_in']);
+                                    $calculate = date_diff($check_out, $check_in);
                                     $day = $calculate->format("%a");
                                     $price = $day * $booking->room->price;
                                 @endphp
@@ -45,7 +45,7 @@
                                         <span class="badge badge-light">{{ "Rp " . number_format($price, 0,',','.') }}<span>
                                     </td>
                                     <td>
-                                        <a href="#" id="alert-tea" class="btn btn-primary btn-xs"><i class="fa fa-money"></i> Pay</a>
+                                        <a href="{{ route('admin.payment.pay', $booking->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-money"></i> Pay</a>
                                     </td>
                                 </tbody>
                             @empty
