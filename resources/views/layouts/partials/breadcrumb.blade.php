@@ -50,6 +50,10 @@
                     @if(request()->is('admin/payment'))
                         <li class="breadcrumb-item">Payment</li>
                     @endif
+                    @if(request()->is('admin/report/finance'))
+                        <li class="breadcrumb-item">Report</li>
+                        <li class="breadcrumb-item">Finance</li>
+                    @endif
                 </ol>
             </div>
         </div>
