@@ -53,7 +53,7 @@
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
                         <li><a href="{{ route('profile.setting') }}" class="active"><i
-                                    data-feather="user"></i><span>Account </span></a></li>
+                                    data-feather="user"></i><span>My Profile</span></a></li>
                         <li><a data-toggle="modal" data-target="#exampleModalCenter"><i data-feather="log-in"> </i></i><span>Log Out</span></a></li>
                     </ul>
                 </li>
