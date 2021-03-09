@@ -44,7 +44,7 @@
                     @if(request()->is('admin/customer'))
                         <li class="breadcrumb-item">Customer</li>
                     @endif
-                    @if(request()->is('admin/booking'))
+                    @if(request()->is('admin/booking') || request()->is('admin/already_paid') || request()->is('admin/not_yet_paid'))
                         <li class="breadcrumb-item">Booking</li>
                     @endif
                     @if(request()->is('admin/payment'))
