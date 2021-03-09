@@ -13,12 +13,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class BookingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    protected function booking_code()
     {
         $number = Booking::count();
         if($number > 0)
@@ -28,19 +23,28 @@ class BookingController extends Controller
             $strnum = $strnum + 1;
             if(strlen($strnum) == 4)
             {
-                $kode = 'BKNG' . $strnum;
+                return 'BKNG' . $strnum;
             }else if (strlen($strnum) == 3) {
-                $kode = 'BKNG' . "0" . $strnum;
+                return 'BKNG' . "0" . $strnum;
             } else if (strlen($strnum) == 2) {
-                $kode = 'BKNG' . "00" . $strnum;
+                return 'BKNG' . "00" . $strnum;
             } else if (strlen($strnum) == 1) {
-                $kode = 'BKNG' . "000" . $strnum;
+                return 'BKNG' . "000" . $strnum;
             }
         } else {
-            $kode = 'BKNG' . "0001";
+            return 'BKNG' . "0001";
         }
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
         return view('admin.booking.index', [
-            'kode' => $kode,
+            'kode' => $this->booking_code(),
             'now' => Carbon::now(),
             'bookings' => Booking::orderBy('booking_code', 'ASC')->paginate(5),
             'rooms' => Room::where('status', 1)->orderBy('room_code', 'ASC')->get(),
@@ -49,14 +53,28 @@ class BookingController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function already_paid()
     {
-        //
+        return view('admin.booking.index', [
+            'kode' => $this->booking_code(),
+            'now' => Carbon::now(),
+            'bookings' => Booking::where('status', 1)->orderBy('booking_code', 'ASC')->paginate(5),
+            'rooms' => Room::where('status', 1)->orderBy('room_code', 'ASC')->get(),
+            'check_room' => Room::orderBy('room_code', 'ASC')->get(),
+            'customers' => Customer::orderBy('first_name', 'ASC')->get()
+        ]);
+    }
+
+    public function not_yet_paid()
+    {
+        return view('admin.booking.index', [
+            'kode' => $this->booking_code(),
+            'now' => Carbon::now(),
+            'bookings' => Booking::where('status', 0)->orderBy('booking_code', 'ASC')->paginate(5),
+            'rooms' => Room::where('status', 1)->orderBy('room_code', 'ASC')->get(),
+            'check_room' => Room::orderBy('room_code', 'ASC')->get(),
+            'customers' => Customer::orderBy('first_name', 'ASC')->get()
+        ]);
     }
 
     /**

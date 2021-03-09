@@ -5,7 +5,24 @@
             <div class="card">
                 <div class="card-header">
                     @include('layouts.partials.error')
-                    <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i></button>
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i></button>
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-light btn-sm for-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-filter"></i> 
+                          </button>
+                          <button type="button" class="btn btn-secondary btn-sm for-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-filter"></i> 
+                          </button>
+                          <div class="dropdown-menu">
+                            <small class="dropdown-item text-secondary" aria-disabled="true">Filter Payment Status</small>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('admin.booking.index') }}">Default</a>
+                            <a class="dropdown-item" href="{{ route('admin.booking.already_paid') }}">Already Paid</a>
+                            <a class="dropdown-item" href="{{ route('admin.booking.not_paid') }}">Not Yet Paid</a>
+                          </div>
+                        </div>
+                      </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
