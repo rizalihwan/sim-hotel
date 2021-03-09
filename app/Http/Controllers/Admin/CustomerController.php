@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Booking;
 use App\Customer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerRequest;
-use Illuminate\Http\Request;
+use App\Room;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class CustomerController extends Controller
@@ -91,7 +92,14 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        Customer::findOrFail($id)->delete();
+        $customer = Customer::findOrFail($id);
+        // $bookIds = Booking::where('customer_id', $customer->id)->pluck('id');
+        // $roomIds = Booking::where('room_id', $bookIds);
+        // Room::whereIn('id', $roomIds)->update([
+        //     'status' => 1
+        // ]);
+        $customer->booking()->delete();
+        $customer->delete();
         Alert::success('Message Information', 'Data Deleted');
         return redirect()->route('admin.customer.index');
     }

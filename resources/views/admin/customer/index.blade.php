@@ -29,7 +29,7 @@
                                     </td>
                                     <td>{{ $customer->FullName }}</td>
                                     <td>{{ Str::limit($customer->address, 10) }}</td>
-                                    <td>{{ $customer->phone }}</td>
+                                    <td>{{ Str::limit($customer->phone, 10) }}</td>
                                     <td>
                                         <a href="{{ route('admin.customer.show', $customer->id) }}" style="float: left;"
                                             class="mr-3"><i class="fa fa-eye" style="color:#2980b9;"></i></a>
