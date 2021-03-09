@@ -9,10 +9,12 @@
                     </center>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ route('password.edit') }}" class="btn btn-success btn-sm">
-                        <i class="fa fa-lock"></i><br />
-                        Change Password
-                    </a>
+                    <center>
+                        <a href="{{ route('password.edit') }}" class="btn btn-success btn-sm">
+                            <i class="fa fa-lock"></i><br />
+                            Change Password
+                        </a>
+                    </center>
                 </div>
             </div>
         </div>
