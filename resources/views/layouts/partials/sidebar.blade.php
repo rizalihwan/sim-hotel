@@ -55,6 +55,13 @@
                             <li><a href="{{ route('admin.report.finance') }}">Finance</a></li>
                         </ul>
                     </li>
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="align-center"></i>
+                            </i><span>Profile</span></a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="{{ route('profile.setting') }}">Account</a></li>
+                            <li><a data-toggle="modal" data-target="#exampleModalCenter" href="#">Log out</a></li>
+                        </ul>
+                    </li>
                 @endrole
             </ul>
         </div>
