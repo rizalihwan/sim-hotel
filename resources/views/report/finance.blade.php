@@ -20,7 +20,6 @@
                                     $calculate = date_diff($check_out, $check_in);
                                     $day = $calculate->format("%a");
                                     $price = $day * $booking->room->price;
-                                    $count = $booking->room->sum('price');
                                 @endphp
                                 <tbody>
                                     <th>{{ $loop->iteration + $bookings->firstItem() - 1 . '.' }}</th>
@@ -36,15 +35,6 @@
                                     </tr>
                                 </tbody>
                             @endforelse
-                            <tfoot>
-                                <tr>
-                                    <th>Total Income</th>
-                                    <td></td>
-                                    <td>
-                                        <span class="badge badge-light">{{ "Rp. " . number_format($count, 0,',','.') }}<span>
-                                    </td>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                 </div>
