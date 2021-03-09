@@ -22,10 +22,6 @@
                     <div class="mobile-back text-right"><span>Back</span><i class="fa fa-angle-right pl-2"
                             aria-hidden="true"></i></div>
                 </li>
-                @role('boss')
-                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('home') }}"><i
-                            data-feather="home"> </i><span>Dashboard</span></a></li>
-                @endrole
                 @role('admin')
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('home') }}"><i
                                 data-feather="home"> </i><span>Dashboard</span></a></li>
@@ -62,6 +58,28 @@
                             <li><a data-toggle="modal" data-target="#exampleModalCenter" href="#">Log out</a></li>
                         </ul>
                     </li>
+                @endrole
+                @role('customer')
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('home') }}"><i
+                            data-feather="home"> </i><span>Dashboard</span></a></li>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="align-center">
+                    </i><span>Profile</span></a>
+                    <ul class="sidebar-submenu">
+                        <li><a href="{{ route('profile.setting') }}">My Profile</a></li>
+                        <li><a data-toggle="modal" data-target="#exampleModalCenter" href="#">Log out</a></li>
+                    </ul>
+                </li>            
+                @endrole
+                @role('boss')
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('home') }}"><i
+                            data-feather="home"> </i><span>Dashboard</span></a></li>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="align-center">
+                    </i><span>Profile</span></a>
+                    <ul class="sidebar-submenu">
+                        <li><a href="{{ route('profile.setting') }}">My Profile</a></li>
+                        <li><a data-toggle="modal" data-target="#exampleModalCenter" href="#">Log out</a></li>
+                    </ul>
+                </li>            
                 @endrole
             </ul>
         </div>
