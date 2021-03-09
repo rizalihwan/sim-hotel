@@ -53,6 +53,7 @@
                                 @method('patch')
                                 <ul class="qty">
                                     <li>Room: <span class="badge badge-warning" style="font-size: 13px;">{{ $booking->room->name }}</span></li>
+                                    <li>Room Category: <span class="badge badge-success" style="font-size: 13px;">{{ $booking->room->category->name }}</span></li>
                                     @php
                                         $check_out = date_create($booking['check_out']);
                                         $check_in = date_create($booking['check_in']);
