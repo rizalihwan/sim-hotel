@@ -54,6 +54,9 @@
                         <li class="breadcrumb-item">Report</li>
                         <li class="breadcrumb-item">Finance</li>
                     @endif
+                    @if(request()->is('customer/survey/room'))
+                        <li class="breadcrumb-item">Room Survey</li>
+                    @endif
                 </ol>
             </div>
         </div>
