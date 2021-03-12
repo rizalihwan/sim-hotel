@@ -8,11 +8,9 @@
                     <h3><u>Room Survey</u></h3> 
                 </span>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-light btn-sm for-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-filter"></i> 
                     </button>
-                    <button type="button" class="btn btn-secondary btn-sm for-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-filter"></i> 
                     </button>
                     <div class="dropdown-menu">
                     <small class="dropdown-item text-secondary" aria-disabled="true">View based on</small>
@@ -27,30 +25,33 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-xl-3 xl-50 col-md-6">
-                    <div class="card features-faq product-box">
-                        <div class="faq-image product-img"><img class="img-fluid" src="{{ asset('assets/images/1.jpg') }}" alt="">
-                    </div>
-                    <div class="card-body">
-                        <h6> Web Design</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                    </div>
-                    <div class="card-footer">
-                        <span>Dec 15, 2019</span><span class="pull-right"><i class="fa fa-star font-primary"></i><i class="fa fa-star font-primary"></i><i class="fa fa-star font-primary"></i><i class="fa fa-star font-primary"></i><i class="fa fa-star-o font-primary"></i></span>
-                    </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 xl-50 col-md-6">
-                    <div class="card features-faq product-box">
-                        <div class="faq-image product-img"><img class="img-fluid" src="{{ asset('assets/images/1.jpg') }}" alt="">
+                @foreach ($rooms as $room)
+                    <div class="col-xl-3 xl-50 col-md-6">
+                        <div class="card features-faq product-box mb-2" style="height: 500px; border: 1px solid gray;">
+                            <div class="faq-image product-img">
+                                <center>
+                                    <img class="img-fluid" src="{{ $room->RoomThumbnail }}" style="width: 250px; height: 250px; object-fit: cover; object-position: center;" alt="roomthumbnail">
+                                </center>        
+                            </div>
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <h6 class="text-secondary">{{ Str::upper($room->name) }}</h6>
+                                        @if($room->status === 1)
+                                            <span class="badge badge-success p-2">EMPTY ROOM</span>
+                                        @else
+                                            <span class="badge badge-danger p-2">ROOM FILLED<span>
+                                        @endif
+                                    </div>
+                                    <div class="mt-4">
+                                        <p>{{ $room->category->description }}</p>
+                                    </div>
+                                </div>
+                            <div class="card-footer">
+                                <span>{{ $room->created_at->diffForHumans() }}</span><span class="pull-right">{!! $room->RatingCount !!}</span>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <h6> Web Design</h6>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                        </div>
-                        <div class="card-footer"><span>Dec 15, 2019</span><span class="pull-right"><i class="fa fa-star font-primary"></i><i class="fa fa-star font-primary"></i><i class="fa fa-star font-primary"></i><i class="fa fa-star font-primary"></i></span></div>
                     </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
