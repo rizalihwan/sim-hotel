@@ -11,7 +11,7 @@
                                 <div class="media align-items-center">
                                     <div class="media-body">
                                         <div class="right-chart-content">
-                                            <h4>Selamat Datang,</h4><span>Hallo <b>{{ Str::upper(auth()->user()->name) }}</b> Semoga hari anda menyenangkan & pilihlah paket kamar yang tepat dan membuat anda nyaman. Berikut paket kamar terbaru kami / <a href="#">Lebih Lengkap</a>:</span>
+                                            <h4>Selamat Datang,</h4><span>Hallo <b>{{ Str::upper(auth()->user()->name) }}</b> Semoga hari anda menyenangkan & pilihlah paket kamar yang tepat dan membuat anda nyaman. Berikut paket kamar terbaru kami / <a href="{{ route('customer.survey') }}">Lebih Lengkap</a>:</span>
                                         </div>
                                     </div>
                                 </div>
