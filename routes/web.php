@@ -61,3 +61,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->name
         Route::get('/finance', 'ReportController@finance')->name('finance');
     });
 });    
+
+// customer access
+Route::prefix('customer')->name('customer.')->middleware(['auth', 'role:customer'])->namespace('Customer')->group(function(){
+    // survey room
+    Route::get('/survey/room', 'RoomSurveyController@index')->name('survey');
+});   
