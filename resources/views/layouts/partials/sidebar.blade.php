@@ -62,7 +62,7 @@
                 @role('customer')
                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('home') }}"><i
                             data-feather="home"> </i><span>Dashboard</span></a></li>
-                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i 
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('customer.survey') }}"><i 
                             data-feather="wind"> </i><span>Room Survey</span></a></li>            
                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="align-center">
                     </i><span>Profile</span></a>
