@@ -1,4 +1,11 @@
 @extends('layouts.app', ['title' => 'HRI-HOTEL | Edit Account'])
+@section('breadcrumb')
+    <li class="breadcrumb-item">
+        @if($user->hasRole('admin')) Admin Account Edit @endif
+        @if($user->hasRole('boss')) Manager Account Edit @endif
+        @if($user->hasRole('customer')) Customer Account Edit @endif
+    </li>
+@endsection
 @section('content')
     <div class="row">
         <div class="col-md-12">
