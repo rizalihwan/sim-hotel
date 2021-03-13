@@ -59,7 +59,24 @@
             <!-- Page Sidebar end-->
             <div class="page-body">
                 <!-- Breadcrumb -->
-                @include('layouts.partials.breadcrumb')
+                <div class="container-fluid">
+                    <div class="page-title">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3 class="text-secondary"><u>Menu</u></h3>
+                            </div>
+                            <div class="col-6">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a href="{{ route('home') }}"> <i data-feather="home"></i></a>
+                                    </li>
+                                    @include('layouts.partials.breadcrumb')
+                                    @yield('breadcrumb')
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- Breadcrumb end-->
                 <!-- Content -->
                 @yield('content')
