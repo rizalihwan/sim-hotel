@@ -1,4 +1,7 @@
 @extends('layouts.app', ['title' => 'HRI-HOTEL | Detail Category'])
+@section('breadcrumb')
+    <li class="breadcrumb-item">Category Detail</li>
+@endsection
 @section('content')
     <div class="row">
         <div class="col-md-12">

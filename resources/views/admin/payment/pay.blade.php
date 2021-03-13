@@ -12,6 +12,9 @@
         }
     </style>
 @endsection
+@section('breadcrumb')
+    <li class="breadcrumb-item">Booking Payment</li>
+@endsection
 @section('content')
 <div class="container-fluid">
     <div class="card">
