@@ -46,7 +46,7 @@
                                         <div>
                                             <p>Category : {{ $room->category->name }}</p>
                                         </div>
-                                        <p>Description : {{ $room->category->description }}</p>
+                                        <p>Description : {!! Str::limit($room->category->description, 200) !!}</p>
                                     </div>
                                 </div>
                             <div class="card-footer">
