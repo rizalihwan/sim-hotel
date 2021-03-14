@@ -28,9 +28,9 @@
                 @foreach ($rooms as $room)
                     <div class="col-xl-3 xl-50 col-md-6">
                         <div class="card features-faq product-box mb-3" style="height: 530px; border: 0.1px solid gray;">
-                            <div class="faq-image product-img my-3">
+                            <div class="faq-image product-img p-2">
                                 <center>
-                                    <img class="img-fluid" src="{{ $room->RoomThumbnail }}" style="width: 250px; height: 250px; object-fit: cover; object-position: center;" alt="roomthumbnail">
+                                    <img class="img-fluid" src="{{ $room->RoomThumbnail }}" style="width: 100%; height: 250px; object-fit: cover; object-position: center;" alt="roomthumbnail">
                                 </center>        
                             </div>
                                 <div class="card-body">
@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
                             <div class="card-footer">
-                                <span class="badge badge-light">Published On : {{ $room->created_at->format('d, M Y') }}</span><span class="pull-right">{!! $room->RatingCount !!}</span>
+                                <span class="badge badge-light">Published On : {{ $room->created_at->format('d M, Y') }}</span><span class="pull-right">{!! $room->RatingCount !!}</span>
                             </div>
                         </div>
                     </div>
