@@ -4,12 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
+use App\Repositories\UserRepositoryInterface;
 use App\User;
 use RealRashid\SweetAlert\Facades\Alert;
-use Spatie\Permission\Models\Role;
 
 class AccountController extends Controller
 {
+    private $userRepo;
+
+    public function __construct(UserRepositoryInterface $userRepo)
+    {
+        return $this->userRepo = $userRepo;
+    }
+    
     public function admin_index_account()
     {
         $account = User::where('id', '!=', auth()->user()->id)->role('admin')->paginate(5);
@@ -41,7 +48,7 @@ class AccountController extends Controller
      */
     public function index()
     {
-        $account = User::where('id', '!=', auth()->user()->id)->paginate(5);
+        $account = $this->userRepo->getWhere();
         return view('admin.account.index', [
             'accounts' => $account
         ]);
