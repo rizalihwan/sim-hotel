@@ -16,13 +16,8 @@
                         <br>
                         <label class="col-md-2 col-form-label mb-4">Description</label>
                         <div class="col-sm-1 d-none d-md-block"><span>:</span></div>
-                        <div class="col-md-9 for-light">
-                            <textarea class="form-control mb-4" style="background-color:white;"
-                                disabled>{{ $category->description }}</textarea>
-                        </div>
-                        <div class="col-md-9 for-dark">
-                            <textarea class="form-control mb-4" style="background-color:dark; color: white;"
-                                disabled>{{ $category->description }}</textarea>
+                        <div class="col-md-9">
+                            <span class="form-control mb-4" style="background-color:white; height: 200px;">{!! $category->description !!}</span>
                         </div>
                         <label class="col-md-2 col-form-label mb-4">Facility</label>
                         <div class="col-sm-1 d-none d-md-block"><span>:</span></div>
