@@ -24,7 +24,7 @@
                                 <tbody>
                                     <th>{{ $loop->iteration + $categories->firstItem() - 1 . '.' }}</th>
                                     <td>{{ Str::limit($category->name, 30) }}</td>
-                                    <td>{{ Str::limit($category->description, 55) }}</td>
+                                    <td>{!! Str::limit($category->description, 55) !!}</td>
                                     <td>{{ $category->facility }}</td>
                                     <td>
                                         <a href="{{ route('admin.category.show', $category->id) }}" style="float: left;"
@@ -100,48 +100,10 @@
             </div>
         </div>
     </div>
-    {{-- add data modal end --}}
-    <div class="modal fade" id="memberDetail" tabindex="-1" role="dialog" aria-labelledby="memberDetailLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content" style="border-radius: 10px">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title" id="memberDetailLabel">Member Detail</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form id="form-modal" action="" method="POST">
-                    @csrf
-                    <div id="buatmethod"></div>
-                    <div class="modal-body">
-                        <div class="col-md-12 mt-2">
-                            <div class="row">
-                                <label class="col-md-2 col-form-label">Name</label>
-                                <div class="col-sm-1 d-none d-md-block"><span>:</span></div>
-                                <div class="col-md-9">
-                                    <p class="form-control bg-light" id="detail-name" disabled></p>
-                                </div>
-                                <label class="col-md-2 col-form-label">Description</label>
-                                <div class="col-sm-1 d-none d-md-block"><span>:</span></div>
-                                <div class="col-md-9">
-                                    <p class="form-control bg-light" id="detail-description" disabled></p>
-                                </div>
-                                <label class="col-md-2 col-form-label">Facility</label>
-                                <div class="col-sm-1 d-none d-md-block"><span>:</span></div>
-                                <div class="col-md-9">
-                                    <p class="form-control bg-light" id="detail-facility" disabled></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 @endsection
 @section('script')
 <script>
+    CKEDITOR.replace('description');
     function deleteCategory(id) {
         Swal.fire({
             title: 'Are you sure?',
