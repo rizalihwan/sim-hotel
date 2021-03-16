@@ -41,7 +41,7 @@
                                 <div class="form-group">
                                     <label class="col-form-label" for="description">Description:</label>
                                     <textarea class="form-control @error('description') is-invalid @enderror" type="text"
-                                        name="description" id="facility" placeholder="facility"
+                                        name="description" id="description" placeholder="facility"
                                         required>{{ $category->description ?? old('description') }}</textarea>
                                 </div>
                             </div>
@@ -56,4 +56,9 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+<script>
+    CKEDITOR.replace('description');
+</script>    
 @endsection
