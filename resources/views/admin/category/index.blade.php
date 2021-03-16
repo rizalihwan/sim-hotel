@@ -31,8 +31,8 @@
                                             class="mr-2"><i class="fa fa-eye" style="color:#2980b9;"></i></a>
                                         <a href="{{ route('admin.category.edit', $category->id) }}" style="float: left;"><i class="fa fa-pencil-square-o"
                                                 style="color: rgb(0, 241, 12);"></i></a>
-                                        <button type="submit" onclick="deleteCategory('{{$category->id}}')" style="background-color: transparent; border: none;"><i class="icon-trash" style="color: red;"></i></button>        
-                                        <form action="{{ route('admin.category.destroy', $category->id) }}" method="post" id="DeleteCategory{{$category->id}}">
+                                        <button type="submit" onclick="deleteCategory('{{ $category->id }}')" style="background-color: transparent; border: none;"><i class="icon-trash" style="color: red;"></i></button>        
+                                        <form action="{{ route('admin.category.destroy', $category->id) }}" method="post" id="DeleteCategory{{ $category->id }}">
                                             @csrf
                                             @method('DELETE')
                                         </form>    
