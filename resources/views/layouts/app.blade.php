@@ -95,6 +95,7 @@
     @yield('script')
     <!-- latest jquery-->
     <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- Bootstrap js-->
     <script src="{{ asset('assets/js/bootstrap/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap/bootstrap.js') }}"></script>
