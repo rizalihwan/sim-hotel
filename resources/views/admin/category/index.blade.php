@@ -28,17 +28,14 @@
                                     <td>{{ $category->facility }}</td>
                                     <td>
                                         <a href="{{ route('admin.category.show', $category->id) }}" style="float: left;"
-                                            class="mr-1"><i class="fa fa-eye" style="color:#2980b9;"></i></a>
-                                        <a href="{{ route('admin.category.edit', $category->id) }}" style="float: left;"
-                                            class="mr-1"><i class="fa fa-pencil-square-o"
+                                            class="mr-2"><i class="fa fa-eye" style="color:#2980b9;"></i></a>
+                                        <a href="{{ route('admin.category.edit', $category->id) }}" style="float: left;"><i class="fa fa-pencil-square-o"
                                                 style="color: rgb(0, 241, 12);"></i></a>
-                                        <form action="{{ route('admin.category.destroy', $category->id) }}" method="post">
+                                        <button type="submit" onclick="deleteCategory('{{$category->id}}')" style="background-color: transparent; border: none;"><i class="icon-trash" style="color: red;"></i></button>        
+                                        <form action="{{ route('admin.category.destroy', $category->id) }}" method="post" id="DeleteCategory{{$category->id}}">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" onclick="return confirm('Sure for delete this data?')"
-                                                style="background-color: transparent; border: none;"><i class="icon-trash"
-                                                    style="color: red;"></i></button>
-                                        </form>
+                                        </form>    
                                     </td>
                                 </tbody>
                             @empty
@@ -142,4 +139,32 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+<script>
+    function deleteCategory(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "is Removing Category",
+                    showConfirmButton: false,
+                    timer: 2300,
+                    timerProgressBar: true,
+                    onOpen: () => {
+                        document.getElementById(`DeleteCategory${id}`).submit();
+                        Swal.showLoading();
+                    }
+                });
+            }
+        })
+    }
+</script>    
 @endsection
