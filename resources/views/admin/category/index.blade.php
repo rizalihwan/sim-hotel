@@ -152,18 +152,18 @@
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: "is Removing Category",
-                    showConfirmButton: false,
-                    timer: 2300,
-                    timerProgressBar: true,
-                    onOpen: () => {
-                        document.getElementById(`DeleteCategory${id}`).submit();
-                        Swal.showLoading();
-                    }
-                });
-            }
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "is Removing Category",
+                        showConfirmButton: false,
+                        timer: 2300,
+                        timerProgressBar: true,
+                        onOpen: () => {
+                            document.getElementById(`DeleteCategory${id}`).submit();
+                            Swal.showLoading();
+                        }
+                    });
+                }
         })
     }
 </script>    
