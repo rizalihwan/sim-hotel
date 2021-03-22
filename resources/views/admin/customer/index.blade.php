@@ -36,12 +36,10 @@
                                         <a href="{{ route('admin.customer.edit', $customer->id) }}" style="float: left;"
                                             class="mr-1"><i class="fa fa-pencil-square-o"
                                                 style="color: rgb(0, 241, 12);"></i></a>
-                                        <form action="{{ route('admin.customer.destroy', $customer->id) }}" method="post">
+                                        <button type="submit" onclick="deleteCustomer('{{ $customer->id }}')" style="background-color: transparent; border: none;"><i class="icon-trash" style="color: red;"></i></button>       
+                                        <form action="{{ route('admin.customer.destroy', $customer->id) }}" method="post" id="DeleteCustomer{{ $customer->id }}">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" onclick="return confirm('Sure for delete this data?')"
-                                                style="background-color: transparent; border: none;"><i class="icon-trash"
-                                                    style="color: red;"></i></button>
                                         </form>
                                     </td>
                                 </tbody>
@@ -122,3 +120,31 @@
         </div>
     </div>
 @stop
+@section('script')
+    <script>
+        function deleteCustomer(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "is Removing Customer",
+                            showConfirmButton: false,
+                            timer: 2300,
+                            timerProgressBar: true,
+                            onOpen: () => {
+                                document.getElementById(`DeleteCustomer${id}`).submit();
+                                Swal.showLoading();
+                            }
+                        });
+                    }
+            })
+        }
+    </script>
+@endsection
