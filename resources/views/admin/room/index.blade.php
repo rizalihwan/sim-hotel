@@ -40,10 +40,10 @@
                                     <td>{!! $room->RatingCount !!}</td>
                                     <td>
                                       <a href="{{ route('admin.room.edit', $room->id) }}" style="float: left;" class="mr-1"><i class="fa fa-pencil-square-o" style="color: rgb(0, 241, 12);"></i></a>
-                                      <form action="{{ route('admin.room.destroy', $room->id) }}" method="post">
+                                      <button type="submit" onclick="deleteRoom('{{ $room->id }}')" style="background-color: transparent; border: none;"><i class="icon-trash" style="color: red;"></i></button>     
+                                      <form action="{{ route('admin.room.destroy', $room->id) }}" method="post" id="DeleteRoom{{ $room->id }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Sure for delete this data?')" style="background-color: transparent; border: none;"><i class="icon-trash" style="color: red;"></i></button>
                                       </form>
                                     </td>
                                 </tr>
@@ -144,6 +144,30 @@
 @endsection
 @section('script')
     <script>
+      function deleteRoom(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "is Removing Room",
+                        showConfirmButton: false,
+                        timer: 2300,
+                        timerProgressBar: true,
+                        onOpen: () => {
+                            document.getElementById(`DeleteRoom${id}`).submit();
+                            Swal.showLoading();
+                        }
+                    });
+                  }
+            })
+        }
         var rupiah = document.getElementById("price");
         rupiah.addEventListener("keyup", function(e) {
           rupiah.value = formatRupiah(this.value, "Rp. ");
