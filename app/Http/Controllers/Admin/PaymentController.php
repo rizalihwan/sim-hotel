@@ -16,7 +16,7 @@ class PaymentController extends Controller
     public function index()
     {
         return view('admin.payment.index', [
-            'bookings' => Booking::orderBy('booking_code', 'ASC')->paginate(5)
+            'bookings' => Booking::where('status', 0)->orderBy('booking_code', 'ASC')->paginate(5)
         ]);
     }
 
