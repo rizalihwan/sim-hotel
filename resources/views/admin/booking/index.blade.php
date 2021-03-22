@@ -58,15 +58,22 @@
                                     </td>
                                     <td>
                                         @if($booking->status == 0)
-                                        <a href="{{ route('admin.booking.edit', $booking->id) }}" style="float: left;"
-                                            class="mr-1"><i class="fa fa-pencil-square-o"
-                                                style="color: rgb(0, 241, 12);"></i></a>
+                                            <a href="{{ route('admin.booking.edit', $booking->id) }}" style="float: left;"
+                                                class="mr-1"><i class="fa fa-pencil-square-o"
+                                                    style="color: rgb(0, 241, 12);"></i></a>
+                                            <button type="submit" onclick="deleteBooking('{{ $booking->id }}')" style="background-color: transparent; border: none;"><i class="icon-trash" style="color: red;"></i></button>        
+                                            <form action="{{ route('admin.booking.destroy', $booking->id) }}" method="post" id="DeleteBooking{{ $booking->id }}">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
                                         @endif
-                                        <button type="submit" onclick="deleteBooking('{{ $booking->id }}')" style="background-color: transparent; border: none;"><i class="icon-trash" style="color: red;"></i></button>        
-                                        <form action="{{ route('admin.booking.destroy', $booking->id) }}" method="post" id="DeleteBooking{{ $booking->id }}">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
+                                        @if($booking->status == 1)   
+                                            <form action="{{ route('admin.booking.destroy', $booking->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-refresh"></i></button>     
+                                            </form>
+                                        @endif
                                     </td>
                                 </tbody>
                             @empty
