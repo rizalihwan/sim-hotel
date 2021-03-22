@@ -45,11 +45,7 @@
                                         <span class="badge badge-light">{{ "Rp. " . number_format($price, 0,',','.') }}<span>
                                     </td>
                                     <td>
-                                        @if($booking->status == 1)
-                                            <span class="badge badge-success">ALREADY PAID</span>
-                                        @else
-                                            <a href="{{ route('admin.payment.pay', $booking->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>  Pay</a>
-                                        @endif
+                                        <a href="{{ route('admin.payment.pay', $booking->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>  Pay</a>
                                     </td>
                                 </tbody>
                             @empty
