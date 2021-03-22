@@ -135,7 +135,7 @@
                                 <select name="customer_id" id="customer_id" class="form-control custom-select" required>
                                     <option disabled selected>Select Customer</option>
                                     @foreach ($customers as $customer)
-                                        <option value="{{ $customer->id }}">{{ $customer->FullName }}</option>
+                                        <option value="{{ $customer->id }}">{{ "(" . $customer->nik . ")" . " - " . Str::upper($customer->FullName) }}</option>
                                     @endforeach
                                 </select>
                                 </div>
