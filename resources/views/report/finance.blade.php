@@ -3,6 +3,10 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <span></span>
+                    <h4>Something   </h4>
+                </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-hover">
@@ -20,6 +24,7 @@
                                     $calculate = date_diff($check_out, $check_in);
                                     $day = $calculate->format("%a");
                                     $price = $day * $booking->room->price;
+                                    $total = ($total ?? 0) + $price;
                                 @endphp
                                 <tbody>
                                     <th>{{ $loop->iteration + $bookings->firstItem() - 1 . '.' }}</th>
@@ -35,6 +40,13 @@
                                     </tr>
                                 </tbody>
                             @endforelse
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td style="text-align: right;">TOTAL :</td>
+                                    <th><span class="badge badge-danger">{{ "Rp. " . number_format($total ?? 0, 0,',','.') }}<span></th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
