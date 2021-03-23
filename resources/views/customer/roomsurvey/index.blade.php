@@ -26,7 +26,7 @@
             <div class="row">
                 @foreach ($rooms as $room)
                     <div class="col-xl-3 xl-50 col-md-6">
-                        <div class="card features-faq product-box mb-3" style="height: 530px; border: 0.1px solid gray;">
+                        <div class="card features-faq product-box mb-3" style="height: 530px; border: 1px solid rgba(15, 7, 7, 0.082);">
                             <div class="faq-image product-img p-2">
                                 <center>
                                     <img class="img-fluid" src="{{ $room->RoomThumbnail }}" style="width: 100%; height: 250px; object-fit: cover; object-position: center;" alt="roomthumbnail">
@@ -42,10 +42,12 @@
                                         @endif
                                     </div>
                                     <div class="mb-4 mt-4">
-                                        <div>
-                                            <p>Category : {{ $room->category->name }}</p>
+                                        <div class="mb-2">
+                                           Category : <p>{{ $room->category->name }}</p> 
                                         </div>
-                                        <p>Description : {!! Str::limit($room->category->description, 200) !!}</p>
+                                        <div>
+                                            Description : {!! Str::limit($room->category->description, 200) !!}
+                                        </div>
                                     </div>
                                 </div>
                             <div class="card-footer">
