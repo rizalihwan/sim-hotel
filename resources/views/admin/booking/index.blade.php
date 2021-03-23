@@ -71,7 +71,7 @@
                                             <form action="{{ route('admin.booking.destroy', $booking->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-refresh"></i></button>     
+                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i></button>     
                                             </form>
                                         @endif
                                     </td>
