@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <span></span>
-                    <h4>Something   </h4>
+                    <h6 class="text-secondary"><u>{{ $now->format('D, m Y') }}</u></h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
