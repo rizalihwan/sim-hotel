@@ -33,7 +33,7 @@
                                     <td>{{ $booking->check_in }}</td>
                                     <td>{{ $booking->check_out }}</td>
                                     <td>
-                                        <span class="badge badge-danger">{{ $day . " " . "Day" }}</span>
+                                        <span class="badge badge-danger">{{ $day }} @if($day == 1) Day @else Days @endif</span>
                                     </td>
                                     <td>
                                         <span class="badge badge-info">{{ Str::upper($booking->room->name . " (" . $booking->room->category->name . ")") }}<span>
