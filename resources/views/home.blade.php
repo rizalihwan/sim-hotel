@@ -97,12 +97,12 @@
                           </div>
                           <div class="collapse" id="{{ $category->name }}" aria-labelledby="headingOne" data-parent="#accordion1">
                             <div class="card-body">
-                              <div class="mb-4">
-                                <h6>Description : </h6> 
+                              <div class="mb-5">
+                                <h6>Deskripsi Paket : </h6> 
                                 <span class="text-secondary">{!! $category->description !!}</span>
                               </div>
                               <div>
-                                <h6>Facility : </h6> 
+                                <h6>Fasilitas : </h6> 
                                 <span class="text-secondary">{{ $category->facility }}</span>
                               </div>
                             </div>
