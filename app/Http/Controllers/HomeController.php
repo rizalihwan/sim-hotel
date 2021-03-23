@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{Booking, Customer, Room, User};
+use App\{Booking, Category, Customer, Room, User};
 
 class HomeController extends Controller
 {
@@ -18,6 +18,7 @@ class HomeController extends Controller
             'rooms' => Room::count(),
             'bookings' => Booking::count(),
             'customers' => Customer::count(),
+            'categories' => Category::orderBy('name', 'ASC')->get()
         ]);
     }
 }
