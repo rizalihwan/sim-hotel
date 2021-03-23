@@ -10,7 +10,7 @@ class ReportController extends Controller
     public function finance()
     {
         return view('report.finance', [
-            'bookings' => Booking::orderBy('booking_code', 'ASC')->paginate(5)
+            'bookings' => Booking::where('status', 1)->orderBy('booking_code', 'ASC')->paginate(5)
         ]);
     }
 }
