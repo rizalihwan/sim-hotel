@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Dotenv\Validator;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
 {
@@ -47,13 +48,13 @@ class LoginController extends Controller
 
     public function authenticated(Request $request)
     {
-        toast('Welcome ' . auth()->user()->name,'success');
+        Alert::success('Information Message', 'Welcome ' . auth()->user()->name);
     }
 
     public function logout()
     {
         $this->guard()->logout();
-        toast('Logout Success!','success');
+        Alert::success('Information Message', 'Logout Success!');
         return redirect()->route('login');
     }
 
