@@ -1,24 +1,17 @@
 @extends('layouts.app', ['title' => 'HRI-HOTEL | Room Survey'])
 @section('content')
 <div class="row">
-    <div class="card">
+    <div class="card mx-3">
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <span>
-                    <h3><u>Room Survey</u></h3> 
+                    <h5>| Semua Paket Kamar</h5> 
                 </span>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-filter"></i> 
-                    </button>
-                    <div class="dropdown-menu">
-                    <small class="dropdown-item text-secondary" aria-disabled="true">View based on</small>
-                    <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('admin.account.register.index') }}">Default</a>
-                        <a class="dropdown-item" href="{{ route('admin.account.latest') }}">Latest</a>
-                        <a class="dropdown-item" href="{{ route('admin.account.asc') }}">Alphabet(A-Z)</a>
-                        <a class="dropdown-item" href="{{ route('admin.account.desc') }}">Alphabet(Z-A)</a>
-                    </div>
+                <div>
+                    <span class="badge badge-pill badge-success">&middot;</span>
+                    <small class="text-secondary mr-2">Empty Room</small>
+                    <span class="badge badge-pill badge-danger">&middot;</span>
+                    <small class="text-secondary">Room Filled</small>
                 </div>
             </div>
         </div>
@@ -43,10 +36,10 @@
                                     </div>
                                     <div class="mb-4 mt-4">
                                         <div class="mb-2">
-                                           Category : <p>{{ $room->category->name }}</p> 
+                                           Jenis Paket : <p>{{ $room->category->name }} [Fasilitas &rightarrow; {{ $room->category->facility }}]</p> 
                                         </div>
                                         <div>
-                                            Description : {!! Str::limit($room->category->description, 200) !!}
+                                            Deskripsi : {!! Str::limit($room->category->description, 200) !!}
                                         </div>
                                     </div>
                                 </div>
