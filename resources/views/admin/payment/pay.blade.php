@@ -55,8 +55,8 @@
                                 @csrf
                                 @method('patch')
                                 <ul class="qty">
-                                    <li>Room: <span class="badge badge-warning" style="font-size: 13px;">{{ $booking->room->name }}</span></li>
-                                    <li>Room Category: <span class="badge badge-success" style="font-size: 13px;">{{ $booking->room->category->name }}</span></li>
+                                    <li>Room: <span class="badge badge-primary" style="font-size: 13px; color: #ffffff;"><b>{{ $booking->room->name }}</b></span></li>
+                                    <li>Room Category: <span class="badge badge-success" style="font-size: 13px; color: #ffffff;"><b>{{ $booking->room->category->name }}</b></span></li>
                                     @php
                                         $check_out = date_create($booking['check_out']);
                                         $check_in = date_create($booking['check_in']);
@@ -64,9 +64,9 @@
                                         $day = $calculate->format("%a");
                                         $price = $day * $booking->room->price;
                                     @endphp                                
-                                    <li>Length Of Stay: <span class="badge badge-danger" style="font-size: 13px;">{{ $day . " " . "Day" }}</span></li>
-                                    <li>Check in: <span style="font-size: 13px;">{{ $booking->check_in }}</span></li>
-                                    <li>Check out: <span style="font-size: 13px;">{{ $booking->check_out }}</span></li>
+                                    <li>Length Of Stay: <span class="badge badge-danger" style="font-size: 13px; color: #ffffff;"><b>{{ $day }} @if($day == 1) Day @else Days @endif</b></span></li>
+                                    <li>Check in: <span class="badge badge-light" style="font-size: 10.5px; color: #000000;">{{ $booking->check_in }}</span></li>
+                                    <li>Check out: <span class="badge badge-light" style="font-size: 10.5px; color: #000000;">{{ $booking->check_out }}</span></li>
                                 </ul>
                                 <ul class="sub-total">
                                     <li><p style="font-size: 15px;">Subtotal</p> <input type="number" value="{{ $price }}" readonly class="form-control" required id="total"></li>
