@@ -27,7 +27,7 @@
 @if(request()->is('admin/category'))
     <li class="breadcrumb-item">Category</li>
 @endif
-@if(request()->is('admin/room'))
+@if(request()->is('admin/room') || request('query'))
     <li class="breadcrumb-item">Room</li>
 @endif
 @if(request()->is('admin/customer'))
