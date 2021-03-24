@@ -43,7 +43,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->name
     // category
     Route::resource('category', 'CategoryController');
     // room
-    Route::resource('room', 'RoomController');
+    Route::resource('room', 'RoomController')->except('search');
+    Route::get('/search/room', 'RoomController@search')->name('searchroom');
     // customer
     Route::resource('customer', 'CustomerController');
     // booking
