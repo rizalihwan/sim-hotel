@@ -91,10 +91,8 @@
         Swal.fire({
             title: 'Message Information!',
             text: 'Are you sure you want to exit the application?',
-            icon: 'warning',
+            icon: 'question',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, Logout!'
             }).then((result) => {
                 if (result.isConfirmed) {
