@@ -6,7 +6,18 @@
                 <div class="card-header">
                   @include('layouts.partials.error')
                   <div class="d-flex justify-content-between">
-                    <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i></button>
+                    @if(request('query'))
+                      <a href="{{ route('admin.room.index') }}" class="btn btn-primary btn-md"><i class="fa fa-refresh"></i></a>
+                    @else
+                      <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i></button>
+                    @endif
+                      <form action="{{ route('admin.searchroom') }}" method="GET">
+                        <div class="input-group">
+                          <input class="form-control" id="validationTooltip02" type="search" name="query" placeholder="Search here..." required="">
+                          <div class="valid-tooltip">Search</div>
+                          <button type="submit" class="btn btn-secondary ml-2"><i class="fa fa-search"></i></button>
+                        </div>            
+                      </form>
                   </div>
                 </div>
                 <div class="card-body">
@@ -65,7 +76,8 @@
         </div>
     </div>
     {{-- add data modal --}}
-    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    @if(!request('query'))
+      <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -141,6 +153,7 @@
           </div>
         </div>
       </div>
+    @endif
 @endsection
 @section('script')
     <script>
