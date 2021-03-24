@@ -44,16 +44,6 @@ class RoomController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -149,4 +139,19 @@ class RoomController extends Controller
         Alert::success('Information Message', 'Data Deleted');
         return back();
     }
+
+    public function search()
+    {
+        $query = request('query');
+        $room = Room::with(['category'])
+                    ->where("name", "like", "%$query%")
+                    ->orWhere("room_code", "like", "%$query%")
+                    ->orWhere("price", "like", "%$query%")
+                    // ->orWhere($this->category->name, "like", "%$query%")
+                    ->orderBy('room_code', 'ASC')->paginate(5);
+        return view('admin.room.index', [
+            'rooms' => $room
+        ]);
+    }
+
 }
