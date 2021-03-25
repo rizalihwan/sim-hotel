@@ -4,21 +4,33 @@
     <div class="col-md-12">
         <div class="card mx-3">
             <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <span>
-                        <h5>| Semua Paket Kamar</h5> 
-                    </span>
+                <div class="d-flex justify-content-between mb-4">
+                    <div>
+                        <span>
+                            <h5>| Semua Paket Kamar</h5> 
+                        </span>
+                    </div>
                     <div>
                         <span class="badge badge-pill badge-success">&middot;</span>
-                        <small class="text-secondary mr-2">Empty Room</small>
+                        <small class="text-secondary mr-2">Kosong</small>
                         <span class="badge badge-pill badge-danger">&middot;</span>
-                        <small class="text-secondary">Room Filled</small>
+                        <small class="text-secondary">Terisi</small>
                     </div>
                 </div>
+                @if(request('query'))
+                    <a href="{{ route('customer.survey') }}" class="btn btn-light mb-2"><i class="fa fa-arrow-left"></i></a>
+                @endif
+                <form action="{{ route('customer.searchroom') }}" method="GET">
+                    <div class="input-group">
+                      <input class="form-control" id="validationTooltip02" type="search" name="query" placeholder="Cari kamar..." required="">
+                      <div class="valid-tooltip">Search</div>
+                      <button type="submit" class="btn btn-secondary ml-2"><i class="fa fa-search"></i></button>
+                    </div>            
+                </form>
             </div>
             <div class="card-body">
                 <div class="row">
-                    @foreach ($rooms as $room)
+                    @forelse ($rooms as $room)
                         <div class="col-xl-3 xl-50 col-md-6">
                             <div class="card features-faq product-box mb-3" style="height: 530px; border: 1px solid rgba(15, 7, 7, 0.082);">
                                 <div class="faq-image product-img p-2">
@@ -30,9 +42,9 @@
                                         <div class="d-flex justify-content-between">
                                             <h6 class="text-secondary">{{ Str::upper($room->name) }}</h6>
                                             @if($room->status === 1)
-                                                <span class="badge badge-success p-2">EMPTY ROOM</span>
+                                                <span class="badge badge-success p-2">KOSONG</span>
                                             @else
-                                                <span class="badge badge-danger p-2">ROOM FILLED<span>
+                                                <span class="badge badge-danger p-2">TERISI<span>
                                             @endif
                                         </div>
                                         <div class="mb-4 mt-4">
@@ -45,11 +57,17 @@
                                         </div>
                                     </div>
                                 <div class="card-footer">
-                                    <span class="badge badge-light">Published On : {{ $room->created_at->format('d M, Y') }}</span><span class="pull-right">{!! $room->RatingCount !!}</span>
+                                    <span class="badge badge-light">{{ "Rp. " . number_format($room->price, 0,',','.') }}/Day</span><span class="pull-right">{!! $room->RatingCount !!}</span>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                        <div class="col-md-12">
+                            <center>
+                                <h3 style="color: red;">Data Empty!</h3>
+                            </center>
+                        </div>
+                    @endforelse
                 </div>
             </div>
             <div class="card-footer">
