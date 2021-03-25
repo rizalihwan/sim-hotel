@@ -7,7 +7,7 @@
                   @include('layouts.partials.error')
                   <div class="d-flex justify-content-between">
                     @if(request('query'))
-                      <a href="{{ route('admin.room.index') }}" class="btn btn-primary btn-md"><i class="fa fa-refresh"></i></a>
+                      <a href="{{ route('admin.room.index') }}" class="btn btn-danger btn-md"><i class="fa fa-arrow-left"></i></a>
                     @else
                       <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i></button>
                     @endif
