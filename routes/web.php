@@ -67,4 +67,5 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->name
 Route::prefix('customer')->name('customer.')->middleware(['auth', 'role:customer'])->namespace('Customer')->group(function(){
     // survey room
     Route::get('/survey/room', 'RoomSurveyController@index')->name('survey');
+    Route::get('/search/room', 'RoomSurveyController@search')->name('searchroom');
 });   
