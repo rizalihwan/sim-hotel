@@ -4,8 +4,13 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <span></span>
-                    <h6 class="text-secondary"><u>{{ $now->format('D, m Y') }}</u></h6>
+                    <div>
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-print"></i> Pdf</button>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-print"></i> Excell</button>
+                    </div>
+                    <div>
+                        <h6 class="text-secondary"><u>{{ $now->format('D, m Y') }}</u></h6>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
