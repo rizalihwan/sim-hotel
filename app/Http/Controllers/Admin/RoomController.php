@@ -148,7 +148,7 @@ class RoomController extends Controller
                     ->orWhere("room_code", "like", "%$query%")
                     ->orWhere("price", "like", "%$query%")
                     ->orWhereHas('category', function ($q) use ($query) {
-                        $q->where('name', "like", "%$query%");
+                        $q->where("name", "like", "%$query%");
                     })
                     ->orderBy('room_code', 'ASC')->paginate(5);
         return view('admin.room.index', [
