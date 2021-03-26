@@ -13,63 +13,27 @@
                         </div>
                     @endrole
                     @role('admin')
-                        <div class="row m-0 chart-main">
-                            <div class="col-xl-3 col-md-6 col-sm-6 p-0 box-col-6">
-                                <div class="media align-items-center">
-                                    <div class="hospital-small-chart">
-                                        <div class="small-bar">
-                                            <div class="small-chart2 flot-chart-container"></div>
-                                        </div>
-                                    </div>
-                                    <div class="media-body">
-                                        <div class="right-chart-content">
-                                            <h5 class="mb-2"><u>{{ $customers }}</u></h5>
-                                            <span>Customer </span><h4 style="float: left; color: #31326f;" class="mr-2"><i class="fa fa-user"></i></h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6 col-sm-6 p-0 box-col-6">
-                                <div class="media border-none align-items-center">
-                                    <div class="hospital-small-chart">
-                                        <div class="small-bar">
-                                            <div class="small-chart3 flot-chart-container"></div>
-                                        </div>
-                                    </div>
-                                    <div class="media-body">
-                                        <div class="right-chart-content">
-                                            <h5 class="mb-2"><u>{{ $bookings }}</u></h5>
-                                            <h4 style="float: left; color: #31326f;" class="mr-2"><i class="fa fa-sign-in"></i></h4><span> Booking</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6 col-sm-6 p-0 box-col-6">
-                                <div class="media align-items-center">
-                                    <div class="hospital-small-chart">
-                                        <div class="small-bar">
-                                            <div class="small-chart flot-chart-container"></div>
-                                        </div>
-                                    </div>
-                                    <div class="media-body">
-                                        <div class="right-chart-content">
-                                            <h5 class="mb-2"><u>{{ $users }}</u></h5>
-                                            <h4 style="float: left; color: #31326f;" class="mr-2"><i class="fa fa-users"></i></h4><span> Account</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6 col-sm-6 p-0 box-col-6">
-                                <div class="media align-items-center">
-                                    <div class="hospital-small-chart">
-                                        <div class="small-bar">
-                                            <div class="small-chart1 flot-chart-container"></div>
-                                        </div>
-                                    </div>
-                                    <div class="media-body">
-                                        <div class="right-chart-content">
-                                            <h5 class="mb-2"><u>{{ $rooms }}</u></h5>
-                                            <h4 style="float: left; color: #31326f;" class="mr-2"><i class="fa fa-shopping-bag"></i></h4><span> Room</span>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row p-3 pl-5 ml-5">
+                                            <div class="col-md-3 col-sm-12">
+                                                <h5 class="mb-2"><u>{{ $customers }}</u></h5>
+                                                <span>Customer </span><h4 style="float: left; color: #31326f;" class="mr-2"><i class="fa fa-user"></i></h4>
+                                            </div>
+                                            <div class="col-md-3 col-sm-12">
+                                                <h5 class="mb-2"><u>{{ $bookings }}</u></h5>
+                                                <h4 style="float: left; color: #31326f;" class="mr-2"><i class="fa fa-sign-in"></i></h4><span> Booking</span>
+                                            </div>
+                                            <div class="col-md-3 col-sm-12">
+                                                <h5 class="mb-2"><u>{{ $users }}</u></h5>
+                                                <h4 style="float: left; color: #31326f;" class="mr-2"><i class="fa fa-users"></i></h4><span> Account</span>
+                                            </div>
+                                            <div class="col-md-3 col-sm-12">
+                                                <h5 class="mb-2"><u>{{ $rooms }}</u></h5>
+                                                <h4 style="float: left; color: #31326f;" class="mr-2"><i class="fa fa-shopping-bag"></i></h4><span> Room</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
