@@ -23,7 +23,8 @@
                                     </div>
                                     <div class="media-body">
                                         <div class="right-chart-content">
-                                            <h4>{{ $customers }}</h4><span>Customers</span>
+                                            <h5 class="mb-2"><u>{{ $customers }}</u></h5>
+                                            <span>Customer </span><h4 style="float: left; color: #31326f;" class="mr-2"><i class="fa fa-user"></i></h4>
                                         </div>
                                     </div>
                                 </div>
@@ -37,7 +38,8 @@
                                     </div>
                                     <div class="media-body">
                                         <div class="right-chart-content">
-                                            <h4>{{ $bookings }}</h4><span>Bookings</span>
+                                            <h5 class="mb-2"><u>{{ $bookings }}</u></h5>
+                                            <h4 style="float: left; color: #31326f;" class="mr-2"><i class="fa fa-sign-in"></i></h4><span> Booking</span>
                                         </div>
                                     </div>
                                 </div>
@@ -51,7 +53,8 @@
                                     </div>
                                     <div class="media-body">
                                         <div class="right-chart-content">
-                                            <h4>{{ $users }}</h4><span>Accounts</span>
+                                            <h5 class="mb-2"><u>{{ $users }}</u></h5>
+                                            <h4 style="float: left; color: #31326f;" class="mr-2"><i class="fa fa-users"></i></h4><span> Account</span>
                                         </div>
                                     </div>
                                 </div>
@@ -65,7 +68,8 @@
                                     </div>
                                     <div class="media-body">
                                         <div class="right-chart-content">
-                                            <h4>{{ $rooms }}</h4><span>Rooms</span>
+                                            <h5 class="mb-2"><u>{{ $rooms }}</u></h5>
+                                            <h4 style="float: left; color: #31326f;" class="mr-2"><i class="fa fa-shopping-bag"></i></h4><span> Room</span>
                                         </div>
                                     </div>
                                 </div>
