@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Booking;
-use App\Customer;
-use App\Room;
+use App\{Booking, Customer, Room};
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BookingRequest;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class BookingController extends Controller
@@ -160,4 +157,15 @@ class BookingController extends Controller
         Alert::success('Message Information', 'Data Deleted');
         return back();
     }
+
+    public function refresh_booking()
+    {
+        $booking = Booking::where('status', 1)->pluck('room_id');
+        Room::whereIn('id', $booking)->update([
+            'status' => 1
+        ]);
+        Alert::success('Message Information', 'Refresh Success');
+        return back();
+    }
+
 }
