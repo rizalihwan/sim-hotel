@@ -10,10 +10,10 @@
                             <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i></button>
                         </div>
                         <div class="d-flex">
-                            <form action="{{ route('admin.booking.refresh') }}" method="post">
+                            <button type="submit" onclick="refreshBooking()" class="btn btn-secondary btn-sm mr-2"><i class="fa fa-refresh"></i></button>  
+                            <form action="{{ route('admin.booking.refresh') }}" method="post" id="RefreshBooking">
                                 @csrf
-                                @method('PATCH')
-                                <button type="submit" class="btn btn-secondary btn-sm mr-2" onclick="return confirm('update booking will update the room status, are you sure?');"><i class="fa fa-refresh"></i></button>     
+                                @method('PATCH')   
                             </form>
                             <div class="mr-2">
                                 <span>&#10072;</span> 
@@ -227,6 +227,31 @@
                             timerProgressBar: true,
                             onOpen: () => {
                                 document.getElementById(`DeleteBooking${id}`).submit();
+                                Swal.showLoading();
+                            }
+                        });
+                    }
+            })
+        }
+
+        function refreshBooking() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Refresh booking will update the room status to filled, are you sure?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, refresh it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Refresh Booking...",
+                            showConfirmButton: false,
+                            timer: 2300,
+                            timerProgressBar: true,
+                            onOpen: () => {
+                                document.getElementById('RefreshBooking').submit();
                                 Swal.showLoading();
                             }
                         });
