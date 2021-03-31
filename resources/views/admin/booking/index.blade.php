@@ -6,22 +6,35 @@
                 <div class="card-header">
                     @include('layouts.partials.error')
                     <div class="d-flex justify-content-between">
-                        <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i></button>
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-light btn-sm for-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-filter"></i> 
-                          </button>
-                          <button type="button" class="btn btn-secondary btn-sm for-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-filter"></i> 
-                          </button>
-                          <div class="dropdown-menu">
-                            <small class="dropdown-item text-secondary" aria-disabled="true">Filter Payment Status</small>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('admin.booking.index') }}">Default</a>
-                            <a class="dropdown-item" href="{{ route('admin.booking.already_paid') }}">Already Paid</a>
-                            <a class="dropdown-item" href="{{ route('admin.booking.not_paid') }}">Not Yet Paid</a>
-                          </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i></button>
                         </div>
+                        <div class="d-flex">
+                            <form action="{{ route('admin.booking.refresh') }}" method="post">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" class="btn btn-secondary btn-sm mr-2" onclick="return confirm('update booking will update the room status, are you sure?');"><i class="fa fa-refresh"></i></button>     
+                            </form>
+                            <div class="mr-2">
+                                <span>&#10072;</span> 
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-light btn-sm for-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <i class="fa fa-filter"></i> 
+                                </button>
+                                <button type="button" class="btn btn-secondary btn-sm for-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <i class="fa fa-filter"></i> 
+                                </button>
+                                <div class="dropdown-menu">
+                                  <small class="dropdown-item text-secondary" aria-disabled="true">Filter Payment Status</small>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" href="{{ route('admin.booking.index') }}">Default</a>
+                                  <a class="dropdown-item" href="{{ route('admin.booking.already_paid') }}">Already Paid</a>
+                                  <a class="dropdown-item" href="{{ route('admin.booking.not_paid') }}">Not Yet Paid</a>
+                                </div>
+                              </div>
+                        </div>
+                        
                       </div>
                 </div>
                 <div class="card-body">
@@ -61,19 +74,19 @@
                                             <a href="{{ route('admin.booking.edit', $booking->id) }}" style="float: left;"
                                                 class="mr-1"><i class="fa fa-pencil-square-o"
                                                     style="color: rgb(0, 241, 12);"></i></a>
-                                            <button type="submit" onclick="deleteBooking('{{ $booking->id }}')" style="background-color: transparent; border: none;"><i class="icon-trash" style="color: red;"></i></button>        
-                                            <form action="{{ route('admin.booking.destroy', $booking->id) }}" method="post" id="DeleteBooking{{ $booking->id }}">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
                                         @endif
-                                        @if($booking->status == 1)   
+                                        <button type="submit" onclick="deleteBooking('{{ $booking->id }}')" style="background-color: transparent; border: none;"><i class="icon-trash" style="color: red;"></i></button>        
+                                        <form action="{{ route('admin.booking.destroy', $booking->id) }}" method="post" id="DeleteBooking{{ $booking->id }}">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+                                        {{-- @if($booking->status == 1)   
                                             <form action="{{ route('admin.booking.destroy', $booking->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i></button>     
                                             </form>
-                                        @endif
+                                        @endif --}}
                                     </td>
                                 </tbody>
                             @empty
