@@ -51,6 +51,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->name
     Route::resource('booking', 'BookingController')->except(['already_paid']);
     Route::get('/already_paid', 'BookingController@already_paid')->name('booking.already_paid');
     Route::get('/not_yet_paid', 'BookingController@not_yet_paid')->name('booking.not_paid');
+    Route::patch('/refresh/booking', 'BookingController@refresh_booking')->name('booking.refresh');
     // payment
     Route::prefix('payment')->name('payment.')->group(function(){
         Route::get('/', 'PaymentController@index')->name('index');
