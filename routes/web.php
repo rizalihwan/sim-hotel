@@ -70,3 +70,11 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'role:customer
     Route::get('/survey/room', 'RoomSurveyController@index')->name('survey');
     Route::get('/search/room', 'RoomSurveyController@search')->name('searchroom');
 });   
+
+// manager access
+Route::prefix('manager')->name('manager.')->middleware(['auth', 'role:boss'])->namespace('Admin')->group(function(){
+    // report management
+    Route::prefix('report')->name('report.')->group(function(){
+        Route::get('/finance', 'ReportController@finance')->name('finance');
+    });
+});   
