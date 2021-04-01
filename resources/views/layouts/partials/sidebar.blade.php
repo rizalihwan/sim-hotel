@@ -77,6 +77,12 @@
                 @role('boss')
                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('home') }}"><i
                             data-feather="home"> </i><span>Dashboard</span></a></li>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="pie-chart">
+                    </i><span>Report</span></a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="{{ route('manager.report.finance') }}">Finance</a></li>
+                        </ul>
+                </li>            
                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="align-center">
                     </i><span>Profile</span></a>
                     <ul class="sidebar-submenu">
