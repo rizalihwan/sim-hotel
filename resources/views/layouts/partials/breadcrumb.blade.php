@@ -46,4 +46,8 @@
 @if(request()->is('customer/survey/room'))
     <li class="breadcrumb-item">Room Survey</li>
 @endif
+@if(request()->is('manager/report/finance'))
+    <li class="breadcrumb-item">Report</li>
+    <li class="breadcrumb-item">Finance</li>
+@endif
                     
