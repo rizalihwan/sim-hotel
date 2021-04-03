@@ -87,7 +87,7 @@
                     </i><span>Profile</span></a>
                     <ul class="sidebar-submenu">
                         <li><a href="{{ route('profile.setting') }}">My Profile</a></li>
-                        <li><a data-toggle="modal" data-target="#exampleModalCenter" href="#">Log out</a></li>
+                        <li><a href="#" onclick="logout()">Log out</a></li>
                     </ul>
                 </li>            
                 @endrole
