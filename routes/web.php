@@ -77,5 +77,6 @@ Route::prefix('manager')->name('manager.')->middleware(['auth', 'role:boss'])->n
     // report management
     Route::prefix('report')->name('report.')->group(function(){
         Route::get('/finance', 'ReportController@finance')->name('finance');
+        Route::get('/finance/pdf', 'ReportController@finance_pdf')->name('finance.pdf');
     });
 });   
