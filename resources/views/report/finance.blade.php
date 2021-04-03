@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div>
-                        <a href="{{ route('admin.report.finance.pdf') }}" class="btn btn-danger" target="_blank"><i class="fa fa-print"></i> Pdf</a>
+                        <a href="@role('admin') {{ route('admin.report.finance.pdf') }} @endrole @role('boss') {{ route('manager.report.finance.pdf') }} @endrole" class="btn btn-danger" target="_blank"><i class="fa fa-print"></i> Pdf</a>
                         <button type="submit" class="btn btn-success"><i class="fa fa-print"></i> Excell</button>
                     </div>
                     <div>

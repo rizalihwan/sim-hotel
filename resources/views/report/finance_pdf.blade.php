@@ -8,16 +8,16 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
-    <title>Finance Report</title>
+    <title>Finance_Report_{{ $now->format('D,m-Y') }}</title>
   </head>
   <body>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <h6 class="text-secondary"><u>{{ $now->format('D, m Y') }}</u></h6>
+                <h4 class="text-secondary"><u>{{ $now->format('D, m Y') }}</u></h4>
             </div>
         </div>
-        <hr>
+        <hr class="mb-3">
         <div class="row">
             <div class="col-md-12">
                 <div style="text-align: center;">
