@@ -13,6 +13,8 @@ class Booking extends Model
     public $incrementing = false;
     protected $guarded = [];
 
+    protected $with = ['room', 'customer'];
+
     public function room()
     {
         return $this->belongsTo(Room::class);
