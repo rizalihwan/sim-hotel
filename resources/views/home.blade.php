@@ -17,7 +17,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="row p-3 pl-5 ml-5">
+                                        <div class="row p-3 pl-5 ml-5 mb-5">
                                             <div class="col-md-3 col-sm-12">
                                                 <h5 class="mb-2"><u>{{ $customers }}</u></h5>
                                                 <span>Customer </span><h4 style="float: left; color: #31326f;" class="mr-2"><i class="fa fa-user"></i></h4>
@@ -34,6 +34,9 @@
                                                 <h5 class="mb-2"><u>{{ $rooms }}</u></h5>
                                                 <h4 style="float: left; color: #31326f;" class="mr-2"><i class="fa fa-shopping-bag"></i></h4><span> Room</span>
                                             </div>
+                                        </div>
+                                        <div class="row">
+                                          <div id="testChart" style="width: 100%;"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -87,4 +90,74 @@
         </div>
     @endrole
 </div>
+@endsection
+@section('script')
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script>
+    Highcharts.chart('testChart', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Monthly Average Rainfall'
+    },
+    subtitle: {
+        text: 'Source: WorldClimate.com'
+    },
+    xAxis: {
+        categories: [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec'
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Rainfall (mm)'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Tokyo',
+        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+    }, {
+        name: 'New York',
+        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+    }, {
+        name: 'London',
+        data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+    }, {
+        name: 'Berlin',
+        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+
+    }]
+});
+</script>
 @endsection
