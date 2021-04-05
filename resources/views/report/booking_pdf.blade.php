@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
-    <title>Booking_Report</title>
+    <title>Booking_Report_ @if(request('startDate') && request('endDate')) (From{{ $startDate }}) - (To{{ $endDate }}) @else All @endif</title>
   </head>
   <body>
     <div class="container-fluid">
