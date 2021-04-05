@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Booking;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use PDF;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ReportController extends Controller
 {
@@ -30,10 +32,15 @@ class ReportController extends Controller
 
     public function finance_pdf()
     {
-        return PDF::setOptions($this->setPdfOption())->loadView('report.finance_pdf', [
-            'now' => Carbon::now(),
-            'bookings' => Booking::where('status', 1)->orderBy('booking_code', 'ASC')->get()
-        ])->stream();
+        try {
+            return PDF::setOptions($this->setPdfOption())->loadView('report.finance_pdf', [
+                'now' => Carbon::now(),
+                'bookings' => Booking::where('status', 1)->orderBy('booking_code', 'ASC')->get()
+            ])->stream();
+        } catch (Exception $e) {
+            Alert::error('Message Information', 'Payment error ' . $e);
+            return back();
+        }
     }   
 
     public function booking()
@@ -66,15 +73,25 @@ class ReportController extends Controller
             $startDate = $from;
             $endDate = $to;
             $bookings = Booking::whereBetween('created_at', [$startDate,$endDate])->orderBy('booking_code', 'ASC')->paginate(10);
-            return PDF::setOptions($this->setPdfOption())->loadView('report.booking_pdf', [
-                'bookings' => $bookings,
-                'startDate' => $startDate,
-                'endDate' => $endDate
-            ])->stream();
+            try {
+                return PDF::setOptions($this->setPdfOption())->loadView('report.booking_pdf', [
+                    'bookings' => $bookings,
+                    'startDate' => $startDate,
+                    'endDate' => $endDate
+                ])->stream();
+            } catch (Exception $e) {
+                Alert::error('Message Information', 'Something was wrong because ' . $e);
+                return back();
+            }
         } else {
-            return PDF::setOptions($this->setPdfOption())->loadView('report.booking_pdf', [
-                'bookings' => Booking::orderBy('booking_code', 'ASC')->paginate(10)
-            ])->stream();
+            try {
+                return PDF::setOptions($this->setPdfOption())->loadView('report.booking_pdf', [
+                    'bookings' => Booking::orderBy('booking_code', 'ASC')->paginate(10)
+                ])->stream();
+            } catch (Exception $e) {
+                Alert::error('Message Information', 'Something was wrong because ' . $e);
+                return back();
+            }
         }
     } 
 
