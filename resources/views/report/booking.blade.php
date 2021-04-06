@@ -6,15 +6,15 @@
                 <div class="card-header d-flex justify-content-between">
                     <div>
                         @if(request('startDate') && request('endDate'))
-                            <a href="{{ route('admin.report.booking') }}" class="btn btn-danger btn-md"><i class="fa fa-arrow-left"></i></a>
+                            <a href="@role('admin') {{ route('admin.report.booking') }} @endrole @role('boss') {{ route('manager.report.booking') }} @endrole" class="btn btn-danger btn-md"><i class="fa fa-arrow-left"></i></a>
                         @endif
                         @if(request('startDate') && request('endDate'))
-                            <a href="{{ route('admin.report.booking.pdf', ['startDate' => $startDate, 'endDate' => $endDate]) }}" class="btn btn-danger" target="_blank"><i class="fa fa-print"></i> Pdf</a>
+                            <a href="@role('admin') {{ route('admin.report.booking.pdf', ['startDate' => $startDate, 'endDate' => $endDate]) }} @endrole @role('boss') {{ route('manager.report.booking.pdf', ['startDate' => $startDate, 'endDate' => $endDate]) }} @endrole" class="btn btn-danger" target="_blank"><i class="fa fa-print"></i> Pdf</a>
                         @else
-                            <a href="{{ route('admin.report.booking.pdf') }}" class="btn btn-danger" target="_blank"><i class="fa fa-print"></i> Pdf</a>
+                            <a href="@role('admin') {{ route('admin.report.booking.pdf') }} @endrole @role('boss') {{ route('manager.report.booking.pdf') }} @endrole" class="btn btn-danger" target="_blank"><i class="fa fa-print"></i> Pdf</a>
                         @endif
                     </div>
-                    <form action="{{ route('admin.report.booking.cari') }}" method="GET">
+                    <form action="@role('admin') {{ route('admin.report.booking.cari') }} @endrole @role('boss') {{ route('manager.report.booking.cari') }} @endrole" method="GET">
                         @csrf
                         <div class="d-flex justify-content-end mx-2">
                             <label for="startDate" class="mr-2">Start Date</label>
