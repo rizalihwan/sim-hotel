@@ -81,7 +81,12 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'role:customer
 Route::prefix('manager')->name('manager.')->middleware(['auth', 'role:boss'])->namespace('Admin')->group(function(){
     // report management
     Route::prefix('report')->name('report.')->group(function(){
+        // finance
         Route::get('/finance', 'ReportController@finance')->name('finance');
         Route::get('/finance/pdf', 'ReportController@finance_pdf')->name('finance.pdf');
+        // booking
+        Route::get('/booking', 'ReportController@booking')->name('booking');
+        Route::get('/cari/booking', 'ReportController@cari')->name('booking.cari');
+        Route::get('/booking/pdf', 'ReportController@booking_pdf')->name('booking.pdf');
     });
 });   
