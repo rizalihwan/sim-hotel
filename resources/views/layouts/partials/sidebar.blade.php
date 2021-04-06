@@ -82,6 +82,7 @@
                     </i><span>Report</span></a>
                         <ul class="sidebar-submenu">
                             <li><a href="{{ route('manager.report.finance') }}">Finance</a></li>
+                            <li><a href="{{ route('manager.report.booking') }}">Booking</a></li>
                         </ul>
                 </li>            
                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="align-center">
