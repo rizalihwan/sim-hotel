@@ -16,7 +16,10 @@ Class UserRepository implements UserRepositoryInterface{
        return $this->model->all();
     }
     public function getWhere(){
-       return $this->model->where('id', '!=', auth()->user()->id)->paginate(5);
+       return $this->whenMe()->paginate(5);
+    }
+    public function getWhereRole($role){
+       return $this->whenMe()->role($role)->paginate(5);
     }
     public function getById($id){
         return $this->model->findById($id);
@@ -29,5 +32,8 @@ Class UserRepository implements UserRepositoryInterface{
     }
     public function delete($id){
         return $this->model->delete($id);
+    }
+    public function whenMe() {
+        return $this->model->where('id', '!=', auth()->user()->id);
     }
 }

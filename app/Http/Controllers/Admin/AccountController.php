@@ -17,30 +17,6 @@ class AccountController extends Controller
         return $this->userRepo = $userRepo;
     }
     
-    public function admin_index_account()
-    {
-        $account = User::where('id', '!=', auth()->user()->id)->role('admin')->paginate(5);
-        return view('admin.account.admin.index', [
-            'accounts' => $account
-        ]);
-    }
-
-    public function costumer_index_account()
-    {
-        $account = User::where('id', '!=', auth()->user()->id)->role('customer')->paginate(5);
-        return view('admin.account.customer.index', [
-            'accounts' => $account
-        ]);
-    }
-    
-    public function boss_index_account()
-    {
-        $account = User::where('id', '!=', auth()->user()->id)->role('boss')->paginate(5);
-        return view('admin.account.boss.index', [
-            'accounts' => $account
-        ]);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -50,6 +26,30 @@ class AccountController extends Controller
     {
         $account = $this->userRepo->getWhere();
         return view('admin.account.index', [
+            'accounts' => $account
+        ]);
+    }
+
+    public function admin_index_account()
+    {
+        $account = $this->userRepo->getWhereRole('admin');
+        return view('admin.account.admin.index', [
+            'accounts' => $account
+        ]);
+    }
+
+    public function costumer_index_account()
+    {
+        $account = $this->userRepo->getWhereRole('customer');
+        return view('admin.account.customer.index', [
+            'accounts' => $account
+        ]);
+    }
+    
+    public function boss_index_account()
+    {
+        $account = $this->userRepo->getWhereRole('boss');
+        return view('admin.account.boss.index', [
             'accounts' => $account
         ]);
     }
