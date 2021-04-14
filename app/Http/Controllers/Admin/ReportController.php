@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Booking;
+use App\Exports\ReportExport;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -95,4 +97,9 @@ class ReportController extends Controller
         }
     } 
 
+    public function booking_excell()
+    {
+        return Excel::download(new ReportExport, 'bookings.xlsx');
+    }
+    
 }
