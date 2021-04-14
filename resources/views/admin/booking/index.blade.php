@@ -8,6 +8,7 @@
                     <div class="d-flex justify-content-between">
                         <div>
                             <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i></button>
+                            <a href="{{ route('admin.report.booking.excell') }}" class="btn btn-success"><i class="fa fa-print"></i> Excell</a>
                         </div>
                         <div class="d-flex">
                             <button type="submit" onclick="refreshBooking()" class="btn btn-secondary btn-sm mr-2"><i class="fa fa-refresh"></i></button>  

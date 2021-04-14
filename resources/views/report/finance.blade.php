@@ -6,7 +6,6 @@
                 <div class="card-header d-flex justify-content-between">
                     <div>
                         <a href="@role('admin') {{ route('admin.report.finance.pdf') }} @endrole @role('boss') {{ route('manager.report.finance.pdf') }} @endrole" class="btn btn-danger" target="_blank"><i class="fa fa-print"></i> Pdf</a>
-                        <a href="{{ route('admin.report.booking.excell') }}" class="btn btn-success"><i class="fa fa-print"></i> Excell</a>
                     </div>
                     <div>
                         <h6 class="text-secondary"><u>{{ $now->format('D, m Y') }}</u></h6>
