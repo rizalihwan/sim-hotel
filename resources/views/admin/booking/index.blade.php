@@ -119,10 +119,10 @@
                 <div class="card-body">
                     @foreach ($check_room as $room)
                         @if ($room->status === 0)
-                            <span class="badge badge-danger">{{ $room->room_code }}</span>
+                            <span style="margin: 0;" class="badge badge-danger">{{ $room->room_code }}</span>
                         @endif
                         @if ($room->status === 1)
-                            <span class="badge badge-success">{{ $room->room_code }}</span>
+                            <span style="margin: 0;" class="badge badge-success">{{ $room->room_code }}</span>
                         @endif
                     @endforeach
                 </div>
