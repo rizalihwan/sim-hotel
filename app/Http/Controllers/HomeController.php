@@ -16,6 +16,7 @@ class HomeController extends Controller
         return view('home', [
             'users' => User::count(),
             'rooms' => Room::count(),
+            'check_room' => Room::orderBy('room_code', 'ASC')->get(),
             'bookings' => Booking::count(),
             'customers' => Customer::count(),
             'categories' => Category::orderBy('name', 'ASC')->get()
