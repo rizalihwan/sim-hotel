@@ -19,7 +19,8 @@ class HomeController extends Controller
             'check_room' => Room::orderBy('room_code', 'ASC')->get(),
             'bookings' => Booking::count(),
             'customers' => Customer::count(),
-            'categories' => Category::orderBy('name', 'ASC')->get()
+            'categories' => Category::orderBy('name', 'ASC')->get(),
+            'finances' => Booking::where('status', 1)->orderBy('booking_code', 'ASC')->paginate(10)
         ]);
     }
 }
