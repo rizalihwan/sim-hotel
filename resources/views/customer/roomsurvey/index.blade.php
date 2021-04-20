@@ -56,7 +56,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                <div class="card-footer">
+                                <div class="card-footer my-2">
                                     <span class="badge badge-light">{{ "Rp. " . number_format($room->price, 0,',','.') }}/Day</span><span class="pull-right">{!! $room->RatingCount !!}</span>
                                 </div>
                             </div>
