@@ -107,7 +107,7 @@
     <script src="{{ asset('assets/js/config.js') }}"></script>
     <!-- Plugins JS start-->
     <script src="{{ asset('assets/js/sidebar-menu.js') }}"></script>
-    <script src="{{ asset('assets/js/chart/chartist/chartist.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/chart/chartist/chartist.js') }}"></script>
     <script src="{{ asset('assets/js/chart/chartist/chartist-plugin-tooltip.js') }}"></script>
     <script src="{{ asset('assets/js/chart/knob/knob.min.js') }}"></script>
     <script src="{{ asset('assets/js/chart/knob/knob-chart.js') }}"></script>
@@ -124,7 +124,7 @@
     <script src="{{ asset('assets/js/typeahead/typeahead.custom.js') }}"></script>
     <script src="{{ asset('assets/js/typeahead-search/handlebars.js') }}"></script>
     <script src="{{ asset('assets/js/typeahead-search/typeahead-custom.js') }}"></script>
-    <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+    <script src="{{ asset('assets/js/tooltip-init.js') }}"></script> --}}
     <!-- Plugins JS end-->
     <!-- Theme js-->
     <script src="{{ asset('assets/js/script.js') }}"></script>
