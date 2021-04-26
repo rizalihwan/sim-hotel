@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Booking;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PaymentController extends Controller
@@ -42,7 +43,8 @@ class PaymentController extends Controller
     public function payment_success($id)
     {
         Booking::findOrFail($id)->update([
-            'status' => 1
+            'status' => 1,
+            'payment_date' => Carbon::now()
         ]);
         Alert::success('Message Information', 'Payment is Successfull');
         return redirect()->route('admin.payment.index');
