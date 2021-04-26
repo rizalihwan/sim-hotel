@@ -47,7 +47,7 @@
                                                 <div class="card">
                                                     <div class="card-header">
                                                         <h5 class="mb-3">
-                                                            <span class="badge badge-warning">Room</span>
+                                                            <u>Room</u>
                                                         </h5>
                                                         <div>
                                                             <span class="badge badge-pill badge-success">&middot;</span>
@@ -75,18 +75,11 @@
                                                 <div class="card-body">
                                                     <div>
                                                         <h5 class="mb-3">
-                                                            <span class="badge badge-secondary">Finance</span>
+                                                            <u>Latest Transaction</u>
                                                         </h5>
                                                     </div>
                                                     <div class="table-responsive">
                                                         <table class="table table-hover">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>#</th>
-                                                                    <th>Booking Code</th>
-                                                                    <th>Income</th>
-                                                                </tr>
-                                                            </thead>
                                                             @forelse ($finances as $finance)
                                                                 @php
                                                                     $check_out = date_create($finance['check_out']);
@@ -97,8 +90,6 @@
                                                                     $total = ($total ?? 0) + $price;
                                                                 @endphp
                                                                 <tbody>
-                                                                    <th>{{ $loop->iteration + $finances->firstItem() - 1 . '.' }}
-                                                                    </th>
                                                                     <td><u>{{ $finance->booking_code }}</u></td>
                                                                     <td>
                                                                         <span
@@ -117,9 +108,9 @@
                                                             <tfoot>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td style="text-align: right;">TOTAL :</td>
-                                                                    <th><span
-                                                                            class="badge badge-light">{{ 'Rp. ' . number_format($total ?? 0, 0, ',', '.') }}<span>
+                                                                    <th><a href="@role('admin'){{ route('admin.report.finance') }}@endrole @role('boss'){{ route('manager.report.finance') }}@endrole"
+                                                                            class="btn badge-secondary">See all
+                                                                            Transaction</a>
                                                                     </th>
                                                                 </tr>
                                                             </tfoot>
