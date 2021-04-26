@@ -5,7 +5,8 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div>
-                        <a href="@role('admin') {{ route('admin.report.finance.pdf') }} @endrole @role('boss') {{ route('manager.report.finance.pdf') }} @endrole" class="btn btn-danger" target="_blank"><i class="fa fa-print"></i> Pdf</a>
+                        <a href="@role('admin') {{ route('admin.report.finance.pdf') }} @endrole @role('boss') {{ route('manager.report.finance.pdf') }} @endrole"
+                            class="btn btn-danger" target="_blank"><i class="fa fa-print"></i> Pdf</a>
                     </div>
                     <div>
                         <h6 class="text-secondary"><u>{{ $now->format('D, m Y') }}</u></h6>
@@ -18,6 +19,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Booking Code</th>
+                                    <th>Transaction On</th>
                                     <th>Income</th>
                                 </tr>
                             </thead>
@@ -26,7 +28,7 @@
                                     $check_out = date_create($booking['check_out']);
                                     $check_in = date_create($booking['check_in']);
                                     $calculate = date_diff($check_out, $check_in);
-                                    $day = $calculate->format("%a");
+                                    $day = $calculate->format('%a');
                                     $price = $day * $booking->room->price;
                                     $total = ($total ?? 0) + $price;
                                 @endphp
@@ -34,21 +36,30 @@
                                     <th>{{ $loop->iteration + $bookings->firstItem() - 1 . '.' }}</th>
                                     <td><u>{{ $booking->booking_code }}</u></td>
                                     <td>
-                                        <span class="badge badge-light">{{ "Rp. " . number_format($price, 0,',','.') }}<span>
+                                        <span class="badge badge-info">
+                                            {{ $booking->payment_date }}
+                                    </td>
+                                    </span>
+                                    <td>
+                                        <span
+                                            class="badge badge-light">{{ 'Rp. ' . number_format($price, 0, ',', '.') }}<span>
                                     </td>
                                 </tbody>
                             @empty
                                 <tbody>
                                     <tr>
-                                        <th colspan="3" style="color: red; text-align: center;">Data Empty!</th>
+                                        <th colspan="4" style="color: red; text-align: center;">Data Empty!</th>
                                     </tr>
                                 </tbody>
                             @endforelse
                             <tfoot>
                                 <tr>
                                     <td></td>
+                                    <td></td>
                                     <td style="text-align: right;">TOTAL :</td>
-                                    <th><span class="badge badge-danger">{{ "Rp. " . number_format($total ?? 0, 0,',','.') }}<span></th>
+                                    <th><span
+                                            class="badge badge-secondary">{{ 'Rp. ' . number_format($total ?? 0, 0, ',', '.') }}<span>
+                                    </th>
                                 </tr>
                             </tfoot>
                         </table>
