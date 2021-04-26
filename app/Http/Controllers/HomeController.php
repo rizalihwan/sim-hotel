@@ -20,7 +20,7 @@ class HomeController extends Controller
             'bookings' => Booking::count(),
             'customers' => Customer::count(),
             'categories' => Category::orderBy('name', 'ASC')->get(),
-            'finances' => Booking::where('status', 1)->orderBy('booking_code', 'ASC')->paginate(10)
+            'finances' => Booking::where('status', 1)->latest()->take(1)->get()
         ]);
     }
 }
