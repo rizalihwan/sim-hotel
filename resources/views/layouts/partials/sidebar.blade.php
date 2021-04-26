@@ -48,7 +48,7 @@
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="pie-chart">
                             </i><span>Report</span></a>
                         <ul class="sidebar-submenu">
-                            <li><a href="{{ route('admin.report.finance') }}">Finance</a></li>
+                            <li><a href="{{ route('admin.report.finance') }}">Transaction</a></li>
                             <li><a href="{{ route('admin.report.booking') }}">Booking</a></li>
                         </ul>
                     </li>
@@ -79,7 +79,7 @@
                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="pie-chart">
                     </i><span>Report</span></a>
                         <ul class="sidebar-submenu">
-                            <li><a href="{{ route('manager.report.finance') }}">Finance</a></li>
+                            <li><a href="{{ route('manager.report.finance') }}">Transaction</a></li>
                             <li><a href="{{ route('manager.report.booking') }}">Booking</a></li>
                         </ul>
                 </li>            
