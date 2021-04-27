@@ -90,7 +90,7 @@
                                                                     $total = ($total ?? 0) + $price;
                                                                 @endphp
                                                                 <tbody>
-                                                                    <td><u>{{ $finance->booking_code }}</u></td>
+                                                                    <td>{{ $finance->booking_code }}</td>
                                                                     <td>
                                                                         <span
                                                                             class="badge badge-light">{{ 'Rp. ' . number_format($price, 0, ',', '.') }}<span>
@@ -99,7 +99,7 @@
                                                             @empty
                                                                 <tbody>
                                                                     <tr>
-                                                                        <th colspan="3"
+                                                                        <th colspan="2"
                                                                             style="color: red; text-align: center;">Data
                                                                             Empty!</th>
                                                                     </tr>
