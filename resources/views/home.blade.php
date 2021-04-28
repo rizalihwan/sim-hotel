@@ -8,7 +8,7 @@
                         @role('customer')
                         <div class="row p-5">
                             <div class="col-md-12">
-                                <h4>Selamat Datang,</h4><span class="text-secondary">Hallo
+                                <h4>{{ $greeting }},</h4><span class="text-secondary">Hallo
                                     {{ Str::upper(auth()->user()->name) }} Semoga hari anda menyenangkan & pilihlah paket
                                     kamar yang tepat dan membuat anda nyaman.</span>
                             </div>

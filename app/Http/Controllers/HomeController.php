@@ -6,11 +6,21 @@ use App\{Booking, Category, Customer, Room, User};
 
 class HomeController extends Controller
 {
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    private function greeting()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $time = date('H');
+        $name = auth()->user()->name;
+        if ($time >= 18) {
+            $greeting = "Good Night " . $name;
+        } elseif ($time >= 12) {
+            $greeting = "Good Afternoon " . $name;
+        } elseif ($time < 12) {
+            $greeting = "Good Morning " . $name;
+        }
+        return $greeting;
+    }
+
     public function index()
     {
         return view('home', [
@@ -20,7 +30,8 @@ class HomeController extends Controller
             'bookings' => Booking::count(),
             'customers' => Customer::count(),
             'categories' => Category::orderBy('name', 'ASC')->get(),
-            'finances' => Booking::where('status', 1)->latest()->take(3)->get()
+            'finances' => Booking::where('status', 1)->latest()->take(3)->get(),
+            'greeting' => $this->greeting()
         ]);
     }
 }
