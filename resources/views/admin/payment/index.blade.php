@@ -4,6 +4,11 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
+                    <div class="my-4">
+                        <span class="badge badge-secondary pt-2">
+                            <h6>&middot; All Payments</h6>
+                        </span>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
@@ -24,7 +29,7 @@
                                     $check_out = date_create($booking['check_out']);
                                     $check_in = date_create($booking['check_in']);
                                     $calculate = date_diff($check_out, $check_in);
-                                    $day = $calculate->format("%a");
+                                    $day = $calculate->format('%a');
                                     $price = $day * $booking->room->price;
                                 @endphp
                                 <tbody>
@@ -33,19 +38,23 @@
                                     <td>{{ $booking->check_in }}</td>
                                     <td>{{ $booking->check_out }}</td>
                                     <td>
-                                        <span class="badge badge-danger">{{ $day }} @if($day == 1) Day @else Days @endif</span>
+                                        <span class="badge badge-danger">{{ $day }} @if ($day == 1) Day @else Days @endif</span>
                                     </td>
                                     <td>
-                                        <span class="badge badge-info">{{ Str::upper($booking->room->name . " (" . $booking->room->category->name . ")") }}<span>
+                                        <span
+                                            class="badge badge-info">{{ Str::upper($booking->room->name . ' (' . $booking->room->category->name . ')') }}<span>
                                     </td>
                                     <td>
-                                        <span class="badge badge-warning">{{ Str::upper($booking->customer->FullName) }}<span>
+                                        <span
+                                            class="badge badge-warning">{{ Str::upper($booking->customer->FullName) }}<span>
                                     </td>
                                     <td>
-                                        <span class="badge badge-light">{{ "Rp. " . number_format($price, 0,',','.') }}<span>
+                                        <span
+                                            class="badge badge-light">{{ 'Rp. ' . number_format($price, 0, ',', '.') }}<span>
                                     </td>
                                     <td>
-                                        <a href="{{ route('admin.payment.pay', $booking->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>  Pay</a>
+                                        <a href="{{ route('admin.payment.pay', $booking->id) }}"
+                                            class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Pay</a>
                                     </td>
                                 </tbody>
                             @empty
