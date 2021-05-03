@@ -7,24 +7,24 @@ Route::get('/', function () {
 })->middleware('guest');
 Auth::routes();
 // general option
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
     // dashboard
     Route::get('/dashboard', 'HomeController@index')->name('home');
     // profil user
-    Route::prefix('profile')->name('profile.')->group(function(){
+    Route::prefix('profile')->name('profile.')->group(function () {
         Route::get('/setting', 'UserController@edit')->name('setting');
         Route::patch('/setting/update', 'UserController@update')->name('update');
     });
     // change password
-    Route::prefix('account')->name('password.')->group(function(){
+    Route::prefix('account')->name('password.')->group(function () {
         Route::get('/password', 'UserController@changePassword')->name('edit');
         Route::patch('/password', 'UserController@updatePassword')->name('edit');
     });
 });
 // admin access
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->namespace('Admin')->group(function(){
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->namespace('Admin')->group(function () {
     // management account
-    Route::prefix('account')->name('account.')->group(function(){
+    Route::prefix('account')->name('account.')->group(function () {
         // per view & role
         Route::get('/admin', 'AccountController@admin_index_account')->name('admin');
         Route::get('/customer', 'AccountController@costumer_index_account')->name('customer');
@@ -53,41 +53,49 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->name
     Route::get('/not_yet_paid', 'BookingController@not_yet_paid')->name('booking.not_paid');
     Route::patch('/refresh/booking', 'BookingController@refresh_booking')->name('booking.refresh');
     // payment
-    Route::prefix('payment')->name('payment.')->group(function(){
+    Route::prefix('payment')->name('payment.')->group(function () {
         Route::get('/', 'PaymentController@index')->name('index');
         Route::get('/pay/{id}', 'PaymentController@pay')->name('pay');
         Route::patch('/payment/success/{id}', 'PaymentController@payment_success')->name('success');
     });
     // report management
-    Route::prefix('report')->name('report.')->group(function(){
+    Route::prefix('report')->name('report.')->group(function () {
         // finance
-        Route::get('/finance', 'ReportController@finance')->name('finance');
-        Route::get('/finance/pdf', 'ReportController@finance_pdf')->name('finance.pdf');
+        Route::prefix('finance')->name('finance')->group(function () {
+            Route::get('/', 'ReportController@finance');
+            Route::get('/pdf', 'ReportController@finance_pdf')->name('.pdf');
+        });
         // booking
-        Route::get('/booking', 'ReportController@booking')->name('booking');
-        Route::get('/cari/booking', 'ReportController@cari')->name('booking.cari');
-        Route::get('/booking/pdf', 'ReportController@booking_pdf')->name('booking.pdf');
-        Route::get('/booking/excell', 'ReportController@booking_excell')->name('booking.excell');
+        Route::prefix('booking')->name('booking')->group(function () {
+            Route::get('/', 'ReportController@booking');
+            Route::get('/cari', 'ReportController@cari')->name('.cari');
+            Route::get('/pdf', 'ReportController@booking_pdf')->name('.pdf');
+            Route::get('/excell', 'ReportController@booking_excell')->name('.excell');
+        });
     });
-});    
+});
 
 // customer access
-Route::prefix('customer')->name('customer.')->middleware(['auth', 'role:customer'])->namespace('Customer')->group(function(){
+Route::prefix('customer')->name('customer.')->middleware(['auth', 'role:customer'])->namespace('Customer')->group(function () {
     // survey room
     Route::get('/survey/room', 'RoomSurveyController@index')->name('survey');
     Route::get('/search/room', 'RoomSurveyController@search')->name('searchroom');
-});   
+});
 
 // manager access
-Route::prefix('manager')->name('manager.')->middleware(['auth', 'role:boss'])->namespace('Admin')->group(function(){
+Route::prefix('manager')->name('manager.')->middleware(['auth', 'role:boss'])->namespace('Admin')->group(function () {
     // report management
-    Route::prefix('report')->name('report.')->group(function(){
+    Route::prefix('report')->name('report.')->group(function () {
         // finance
-        Route::get('/finance', 'ReportController@finance')->name('finance');
-        Route::get('/finance/pdf', 'ReportController@finance_pdf')->name('finance.pdf');
+        Route::prefix('finance')->name('finance')->group(function () {
+            Route::get('/', 'ReportController@finance');
+            Route::get('/pdf', 'ReportController@finance_pdf')->name('.pdf');
+        });
         // booking
-        Route::get('/booking', 'ReportController@booking')->name('booking');
-        Route::get('/cari/booking', 'ReportController@cari')->name('booking.cari');
-        Route::get('/booking/pdf', 'ReportController@booking_pdf')->name('booking.pdf');
+        Route::prefix('booking')->name('booking')->group(function () {
+            Route::get('/', 'ReportController@booking');
+            Route::get('/cari', 'ReportController@cari')->name('.cari');
+            Route::get('/pdf', 'ReportController@booking_pdf')->name('.pdf');
+        });
     });
-});   
+});
