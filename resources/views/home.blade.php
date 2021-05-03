@@ -109,7 +109,7 @@
                                                                 <tr>
                                                                     <td></td>
                                                                     <th><a href="@role('admin'){{ route('admin.report.finance') }}@endrole @role('boss'){{ route('manager.report.finance') }}@endrole"
-                                                                            class="btn badge-secondary">See all
+                                                                            class="btn badge-secondary"><i class="fa fa-money"></i> See all
                                                                             Transaction</a>
                                                                     </th>
                                                                 </tr>
