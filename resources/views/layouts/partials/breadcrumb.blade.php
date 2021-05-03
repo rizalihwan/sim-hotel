@@ -50,7 +50,7 @@
     <li class="breadcrumb-item">Report</li>
     <li class="breadcrumb-item">Finance</li>
 @endif
-@if(request()->is('admin/report/booking'))
+@if(request()->is('admin/report/booking') || request()->is('manager/report/booking') || request('startDate') || request('endDate'))
     <li class="breadcrumb-item">Report</li>
     <li class="breadcrumb-item">Booking</li>
 @endif
