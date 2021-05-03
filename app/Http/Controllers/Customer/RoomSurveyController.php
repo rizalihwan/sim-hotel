@@ -24,6 +24,9 @@ class RoomSurveyController extends Controller
                     ->orWhereHas('category', function ($q) use ($query) {
                         $q->where("name", "like", "%$query%");
                     })
+                    ->orWhereHas('category', function ($q) use ($query) {
+                        $q->where("facility", "like", "%$query%");
+                    })
                     ->orderBy('room_code', 'ASC')->paginate(4);
         return view('customer.roomsurvey.index', [
             'rooms' => $room
