@@ -7,36 +7,43 @@
                     @include('layouts.partials.error')
                     <div class="d-flex justify-content-between">
                         <div>
-                            <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i></button>
-                            <a href="{{ route('admin.report.booking.excell') }}" class="btn btn-success"><i class="fa fa-print"></i> Excell</a>
+                            <button type="submit" class="btn btn-primary btn-md" data-toggle="modal"
+                                data-target="#addModal"><i class="fa fa-plus"></i></button>
+                            <a href="{{ route('admin.report.booking.excell') }}" class="btn btn-success"><i
+                                    class="fa fa-print"></i> Excell</a>
                         </div>
                         <div class="d-flex">
-                            <button type="submit" onclick="refreshBooking()" class="btn btn-secondary btn-sm mr-2"><i class="fa fa-refresh"></i></button>  
+                            <button type="submit" onclick="refreshBooking()" class="btn btn-secondary btn-sm mr-2"><i
+                                    class="fa fa-refresh"></i></button>
                             <form action="{{ route('admin.booking.refresh') }}" method="post" id="RefreshBooking">
                                 @csrf
-                                @method('PATCH')   
+                                @method('PATCH')
                             </form>
                             <div class="mr-2">
-                                <span>&#10072;</span> 
+                                <span>&#10072;</span>
                             </div>
                             <div class="btn-group">
-                                <button type="button" class="btn btn-light btn-sm for-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  <i class="fa fa-filter"></i> 
+                                <button type="button" class="btn btn-light btn-sm for-light" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-filter"></i>
                                 </button>
-                                <button type="button" class="btn btn-secondary btn-sm for-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  <i class="fa fa-filter"></i> 
+                                <button type="button" class="btn btn-secondary btn-sm for-dark" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-filter"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                  <small class="dropdown-item text-secondary" aria-disabled="true">Filter Payment Status</small>
-                                  <div class="dropdown-divider"></div>
-                                  <a class="dropdown-item" href="{{ route('admin.booking.index') }}">Default</a>
-                                  <a class="dropdown-item" href="{{ route('admin.booking.already_paid') }}">Already Paid</a>
-                                  <a class="dropdown-item" href="{{ route('admin.booking.not_paid') }}">Not Yet Paid</a>
+                                    <small class="dropdown-item text-secondary" aria-disabled="true">Filter Payment
+                                        Status</small>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{ route('admin.booking.index') }}">Default</a>
+                                    <a class="dropdown-item" href="{{ route('admin.booking.already_paid') }}">Already
+                                        Paid</a>
+                                    <a class="dropdown-item" href="{{ route('admin.booking.not_paid') }}">Not Yet Paid</a>
                                 </div>
-                              </div>
+                            </div>
                         </div>
-                        
-                      </div>
+
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -62,26 +69,31 @@
                                     <td>{{ $booking->check_in }}</td>
                                     <td>{{ $booking->check_out }}</td>
                                     <td>
-                                        <span class="badge badge-info">{{ Str::upper($booking->room->name . " (" . $booking->room->category->name . ")") }}<span>
+                                        <span
+                                            class="badge badge-info">{{ Str::upper($booking->room->name . ' (' . $booking->room->category->name . ')') }}<span>
                                     </td>
                                     <td>
-                                        <span class="badge badge-warning">{{ Str::upper($booking->customer->FullName) }}<span>
+                                        <span
+                                            class="badge badge-warning">{{ Str::upper($booking->customer->FullName) }}<span>
                                     </td>
                                     <td>
                                         <span class="badge badge-light">{{ Str::upper($booking->payment_type) }}<span>
                                     </td>
                                     <td>
-                                        @if($booking->status == 0)
-                                            <a href="{{ route('admin.booking.edit', $booking->id) }}" style="float: left;"
-                                                class="mr-1"><i class="fa fa-pencil-square-o"
+                                        @if ($booking->status == 0)
+                                            <a href="{{ route('admin.booking.edit', $booking->id) }}"
+                                                style="float: left;" class="mr-1"><i class="fa fa-pencil-square-o"
                                                     style="color: rgb(0, 241, 12);"></i></a>
                                         @endif
-                                        <button type="submit" onclick="deleteBooking('{{ $booking->id }}')" style="background-color: transparent; border: none;"><i class="icon-trash" style="color: red;"></i></button>        
-                                        <form action="{{ route('admin.booking.destroy', $booking->id) }}" method="post" id="DeleteBooking{{ $booking->id }}">
+                                        <button type="submit" onclick="deleteBooking('{{ $booking->id }}')"
+                                            style="background-color: transparent; border: none;"><i class="icon-trash"
+                                                style="color: red;"></i></button>
+                                        <form action="{{ route('admin.booking.destroy', $booking->id) }}" method="post"
+                                            id="DeleteBooking{{ $booking->id }}">
                                             @csrf
                                             @method('DELETE')
                                         </form>
-                                        {{-- @if($booking->status == 1)   
+                                        {{-- @if ($booking->status == 1)   
                                             <form action="{{ route('admin.booking.destroy', $booking->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
@@ -146,19 +158,21 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="col-form-label" for="code">Booking Code:</label>
-                                    <input class="form-control" type="text" value="{{ $now . "-" . $kode }}" name="booking_code" id="code"
-                                        placeholder="booking code" readonly required>
+                                    <input class="form-control" type="text" value="{{ $now . '-' . $kode }}"
+                                        name="booking_code" id="code" placeholder="booking code" readonly required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                <label class="col-form-label" for="customer_id">Customer:</label>
-                                <select name="customer_id" id="customer_id" class="form-control custom-select" required>
-                                    <option disabled selected>Select Customer</option>
-                                    @foreach ($customers as $customer)
-                                        <option value="{{ $customer->id }}">{{ "(" . $customer->nik . ")" . " - " . Str::upper($customer->FullName) }}</option>
-                                    @endforeach
-                                </select>
+                                    <label class="col-form-label" for="customer_id">Customer:</label>
+                                    <select name="customer_id" id="customer_id" class="form-control custom-select" required>
+                                        <option disabled selected>Select Customer</option>
+                                        @foreach ($customers as $customer)
+                                            <option value="{{ $customer->id }}">
+                                                {{ '(' . $customer->nik . ')' . ' - ' . Str::upper($customer->FullName) }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -177,23 +191,26 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                <label class="col-form-label" for="room_id">Room:</label>
-                                <select name="room_id" id="room_id" class="form-control custom-select" required>
-                                    <option disabled selected>Select Room</option>
-                                    @foreach ($rooms as $room)
-                                        <option value="{{ $room->id }}">{{ $room->room_code . " - " .$room->name. " (" .$room->category->name. ")" }}</option>
-                                    @endforeach
-                                </select>
+                                    <label class="col-form-label" for="room_id">Room:</label>
+                                    <select name="room_id" id="room_id" class="form-control custom-select" required>
+                                        <option disabled selected>Select Room</option>
+                                        @foreach ($rooms as $room)
+                                            <option value="{{ $room->id }}">
+                                                {{ $room->room_code . ' - ' . $room->name . ' (' . $room->category->name . ')' }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                <label class="col-form-label" for="payment_type">Payment Type:</label>
-                                <select name="payment_type" id="payment_type" class="form-control custom-select" required>
-                                    <option disabled selected>Select Payment Type</option>
-                                    <option value="Now">Now</option>
-                                    <option value="Checkout">Checkout</option>
-                                </select>
+                                    <label class="col-form-label" for="payment_type">Payment Type:</label>
+                                    <select name="payment_type" id="payment_type" class="form-control custom-select"
+                                        required>
+                                        <option disabled selected>Select Payment Type</option>
+                                        <option value="Now">Now</option>
+                                        <option value="Checkout">Checkout</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -209,55 +226,56 @@
     </div>
 @stop
 @section('script')
-    <script>
-        function deleteBooking(id) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire({
-                            title: "is Removing Booking",
-                            showConfirmButton: false,
-                            timer: 2300,
-                            timerProgressBar: true,
-                            onOpen: () => {
-                                document.getElementById(`DeleteBooking${id}`).submit();
-                                Swal.showLoading();
-                            }
-                        });
+<script>
+    function deleteBooking(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "is Removing Booking",
+                    showConfirmButton: false,
+                    timer: 2300,
+                    timerProgressBar: true,
+                    onOpen: () => {
+                        document.getElementById(`DeleteBooking${id}`).submit();
+                        Swal.showLoading();
                     }
-            })
-        }
+                });
+            }
+        })
+    }
 
-        function refreshBooking() {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "Refresh booking will update the room status to filled, are you sure?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, refresh it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire({
-                            title: "Refresh Booking...",
-                            showConfirmButton: false,
-                            timer: 2300,
-                            timerProgressBar: true,
-                            onOpen: () => {
-                                document.getElementById('RefreshBooking').submit();
-                                Swal.showLoading();
-                            }
-                        });
+    function refreshBooking() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Refresh booking will update the room status to filled, are you sure?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, refresh it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Refresh Booking...",
+                    showConfirmButton: false,
+                    timer: 2300,
+                    timerProgressBar: true,
+                    onOpen: () => {
+                        document.getElementById('RefreshBooking').submit();
+                        Swal.showLoading();
                     }
-            })
-        }
-    </script>
+                });
+            }
+        })
+    }
+
+</script>
 @endsection
