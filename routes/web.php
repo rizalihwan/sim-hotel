@@ -96,6 +96,7 @@ Route::prefix('manager')->name('manager.')->middleware(['auth', 'role:boss'])->n
             Route::get('/', 'ReportController@booking');
             Route::get('/cari', 'ReportController@cari')->name('.cari');
             Route::get('/pdf', 'ReportController@booking_pdf')->name('.pdf');
+            Route::get('/excell', 'ReportController@booking_excell')->name('.excell');
         });
     });
 });
