@@ -9,18 +9,18 @@
                             <span>
                                 <h5>
                                     @if (request('query'))
-                                        Pencarian : "{{ request('query') }}"
+                                        Search : "{{ request('query') }}"
                                     @else
-                                        | Semua Paket Kamar
+                                        | All Room Packages
                                     @endif
                                 </h5>
                             </span>
                         </div>
                         <div>
                             <span class="badge badge-pill badge-success">&middot;</span>
-                            <small class="text-secondary mr-2">Kosong</small>
+                            <small class="text-secondary mr-2">Empty Room</small>
                             <span class="badge badge-pill badge-danger">&middot;</span>
-                            <small class="text-secondary">Terisi</small>
+                            <small class="text-secondary">Room Filled</small>
                         </div>
                     </div>
                     @if (request('query'))
@@ -30,7 +30,7 @@
                     <form action="{{ route('customer.searchroom') }}" method="GET">
                         <div class="input-group">
                             <input class="form-control" id="validationTooltip02" type="search" name="query"
-                                placeholder="Cari kamar..." @if (request('query')) value="{{ request('query') }}" @endif required>
+                                placeholder="Find a room..." @if (request('query')) value="{{ request('query') }}" @endif required>
                             <div class="valid-tooltip">Search</div>
                             <button type="submit" class="btn btn-secondary ml-2"><i class="fa fa-search"></i></button>
                         </div>
@@ -41,7 +41,7 @@
                         @forelse ($rooms as $room)
                             <div class="col-xl-3 xl-50 col-md-6">
                                 <div class="card features-faq product-box mb-3"
-                                    style="height: 530px; border: 1px solid rgba(15, 7, 7, 0.082);">
+                                    style="height: 570px; border: 1px solid rgba(15, 7, 7, 0.082);">
                                     <div class="faq-image product-img p-2">
                                         <center>
                                             <img class="img-fluid" src="{{ $room->RoomThumbnail }}"
@@ -53,9 +53,9 @@
                                         <div class="d-flex justify-content-between">
                                             <h6 class="text-secondary">{{ Str::upper($room->name) }}</h6>
                                             @if ($room->status === 1)
-                                                <span class="badge badge-success p-2">KOSONG</span>
+                                                <span class="badge badge-success p-2">EMPTY</span>
                                             @else
-                                                <span class="badge badge-danger p-2">TERISI<span>
+                                                <span class="badge badge-danger p-2">FILLED<span>
                                             @endif
                                         </div>
                                         <div class="mb-4 mt-4">
@@ -65,6 +65,15 @@
                                             </div>
                                             <div>
                                                 Deskripsi : {!! Str::limit($room->category->description, 200) !!}
+                                            </div>
+                                            <div class="my-3">
+                                                <center>
+                                                    @if ($room->status === 1)
+                                                        <a href="#" class="btn btn-secondary"><i class="fa fa-lock"></i>
+                                                            Book
+                                                            Now</a>
+                                                    @endif
+                                                </center>
                                             </div>
                                         </div>
                                     </div>

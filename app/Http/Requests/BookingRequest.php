@@ -25,8 +25,8 @@ class BookingRequest extends FormRequest
     {
         return [
             'booking_code' => 'required|min:3|unique:bookings,booking_code',
-            'check_in' => ['required', 'date'],
-            'check_out' => ['required', 'date'],
+            'check_in' => ['required'],
+            'check_out' => ['required'],
             'room_id' => ['required'],
             'customer_id' => ['required'],
             'payment_type' => ['required', 'max:10']

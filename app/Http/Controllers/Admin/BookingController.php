@@ -43,7 +43,7 @@ class BookingController extends Controller
         return view('admin.booking.index', [
             'kode' => $this->booking_code(),
             'now' => Carbon::now(),
-            'bookings' => Booking::orderBy('booking_code', 'ASC')->paginate(5),
+            'bookings' => Booking::latest()->paginate(5),
             'rooms' => Room::where('status', 1)->orderBy('room_code', 'ASC')->get(),
             'check_room' => Room::orderBy('room_code', 'ASC')->get(),
             'customers' => Customer::orderBy('first_name', 'ASC')->get()
@@ -88,6 +88,10 @@ class BookingController extends Controller
         ]);
         $attr = $request->all();
         $attr['status'] = 0;
+        date_default_timezone_set('Asia/Jakarta');
+        $time = date("H:i:s");
+        $attr['check_in'] .= $time;
+        $attr['check_out'] .= $time;
         Booking::create($attr);
         Alert::success('Information Message', 'Data Saved');
         return redirect()->route('admin.booking.index');

@@ -9,8 +9,7 @@
                         <div class="row p-5">
                             <div class="col-md-12">
                                 <h4>{{ $greeting }},</h4><span class="text-secondary">Hallo
-                                    {{ Str::upper(auth()->user()->name) }} Semoga hari anda menyenangkan & pilihlah paket
-                                    kamar yang tepat dan membuat anda nyaman.</span>
+                                    {{ Str::upper(auth()->user()->name) }} Have a nice day & choose the right room package and make you comfortable.</span>
                             </div>
                         </div>
                         @endrole
@@ -136,8 +135,8 @@
                     <div class="col-sm-12 col-xl-12">
                         <div class="card">
                             <div class="card-header">
-                                <h6>Paket dan Deskripsi</h6><span>Berikut adalah jenis - jenis paket dan
-                                    penjelasannya</span>
+                                <h6>Package and Description</h6><span>Here are the types of packages and
+                                    the explanation</span>
                             </div>
                             <div class="card-body">
                                 <div class="default-according" id="accordion1">
