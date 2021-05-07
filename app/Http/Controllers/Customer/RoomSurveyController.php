@@ -10,7 +10,7 @@ class RoomSurveyController extends Controller
     public function index()
     {
         return view('customer.roomsurvey.index', [
-            'rooms' => Room::paginate(4)
+            'rooms' => Room::orderBy('name', 'ASC')->paginate(4)
         ]);
     }
 
