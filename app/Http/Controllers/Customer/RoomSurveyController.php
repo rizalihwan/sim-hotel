@@ -10,7 +10,7 @@ class RoomSurveyController extends Controller
     public function index()
     {
         return view('customer.roomsurvey.index', [
-            'rooms' => Room::orderBy('name', 'ASC')->paginate(4)
+            'rooms' => Room::orderBy('name', 'ASC')->where('status', 1)->paginate(4)
         ]);
     }
 
@@ -18,19 +18,18 @@ class RoomSurveyController extends Controller
     {
         $query = request('query');
         $room = Room::with(['category'])
-                    ->where("name", "like", "%$query%")
-                    ->orWhere("room_code", "like", "%$query%")
-                    ->orWhere("price", "like", "%$query%")
-                    ->orWhereHas('category', function ($q) use ($query) {
-                        $q->where("name", "like", "%$query%");
-                    })
-                    ->orWhereHas('category', function ($q) use ($query) {
-                        $q->where("facility", "like", "%$query%");
-                    })
-                    ->orderBy('room_code', 'ASC')->paginate(4);
+            ->where("name", "like", "%$query%")
+            ->orWhere("room_code", "like", "%$query%")
+            ->orWhere("price", "like", "%$query%")
+            ->orWhereHas('category', function ($q) use ($query) {
+                $q->where("name", "like", "%$query%");
+            })
+            ->orWhereHas('category', function ($q) use ($query) {
+                $q->where("facility", "like", "%$query%");
+            })
+            ->where('status', 0)->orderBy('room_code', 'ASC')->paginate(4);
         return view('customer.roomsurvey.index', [
             'rooms' => $room
         ]);
     }
-
 }

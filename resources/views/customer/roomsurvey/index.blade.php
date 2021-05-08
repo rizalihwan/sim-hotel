@@ -17,24 +17,27 @@
                             </span>
                         </div>
                         <div>
+                            <form action="{{ route('customer.searchroom') }}" method="GET">
+                                <div class="input-group">
+                                    <input class="form-control" id="validationTooltip02" type="search" name="query"
+                                        placeholder="Find a room..." @if (request('query')) value="{{ request('query') }}" @endif required>
+                                    <div class="valid-tooltip">Search</div>
+                                    <button type="submit" class="btn btn-secondary ml-2"><i
+                                            class="fa fa-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        {{-- <div>
                             <span class="badge badge-pill badge-success">&middot;</span>
                             <small class="text-secondary mr-2">Empty Room</small>
                             <span class="badge badge-pill badge-danger">&middot;</span>
                             <small class="text-secondary">Room Filled</small>
-                        </div>
+                        </div> --}}
                     </div>
                     @if (request('query'))
                         <a href="{{ route('customer.survey') }}" class="btn btn-light mb-2"><i
                                 class="fa fa-arrow-left"></i></a>
                     @endif
-                    <form action="{{ route('customer.searchroom') }}" method="GET">
-                        <div class="input-group">
-                            <input class="form-control" id="validationTooltip02" type="search" name="query"
-                                placeholder="Find a room..." @if (request('query')) value="{{ request('query') }}" @endif required>
-                            <div class="valid-tooltip">Search</div>
-                            <button type="submit" class="btn btn-secondary ml-2"><i class="fa fa-search"></i></button>
-                        </div>
-                    </form>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -52,11 +55,11 @@
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between">
                                             <h6 class="text-secondary">{{ Str::upper($room->name) }}</h6>
-                                            @if ($room->status === 1)
+                                            {{-- @if ($room->status === 1)
                                                 <span class="badge badge-success p-2">EMPTY</span>
                                             @else
                                                 <span class="badge badge-danger p-2">FILLED<span>
-                                            @endif
+                                            @endif --}}
                                         </div>
                                         <div class="mb-4 mt-4">
                                             <div class="mb-2">
