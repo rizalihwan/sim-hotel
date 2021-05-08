@@ -16,7 +16,7 @@
                             <div class="form-group">
                                 <label class="col-form-label" for="username">Username</label>
                                 <input class="form-control @error('username') is-invalid @enderror" type="text"
-                                    name="username" id="username" value="{{ old('username') }}" autofocus required
+                                    name="username" id="username" value="{{ old('username') }}" autofocus
                                     placeholder="your username">
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
@@ -26,7 +26,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="col-form-label" for="password">Password</label>
-                                <input class="form-control" type="password" name="password" id="password" required
+                                <input class="form-control" type="password" name="password" id="password"
                                     placeholder="*********">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -42,8 +42,16 @@
                                 @if (Route::has('password.request'))
                                     <a class="link" href="{{ route('password.request') }}">Forgot password?</a>
                                 @endif
+
                                 <div>
                                     <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+                                </div>
+
+                                <div  class="mt-3">
+                                    <p class="text-center">Mau booking belum punya akun?</p>
+                                    <div>
+                                        <a class="btn btn-success btn-block" href="{{ route('register') }}">Buat akun baru</a>
+                                    </div>
                                 </div>
                             </div>
                         </form>
