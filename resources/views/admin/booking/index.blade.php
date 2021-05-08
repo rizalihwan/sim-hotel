@@ -156,63 +156,73 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-form-label" for="customer_id">Customer:</label>
-                                    <select name="customer_id" id="customer_id" class="form-control custom-select" required>
-                                        <option disabled selected>Select Customer</option>
-                                        @foreach ($customers as $customer)
-                                            <option value="{{ $customer->id }}">
-                                                {{ '(' . $customer->nik . ')' . ' - ' . Str::upper($customer->FullName) }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                <div class="select2-drpdwn">
+                                    <div class="mb-2">
+                                        <div class="col-form-label">Customer:</div>
+                                        <select name="customer_id" style="width: 100%;" class="select2 col-sm-12" required>
+                                            <optgroup label="CHOOSE">
+                                                <option disabled selected>Customer</option>
+                                                @foreach ($customers as $customer)
+                                                    <option value="{{ $customer->id }}">
+                                                        {{ '(' . $customer->nik . ')' . ' - ' . Str::upper($customer->FullName) }}
+                                                    </option>
+                                                @endforeach
+                                            </optgroup>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="col-form-label" for="check_in">Check in:</label>
-                                    <input class="form-control" type="date" name="check_in" id="check_in"
-                                        placeholder="check in" required>
+                                    <input class="datepicker-here form-control" type="text" name="check_in" id="check_in"
+                                        placeholder="check in" data-language="en" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="col-form-label" for="check_out">Check out:</label>
-                                    <input class="form-control" type="date" name="check_out" id="check_out"
-                                        placeholder="check out" required>
+                                    <input class="datepicker-here form-control" type="text" name="check_out" id="check_out"
+                                        placeholder="check out" data-language="en" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-form-label" for="room_id">Room:</label>
-                                    <select name="room_id" id="room_id" class="form-control custom-select" required>
-                                        <option disabled selected>Select Room</option>
-                                        @foreach ($rooms as $room)
-                                            <option value="{{ $room->id }}">
-                                                {{ $room->room_code . ' - ' . $room->name . ' (' . $room->category->name . ')' }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                <div class="select2-drpdwn">
+                                    <div class="mb-2">
+                                        <div class="col-form-label">Room:</div>
+                                        <select name="room_id" style="width: 100%;" class="select2 col-sm-12" required>
+                                            <optgroup label="CHOOSE">
+                                                <option disabled selected>Room</option>
+                                                @foreach ($rooms as $room)
+                                                    <option value="{{ $room->id }}">
+                                                        {{ $room->room_code . ' - ' . $room->name . ' (' . $room->category->name . ')' }}
+                                                    </option>
+                                                @endforeach
+                                            </optgroup>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-form-label" for="payment_type">Payment Type:</label>
-                                    <select name="payment_type" id="payment_type" class="form-control custom-select"
-                                        required>
-                                        <option disabled selected>Select Payment Type</option>
-                                        <option value="Now">Now</option>
-                                        <option value="Checkout">Checkout</option>
-                                    </select>
+                                <div class="select2-drpdwn">
+                                    <div class="mb-2">
+                                        <div class="col-form-label">Payment Type:</div>
+                                        <select name="payment_type" style="width: 100%;" class="select2 col-sm-12" required>
+                                            <optgroup label="CHOOSE">
+                                                <option disabled selected>Type</option>
+                                                <option value="Now">Now</option>
+                                                <option value="Checkout">Checkout</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-light for-light" type="button" data-dismiss="modal">Close</button>
-                        <button class="btn btn-secondary for-dark" type="button" data-dismiss="modal">Close</button>
-                        <button class="btn btn-primary" type="submit">Save</button>
-                    </div>
+                        <div class="modal-footer mt-3">
+                            <button class="btn btn-light for-light" type="button" data-dismiss="modal">Close</button>
+                            <button class="btn btn-secondary for-dark" type="button" data-dismiss="modal">Close</button>
+                            <button class="btn btn-primary" type="submit">Save</button>
+                        </div>
                 </form>
             </div>
         </div>
@@ -220,6 +230,10 @@
 @stop
 @section('script')
 <script>
+    $(".select2").select2({
+        dropdownParent: $('#addModal')
+    });
+
     function deleteBooking(id) {
         Swal.fire({
             title: 'Are you sure?',
