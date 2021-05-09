@@ -72,7 +72,7 @@
                                             <div class="my-3">
                                                 <center>
                                                     @if ($room->status === 1)
-                                                        <a href="#" class="btn btn-secondary"><i class="fa fa-lock"></i>
+                                                        <a href="{{ route('customer.booking', $room->id) }}" class="btn btn-secondary"><i class="fa fa-lock"></i>
                                                             Book
                                                             Now</a>
                                                     @endif

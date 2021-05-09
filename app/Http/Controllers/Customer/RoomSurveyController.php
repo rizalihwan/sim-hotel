@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Customer;
 
+use App\{Booking, Room};
 use App\Http\Controllers\Controller;
-use App\Room;
 
 class RoomSurveyController extends Controller
 {
@@ -12,6 +12,11 @@ class RoomSurveyController extends Controller
         return view('customer.roomsurvey.index', [
             'rooms' => Room::orderBy('name', 'ASC')->where('status', 1)->paginate(4)
         ]);
+    }
+
+    public function booking(Room $room)
+    {
+        return view('customer.booking', compact('room'));
     }
 
     public function search()
