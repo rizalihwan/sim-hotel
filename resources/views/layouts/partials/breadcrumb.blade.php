@@ -54,4 +54,7 @@
     <li class="breadcrumb-item">Report</li>
     <li class="breadcrumb-item">Booking</li>
 @endif
+@if(request()->is('admin/approve_booking'))
+    <li class="breadcrumb-item">Approve Bookings</li>
+@endif
                     
