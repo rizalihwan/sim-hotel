@@ -47,17 +47,16 @@
                                     <button class="btn btn-primary btn-block" type="submit">Sign in</button>
                                 </div>
 
-                                <div  class="mt-3">
-                                    <p class="text-center">Mau booking belum punya akun?</p>
-                                    <div>
-                                        <a class="btn btn-success btn-block" href="{{ route('register') }}">Buat akun baru</a>
-                                    </div>
+                                <div class="mt-3">
+                                    <p class="text-center">Do you want to book, don't have an account? <a
+                                            href="{{ route('register') }}">Register Now</a></p>
                                 </div>
                             </div>
-                        </form>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection
