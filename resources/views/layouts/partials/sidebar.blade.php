@@ -17,79 +17,92 @@
         <div id="sidebar-menu">
             <ul class="sidebar-links custom-scrollbar">
                 <li class="back-btn">
-                    <a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('assets/images/logo/logowebdark.png') }}"
-                            alt=""></a>
+                    <a href="javascript:void(0)"><img class="img-fluid"
+                            src="{{ asset('assets/images/logo/logowebdark.png') }}" alt=""></a>
                     <div class="mobile-back text-right"><span>Back</span><i class="fa fa-angle-right pl-2"
                             aria-hidden="true"></i></div>
                 </li>
                 @role('admin')
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('home') }}"><i
-                                data-feather="home"> </i><span>Dashboard</span></a></li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i
-                                data-feather="users"></i><span>Management Account</span></a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="{{ route('admin.account.register.index') }}">Register Account</a></li>
-                            <li><a href="{{ route('admin.account.admin') }}">Admin Account</a></li>
-                            <li><a href="{{ route('admin.account.customer') }}">Customer Account</a></li>
-                            <li><a href="{{ route('admin.account.boss') }}">Manager Account</a></li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('admin.room.index') }}"><i data-feather="wind">
-                            </i><span>Room</span></a></li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
-                            href="{{ route('admin.category.index') }}"><i data-feather="layers">
-                            </i><span>Category</span></a></li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('admin.booking.index') }}"><i
-                                data-feather="log-in"> </i><span>Booking</span></a></li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('admin.customer.index') }}"><i
-                        data-feather="user"> </i><span>Customer</span></a></li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('admin.payment.index') }}"><i
-                                data-feather="activity"> </i><span>Payment</span></a></li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="pie-chart">
-                            </i><span>Report</span></a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="{{ route('admin.report.finance') }}">Transaction</a></li>
-                            <li><a href="{{ route('admin.report.booking') }}">Booking</a></li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="align-center">
-                            </i><span>Profile</span></a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="{{ route('profile.setting') }}">My Profile</a></li>
-                            <li><a href="javascript:void(0)" onclick="logout()">Log out</a></li>
-                        </ul>
-                    </li>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('home') }}"><i
+                            data-feather="home"> </i><span>Dashboard</span></a></li>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i
+                            data-feather="users"></i><span>Management Account</span></a>
+                    <ul class="sidebar-submenu">
+                        <li><a href="{{ route('admin.account.register.index') }}">Register Account</a></li>
+                        <li><a href="{{ route('admin.account.admin') }}">Admin Account</a></li>
+                        <li><a href="{{ route('admin.account.customer') }}">Customer Account</a></li>
+                        <li><a href="{{ route('admin.account.boss') }}">Manager Account</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
+                        href="{{ route('admin.room.index') }}"><i data-feather="wind">
+                        </i><span>Room</span></a></li>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
+                        href="{{ route('admin.category.index') }}"><i data-feather="layers">
+                        </i><span>Category</span></a></li>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
+                        href="{{ route('admin.booking.approve') }}"><i data-feather="user-check">
+                        </i><span>Approve Bookings</span></a></li>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
+                        href="{{ route('admin.booking.index') }}"><i data-feather="log-in">
+                        </i><span>Booking</span></a></li>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
+                        href="{{ route('admin.customer.index') }}"><i data-feather="user">
+                        </i><span>Customer</span></a></li>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
+                        href="{{ route('admin.payment.index') }}"><i data-feather="activity">
+                        </i><span>Payment</span></a></li>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i
+                            data-feather="pie-chart">
+                        </i><span>Report</span></a>
+                    <ul class="sidebar-submenu">
+                        <li><a href="{{ route('admin.report.finance') }}">Transaction</a></li>
+                        <li><a href="{{ route('admin.report.booking') }}">Booking</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i
+                            data-feather="align-center">
+                        </i><span>Profile</span></a>
+                    <ul class="sidebar-submenu">
+                        <li><a href="{{ route('profile.setting') }}">My Profile</a></li>
+                        <li><a href="javascript:void(0)" onclick="logout()">Log out</a></li>
+                    </ul>
+                </li>
                 @endrole
                 @role('customer')
                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('home') }}"><i
                             data-feather="home"> </i><span>Dashboard</span></a></li>
-                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('customer.survey') }}"><i 
-                            data-feather="wind"> </i><span>Room Survey</span></a></li>    
-                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="align-center">
-                    </i><span>Profile</span></a>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
+                        href="{{ route('customer.survey') }}"><i data-feather="wind"> </i><span>Room
+                            Survey</span></a></li>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i
+                            data-feather="align-center">
+                        </i><span>Profile</span></a>
                     <ul class="sidebar-submenu">
                         <li><a href="{{ route('profile.setting') }}">My Profile</a></li>
                         <li><a href="javascript:void(0)" onclick="logout()">Log out</a></li>
                     </ul>
-                </li>            
+                </li>
                 @endrole
                 @role('boss')
                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('home') }}"><i
                             data-feather="home"> </i><span>Dashboard</span></a></li>
-                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="pie-chart">
-                    </i><span>Report</span></a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="{{ route('manager.report.finance') }}">Transaction</a></li>
-                            <li><a href="{{ route('manager.report.booking') }}">Booking</a></li>
-                        </ul>
-                </li>            
-                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="align-center">
-                    </i><span>Profile</span></a>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i
+                            data-feather="pie-chart">
+                        </i><span>Report</span></a>
+                    <ul class="sidebar-submenu">
+                        <li><a href="{{ route('manager.report.finance') }}">Transaction</a></li>
+                        <li><a href="{{ route('manager.report.booking') }}">Booking</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i
+                            data-feather="align-center">
+                        </i><span>Profile</span></a>
                     <ul class="sidebar-submenu">
                         <li><a href="{{ route('profile.setting') }}">My Profile</a></li>
                         <li><a href="javascript:void(0)" onclick="logout()">Log out</a></li>
                     </ul>
-                </li>            
+                </li>
                 @endrole
             </ul>
         </div>
