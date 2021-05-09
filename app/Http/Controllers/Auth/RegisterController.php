@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisterController extends Controller
 {
@@ -73,6 +75,10 @@ class RegisterController extends Controller
         ]);
         $user->assignRole('customer');
         return $user;
+    }
 
+    public function registered()
+    {
+        Alert::success('Information Message', 'Welcome ' . auth()->user()->name);
     }
 }
