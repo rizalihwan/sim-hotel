@@ -227,7 +227,7 @@
             </div>
         </div>
     </div>
-    </div>  
+    </div>
 @stop
 @section('script')
 <script>
