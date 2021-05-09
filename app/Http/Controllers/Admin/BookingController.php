@@ -43,7 +43,7 @@ class BookingController extends Controller
         return view('admin.booking.index', [
             'kode' => $this->booking_code(),
             'now' => Carbon::now(),
-            'bookings' => Booking::latest()->paginate(5),
+            'bookings' => Booking::whereIn('status', ['0', '1'])->latest()->paginate(5),
             'rooms' => Room::where('status', 1)->orderBy('room_code', 'ASC')->get(),
             'check_room' => Room::orderBy('room_code', 'ASC')->get(),
             'customers' => Customer::orderBy('first_name', 'ASC')->get()
@@ -71,6 +71,13 @@ class BookingController extends Controller
             'rooms' => Room::where('status', 1)->orderBy('room_code', 'ASC')->get(),
             'check_room' => Room::orderBy('room_code', 'ASC')->get(),
             'customers' => Customer::orderBy('first_name', 'ASC')->get()
+        ]);
+    }
+
+    public function approve_booking()
+    {
+        return view('admin.booking.approve', [
+            'bookings' => Booking::orderBy('booking_code', 'ASC')->paginate(5)
         ]);
     }
 
