@@ -46,7 +46,7 @@ class LoginController extends Controller
         return 'username';
     }
 
-    public function authenticated(Request $request)
+    public function authenticated()
     {
         Alert::success('Information Message', 'Welcome ' . auth()->user()->name);
     }
