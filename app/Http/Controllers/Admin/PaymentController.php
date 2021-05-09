@@ -28,8 +28,13 @@ class PaymentController extends Controller
      */
     public function pay($id)
     {
+        try{
+            $booking = Booking::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return view('danger.exception', ['message' => 'system error due to payment not found']);
+        }
         return view('admin.payment.pay', [
-            'booking' => Booking::findOrFail($id)
+            'booking' => $booking
         ]);
     }
 
@@ -42,10 +47,15 @@ class PaymentController extends Controller
      */
     public function payment_success($id)
     {
-        Booking::findOrFail($id)->update([
-            'status' => 1,
-            'payment_date' => Carbon::now()
-        ]);
+        try{
+            Booking::findOrFail($id)->update([
+                'status' => 1,
+                'payment_date' => Carbon::now()
+            ]);
+        } catch (\Exception $e) {
+            Alert::error('Message Information', 'Payment failed!');
+            return back();
+        }
         Alert::success('Message Information', 'Payment is Successfull');
         return redirect()->route('admin.payment.index');
     }
