@@ -36,7 +36,7 @@
                                 <input type="text" name="first_name" id="first_name" class="form-control" required>
                             </div>
                             <div class="form-group col-sm-6">
-                                <label for="last_name">First Name:</label>
+                                <label for="last_name">Last Name:</label>
                                 <input type="text" name="last_name" id="last_name" class="form-control" required>
                             </div>
                         </div>
