@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Customer;
 
 use App\{Booking, Room};
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class RoomSurveyController extends Controller
 {
@@ -16,7 +17,27 @@ class RoomSurveyController extends Controller
 
     public function booking(Room $room)
     {
-        return view('customer.booking', compact('room'));
+        $number = Booking::count();
+        if($number > 0)
+        {
+            $number = Booking::max('booking_code');
+            $strnum = substr($number, 24, 25);
+            $strnum = $strnum + 1;
+            if(strlen($strnum) == 4)
+            {
+                $kode = 'BKNG' . $strnum;
+            }else if (strlen($strnum) == 3) {
+                $kode = 'BKNG' . "0" . $strnum;
+            } else if (strlen($strnum) == 2) {
+                $kode = 'BKNG' . "00" . $strnum;
+            } else if (strlen($strnum) == 1) {
+                $kode = 'BKNG' . "000" . $strnum;
+            }
+        } else {
+            $kode = 'BKNG' . "0001";
+        }
+        $now = Carbon::now();
+        return view('customer.booking', compact('room', 'kode', 'now'));
     }
 
     public function search()
