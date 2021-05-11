@@ -8,14 +8,10 @@ use Carbon\Carbon;
 
 class RoomSurveyController extends Controller
 {
-    public function index()
-    {
-        return view('customer.roomsurvey.index', [
-            'rooms' => Room::orderBy('name', 'ASC')->where('status', 1)->paginate(4)
-        ]);
-    }
+    private $kode;
+    private $now;
 
-    public function booking(Room $room)
+    public function __construct()
     {
         $number = Booking::count();
         if($number > 0)
@@ -36,8 +32,43 @@ class RoomSurveyController extends Controller
         } else {
             $kode = 'BKNG' . "0001";
         }
-        $now = Carbon::now();
-        return view('customer.booking', compact('room', 'kode', 'now'));
+        $this->kode = $kode;
+        $this->now = Carbon::now();
+    }
+
+    protected function get($room)
+    {
+        return [
+            'room' => $room, 
+            'kode' => $this->kode, 
+            'now' => $this->now
+        ];
+    }
+
+    public function index()
+    {
+        return view('customer.roomsurvey.index', [
+            'rooms' => Room::orderBy('name', 'ASC')->where('status', 1)->paginate(4)
+        ]);
+    }
+
+    public function booking(Room $room)
+    {
+        return view('customer.booking', $this->get($room));
+    }
+
+    public function refresh(Room $room)
+    {
+        $this->validate(request(), [
+            'nik' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'check_in' => 'required',
+            'check_out' => 'required'
+        ]);
+        return view('customer.booking', $this->get($room));
     }
 
     public function search()
