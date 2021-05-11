@@ -83,6 +83,7 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'role:customer
     Route::get('/search/room', 'RoomSurveyController@search')->name('searchroom');
     // booking
     Route::get('/room/{room}/booking', 'RoomSurveyController@booking')->name('booking');
+    Route::get('/room/{room}/bookingfinish', 'RoomSurveyController@refresh')->name('refresh');
 });
 
 // manager access
