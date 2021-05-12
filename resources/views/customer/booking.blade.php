@@ -16,7 +16,7 @@
         <div class="card">
             <div class="card-header">
                 @if (request()->routeIs('customer.refresh'))
-                    <h1><i class="fa fa-flag-checkered mr-2"></i></h1>
+                    <h1><i class="fa fa-shopping-cart mr-2"></i></h1>
                     <h5>Booking Payment - Step 2</h5>
                     <div>
                         <small class="text-secondary">Please fill in / upload the proof of your booking payment
@@ -53,7 +53,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <form action="#" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('customer.booking.pay') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 {{-- customer data --}}
                                 <input type="hidden" name="nik" value="{{ request('nik') }}">
@@ -67,10 +67,11 @@
                                 <input type="hidden" name="check_out" value="{{ request('check_out') }}">
                                 <input type="hidden" name="room_id" value="{{ $room->id }}">
                                 <input type="hidden" name="payment_type" value="Now">
+                                <input type="hidden" name="status" value="3">
                                 <div class="dropzone" id="singleFileUpload">
                                     <div class="dz-message needsclick">
                                         <div>
-                                            <input type="file" name="thumbnail">
+                                            <input type="file" name="thumbnail" required>
                                         </div>
                                         <h6>Drop files here or click to upload.</h6><span class="note needsclick">(This form
                                             is for
