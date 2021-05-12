@@ -93,7 +93,8 @@ class RoomSurveyController extends Controller
             'customer_id' => $customer->id,
             'payment_type' => $request->payment_type,
             'status' => $request->status,
-            'thumbnail' => $thumb
+            'thumbnail' => $thumb,
+            'payment_date' => Carbon::now()
         ]);
         Alert::success('Information Message', 'Your order is successfull, please wait until admin verification!');
         return redirect()->route('customer.survey');

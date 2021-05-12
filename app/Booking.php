@@ -31,4 +31,9 @@ class Booking extends Model
         return $this->status === 0 ? '<span class="badge badge-danger">NOT YET PAID<span>' : '<span class="badge badge-success">ALREADY PAID<span>';
     }
 
+    public function getProofThumbnailAttribute()
+    {
+        return "/storage/".$this->thumbnail;
+    }
+
 }

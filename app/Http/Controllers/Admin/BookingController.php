@@ -13,15 +13,13 @@ class BookingController extends Controller
     protected function booking_code()
     {
         $number = Booking::count();
-        if($number > 0)
-        {
+        if ($number > 0) {
             $number = Booking::max('booking_code');
             $strnum = substr($number, 24, 25);
             $strnum = $strnum + 1;
-            if(strlen($strnum) == 4)
-            {
+            if (strlen($strnum) == 4) {
                 return 'BKNG' . $strnum;
-            }else if (strlen($strnum) == 3) {
+            } else if (strlen($strnum) == 3) {
                 return 'BKNG' . "0" . $strnum;
             } else if (strlen($strnum) == 2) {
                 return 'BKNG' . "00" . $strnum;
@@ -81,6 +79,38 @@ class BookingController extends Controller
         ]);
     }
 
+    public function approve(Booking $booking)
+    {
+        try {
+            $booking->update([
+                'status' => 1
+            ]);
+            Room::where('id', $booking->room_id)->update([
+                'status' => 0
+            ]);
+        } catch (\Exception $e) {
+            Alert::error('Message Information', 'Approved failed!');
+            return back();
+        }
+        Alert::success('Message Information', 'Approved is Successfull');
+        return redirect()->route('admin.booking.approve');
+    }
+
+    public function decline(Booking $booking)
+    {
+        try {
+            if ($booking->thumbnail) {
+                \Storage::delete($booking->thumbnail);
+            }
+            $booking->delete();
+        } catch (\Exception $e) {
+            Alert::error('Message Information', 'Decline failed!');
+            return back();
+        }
+        Alert::success('Message Information', 'Decline is Successfull');
+        return back();
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -138,7 +168,7 @@ class BookingController extends Controller
     public function update($id)
     {
         $attr = $this->validate(request(), [
-            'booking_code' => 'required|min:3|unique:bookings,booking_code,'.$id,
+            'booking_code' => 'required|min:3|unique:bookings,booking_code,' . $id,
             'check_in' => ['required', 'date'],
             'check_out' => ['required', 'date'],
             'room_id' => ['required'],
@@ -177,5 +207,4 @@ class BookingController extends Controller
         Alert::success('Message Information', 'Refresh Success');
         return back();
     }
-
 }

@@ -54,6 +54,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->name
     Route::get('/not_yet_paid', 'BookingController@not_yet_paid')->name('booking.not_paid');
     Route::patch('/refresh/booking', 'BookingController@refresh_booking')->name('booking.refresh');
     Route::get('/approve_booking', 'BookingController@approve_booking')->name('booking.approve');
+    Route::patch('/approve/{booking}', 'BookingController@approve')->name('booking.approve.success');
+    Route::delete('/decline/{booking}', 'BookingController@decline')->name('booking.decline');
     // payment
     Route::prefix('payment')->name('payment.')->group(function () {
         Route::get('/', 'PaymentController@index')->name('index');

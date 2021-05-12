@@ -41,7 +41,7 @@
                         href="{{ route('admin.category.index') }}"><i data-feather="layers">
                         </i><span>Category</span></a></li>
                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
-                        href="{{ route('admin.booking.approve') }}"><i data-feather="user-check">
+                        href="{{ route('admin.booking.approve') }}"><i data-feather="check-square">
                         </i><span>Approve Bookings</span></a></li>
                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
                         href="{{ route('admin.booking.index') }}"><i data-feather="log-in">
@@ -73,7 +73,7 @@
                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('home') }}"><i
                             data-feather="home"> </i><span>Dashboard</span></a></li>
                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
-                        href="{{ route('customer.survey') }}"><i data-feather="wind"> </i><span>Room
+                        href="{{ route('customer.survey') }}"><i data-feather="shopping-cart"> </i><span>Room
                             Survey</span></a></li>
                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i
                             data-feather="align-center">

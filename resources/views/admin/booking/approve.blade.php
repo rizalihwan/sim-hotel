@@ -15,20 +15,33 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Booking Code</th>
-                                    <th>Payment Status</th>
+                                    <th>Proof of Payment</th>
                                     <th>Checkin</th>
                                     <th>Checkout</th>
                                     <th>Room</th>
                                     <th>Customer</th>
-                                    <th>Payment Type</th>
+                                    <th>Total</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             @forelse ($bookings as $booking)
+                                @php
+                                    $check_out = date_create($booking['check_out']);
+                                    $check_in = date_create($booking['check_in']);
+                                    $calculate = date_diff($check_out, $check_in);
+                                    $day = $calculate->format('%a');
+                                    $price = $day * $booking->room->price;
+                                @endphp
                                 <tbody>
                                     <th>{{ $loop->iteration + $bookings->firstItem() - 1 . '.' }}</th>
                                     <td><u>{{ $booking->booking_code }}</u></td>
-                                    <td>{!! $booking->PaymentStatus !!}</td>
+                                    <td>
+                                        <a href="#">
+                                            <img src="{{ $booking->ProofThumbnail }}"
+                                                style="width: 70px; height: 70px; object-fit: cover; object-position: center;"
+                                                alt="thumbnail">
+                                        </a>
+                                    </td>
                                     <td>{{ $booking->check_in }}</td>
                                     <td>{{ $booking->check_out }}</td>
                                     <td>
@@ -40,14 +53,21 @@
                                             class="badge badge-warning">{{ Str::upper($booking->customer->FullName) }}<span>
                                     </td>
                                     <td>
-                                        <span class="badge badge-light">{{ Str::upper($booking->payment_type) }}<span>
+                                        <span
+                                            class="badge badge-light">{{ 'Rp. ' . number_format($price, 0, ',', '.') }}<span>
                                     </td>
                                     <td>
-                                        <button type="submit" class="btn btn-primary btn-sm"
-                                            onclick="deleteBooking('{{ $booking->id }}')"><i class="fa fa-check"></i>
-                                            Approve</button>
-                                        <form action="{{ route('admin.booking.destroy', $booking->id) }}" method="post"
-                                            id="DeleteBooking{{ $booking->id }}">
+                                        <button type="submit" onclick="approveBooking('{{ $booking->id }}', '{{ $booking->customer->FullName }}')"
+                                            class="btn btn-primary btn-xs mb-1"><i class="fa fa-check"></i> Approve</button>
+                                        <button type="submit" onclick="declineBooking('{{ $booking->id }}')"
+                                            class="btn btn-danger btn-xs"><i class="fa fa-close"></i> Decline</button>
+                                        <form action="{{ route('admin.booking.approve.success', $booking->id) }}"
+                                            method="post" id="ApproveBooking{{ $booking->id }}">
+                                            @csrf
+                                            @method('PATCH')
+                                        </form>
+                                        <form action="{{ route('admin.booking.decline', $booking->id) }}"
+                                            method="post" id="DeclineBooking{{ $booking->id }}">
                                             @csrf
                                             @method('DELETE')
                                         </form>
@@ -72,7 +92,32 @@
 @stop
 @section('script')
 <script>
-    function deleteBooking(id) {
+    function approveBooking(id, name) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Will you be approved for this booking?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Approved it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: `is Approving Booking ${name}`,
+                    showConfirmButton: false,
+                    timer: 2300,
+                    timerProgressBar: true,
+                    onOpen: () => {
+                        document.getElementById(`ApproveBooking${id}`).submit();
+                        Swal.showLoading();
+                    }
+                });
+            }
+        })
+    }
+
+    function declineBooking(id) {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -80,16 +125,16 @@
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Yes, Decline it!'
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
-                    title: "is Removing Booking",
+                    title: `is Decline Booking`,
                     showConfirmButton: false,
                     timer: 2300,
                     timerProgressBar: true,
                     onOpen: () => {
-                        document.getElementById(`DeleteBooking${id}`).submit();
+                        document.getElementById(`DeclineBooking${id}`).submit();
                         Swal.showLoading();
                     }
                 });
