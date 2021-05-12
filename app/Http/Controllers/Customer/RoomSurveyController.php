@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Customer;
 
-use App\{Booking, Room};
+use App\{Booking, Customer, Room};
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RoomSurveyController extends Controller
 {
@@ -69,6 +71,32 @@ class RoomSurveyController extends Controller
             'check_out' => 'required'
         ]);
         return view('customer.booking', $this->get($room));
+    }
+
+    public function booking_pay(Request $request)
+    {
+        $customer = new Customer;
+        $customer->nik = $request->nik;
+        $customer->first_name = $request->first_name;
+        $customer->last_name = $request->last_name;
+        $customer->phone = $request->phone;
+        $customer->address = $request->address;
+        $customer->save();
+
+        $time = date("H:i:s");
+        $thumb = request()->file('thumbnail')->store("images/uploadproof");
+        Booking::create([
+            'booking_code' => $request->booking_code,
+            'check_in' => $request->check_in . $time,
+            'check_out' => $request->check_out . $time,
+            'room_id' => $request->room_id,
+            'customer_id' => $customer->id,
+            'payment_type' => $request->payment_type,
+            'status' => $request->status,
+            'thumbnail' => $thumb
+        ]);
+        Alert::success('Information Message', 'Your order is successfull, please wait until admin verification!');
+        return redirect()->route('customer.survey');
     }
 
     public function search()
