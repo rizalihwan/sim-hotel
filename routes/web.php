@@ -1,5 +1,6 @@
 <?php
 
+date_default_timezone_set('Asia/Jakarta');
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -84,6 +85,7 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'role:customer
     // booking
     Route::get('/room/{room}/booking', 'RoomSurveyController@booking')->name('booking');
     Route::get('/room/{room}/bookingfinish', 'RoomSurveyController@refresh')->name('refresh');
+    Route::post('/room/bookingpay', 'RoomSurveyController@booking_pay')->name('booking.pay');
 });
 
 // manager access

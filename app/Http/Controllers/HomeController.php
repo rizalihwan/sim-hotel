@@ -8,7 +8,6 @@ class HomeController extends Controller
 {
     private function greeting()
     {
-        date_default_timezone_set('Asia/Jakarta');
         $time = date('H');
         $name = auth()->user()->name;
         if ($time >= 18) {
