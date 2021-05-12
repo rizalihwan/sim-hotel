@@ -77,7 +77,7 @@ class BookingController extends Controller
     public function approve_booking()
     {
         return view('admin.booking.approve', [
-            'bookings' => Booking::orderBy('booking_code', 'ASC')->paginate(5)
+            'bookings' => Booking::where('status', 3)->orderBy('booking_code', 'ASC')->paginate(5)
         ]);
     }
 
@@ -95,7 +95,6 @@ class BookingController extends Controller
         ]);
         $attr = $request->all();
         $attr['status'] = 0;
-        date_default_timezone_set('Asia/Jakarta');
         $time = date("H:i:s");
         $attr['check_in'] .= $time;
         $attr['check_out'] .= $time;
