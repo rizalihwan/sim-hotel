@@ -29,7 +29,6 @@
                         <small class="text-secondary">Please fill in the fields below and complete your payment.</small>
                     </div>
                 @endif
-                @include('layouts.partials.error')
             </div>
             <div class="card-body">
                 @if (request()->routeIs('customer.refresh'))
@@ -53,7 +52,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <form action="{{ route('customer.booking.pay') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('customer.booking.pay') }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 {{-- customer data --}}
                                 <input type="hidden" name="nik" value="{{ request('nik') }}">
@@ -100,30 +100,60 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="nik">Nik:</label>
-                                    <input type="text" name="nik" id="nik" class="form-control" value="{{ old('nik') }}"
+                                    <input type="text" name="nik" id="nik"
+                                        class="form-control @error('nik') is-invalid @enderror" value="{{ old('nik') }}"
                                         placeholder="your nik" autofocus>
+                                    @error('nik')
+                                        <span class="invalid-feedback">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-6">
                                         <label for="first_name">First Name:</label>
-                                        <input type="text" name="first_name" id="first_name" class="form-control"
+                                        <input type="text" name="first_name" id="first_name"
+                                            class="form-control @error('nik') is-invalid @enderror"
                                             value="{{ old('first_name') }}" placeholder="first name">
+                                        @error('first_name')
+                                            <span class="invalid-feedback">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="form-group col-sm-6">
                                         <label for="last_name">Last Name:</label>
-                                        <input type="text" name="last_name" id="last_name" class="form-control"
+                                        <input type="text" name="last_name" id="last_name"
+                                            class="form-control @error('last_name') is-invalid @enderror"
                                             value="{{ old('last_name') }}" placeholder="last name">
+                                        @error('last_name')
+                                            <span class="invalid-feedback">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone:</label>
-                                    <input type="number" name="phone" id="phone" class="form-control"
+                                    <input type="number" name="phone" id="phone"
+                                        class="form-control @error('phone') is-invalid @enderror"
                                         value="{{ old('phone') }}" placeholder="your phone">
+                                    @error('phone')
+                                        <span class="invalid-feedback">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="address">Address:</label>
-                                    <input type="text" name="address" id="address" class="form-control"
+                                    <input type="text" name="address" id="address"
+                                        class="form-control @error('address') is-invalid @enderror"
                                         value="{{ old('address') }}" placeholder="your address">
+                                    @error('address')
+                                        <span class="invalid-feedback">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-12">
@@ -147,15 +177,28 @@
                                         </ul>
                                         <div class="form-group">
                                             <label class="col-form-label" for="check_in">Check in:</label>
-                                            <input class="datepicker-here form-control" type="text" name="check_in"
-                                                id="check_in" value="{{ old('check_in') }}" placeholder="check in"
-                                                data-language="en">
+                                            <input
+                                                class="datepicker-here form-control @error('check_in') is-invalid @enderror"
+                                                type="text" name="check_in" id="check_in" value="{{ old('check_in') }}"
+                                                placeholder="check in" data-language="en">
+                                            @error('check_in')
+                                                <span class="invalid-feedback">
+                                                    {{ $message }}
+                                                </span>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <label class="col-form-label" for="check_out">Check out:</label>
-                                            <input class="datepicker-here form-control" type="text" name="check_out"
-                                                id="check_out" value="{{ old('check_out') }}" placeholder="check out"
+                                            <input
+                                                class="datepicker-here form-control @error('check_out') is-invalid @enderror"
+                                                type="text" name="check_out" id="check_out"
+                                                value="{{ old('check_out') }}" placeholder="check out"
                                                 data-language="en">
+                                            @error('check_out')
+                                                <span class="invalid-feedback">
+                                                    {{ $message }}
+                                                </span>
+                                            @enderror
                                         </div>
                                         <div class="modal-footer">
                                             <a href="{{ route('customer.survey') }}"
