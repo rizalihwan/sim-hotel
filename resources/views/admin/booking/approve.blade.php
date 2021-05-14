@@ -36,7 +36,8 @@
                                     <th>{{ $loop->iteration + $bookings->firstItem() - 1 . '.' }}</th>
                                     <td><u>{{ $booking->booking_code }}</u></td>
                                     <td>
-                                        <a href="#">
+                                        <a href="{{ route('admin.booking.detail', $booking->id) }}"
+                                            class="modal-show-detail">
                                             <img src="{{ $booking->ProofThumbnail }}"
                                                 style="width: 70px; height: 70px; object-fit: cover; object-position: center;"
                                                 alt="thumbnail">
@@ -57,7 +58,8 @@
                                             class="badge badge-light">{{ 'Rp. ' . number_format($price, 0, ',', '.') }}<span>
                                     </td>
                                     <td>
-                                        <button type="submit" onclick="approveBooking('{{ $booking->id }}', '{{ $booking->customer->FullName }}')"
+                                        <button type="submit"
+                                            onclick="approveBooking('{{ $booking->id }}', '{{ $booking->customer->FullName }}')"
                                             class="btn btn-primary btn-xs mb-1"><i class="fa fa-check"></i> Approve</button>
                                         <button type="submit" onclick="declineBooking('{{ $booking->id }}')"
                                             class="btn btn-danger btn-xs"><i class="fa fa-close"></i> Decline</button>
@@ -66,8 +68,8 @@
                                             @csrf
                                             @method('PATCH')
                                         </form>
-                                        <form action="{{ route('admin.booking.decline', $booking->id) }}"
-                                            method="post" id="DeclineBooking{{ $booking->id }}">
+                                        <form action="{{ route('admin.booking.decline', $booking->id) }}" method="post"
+                                            id="DeclineBooking{{ $booking->id }}">
                                             @csrf
                                             @method('DELETE')
                                         </form>
@@ -89,6 +91,23 @@
             </div>
         </div>
     </div>
+    {{-- detail modal approve --}}
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" id="modal-header">
+                    <h5 class="modal-title" id="modal-title">Detail Data Approved</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body my-2" id="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- end modal --}}
 @stop
 @section('script')
 <script>

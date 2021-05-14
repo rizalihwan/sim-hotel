@@ -56,6 +56,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->name
     Route::get('/approve_booking', 'BookingController@approve_booking')->name('booking.approve');
     Route::patch('/approve/{booking}', 'BookingController@approve')->name('booking.approve.success');
     Route::delete('/decline/{booking}', 'BookingController@decline')->name('booking.decline');
+    Route::get('/approve/{booking}/detail', 'BookingController@detail')->name('booking.detail');
     // payment
     Route::prefix('payment')->name('payment.')->group(function () {
         Route::get('/', 'PaymentController@index')->name('index');
