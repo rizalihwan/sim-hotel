@@ -85,6 +85,9 @@ class BookingController extends Controller
             $booking->update([
                 'status' => 1
             ]);
+            if ($booking->thumbnail) {
+                \Storage::delete($booking->thumbnail);
+            }
             Room::where('id', $booking->room_id)->update([
                 'status' => 0
             ]);
@@ -109,6 +112,11 @@ class BookingController extends Controller
         }
         Alert::success('Message Information', 'Decline is Successfull');
         return back();
+    }
+
+    public function detail(Booking $booking)
+    {
+       return view('admin.booking.detail', compact('booking'));
     }
 
     /**
