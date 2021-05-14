@@ -32,12 +32,16 @@
                                     <td>{{ Str::limit($customer->phone, 10) }}</td>
                                     <td>
                                         <a href="{{ route('admin.customer.show', $customer->id) }}" style="float: left;"
-                                            class="mr-3"><i class="fa fa-eye" style="color:#2980b9;"></i></a>
+                                            class="mr-3 modal-show-detail"><i class="fa fa-eye"
+                                                style="color:#2980b9;"></i></a>
                                         <a href="{{ route('admin.customer.edit', $customer->id) }}" style="float: left;"
                                             class="mr-1"><i class="fa fa-pencil-square-o"
                                                 style="color: rgb(0, 241, 12);"></i></a>
-                                        <button type="submit" onclick="deleteCustomer('{{ $customer->id }}')" style="background-color: transparent; border: none;"><i class="icon-trash" style="color: red;"></i></button>       
-                                        <form action="{{ route('admin.customer.destroy', $customer->id) }}" method="post" id="DeleteCustomer{{ $customer->id }}">
+                                        <button type="submit" onclick="deleteCustomer('{{ $customer->id }}')"
+                                            style="background-color: transparent; border: none;"><i class="icon-trash"
+                                                style="color: red;"></i></button>
+                                        <form action="{{ route('admin.customer.destroy', $customer->id) }}" method="post"
+                                            id="DeleteCustomer{{ $customer->id }}">
                                             @csrf
                                             @method('DELETE')
                                         </form>
@@ -119,32 +123,50 @@
             </div>
         </div>
     </div>
+    {{-- detail modal customer --}}
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" id="modal-header">
+                    <h5 class="modal-title" id="modal-title">Detail Customer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body my-2" id="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- end modal --}}
 @stop
 @section('script')
-    <script>
-        function deleteCustomer(id) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire({
-                            title: "is Removing Customer",
-                            showConfirmButton: false,
-                            timer: 2300,
-                            timerProgressBar: true,
-                            onOpen: () => {
-                                document.getElementById(`DeleteCustomer${id}`).submit();
-                                Swal.showLoading();
-                            }
-                        });
+<script>
+    function deleteCustomer(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "is Removing Customer",
+                    showConfirmButton: false,
+                    timer: 2300,
+                    timerProgressBar: true,
+                    onOpen: () => {
+                        document.getElementById(`DeleteCustomer${id}`).submit();
+                        Swal.showLoading();
                     }
-            })
-        }
-    </script>
+                });
+            }
+        })
+    }
+
+</script>
 @endsection

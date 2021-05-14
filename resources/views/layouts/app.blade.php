@@ -115,6 +115,7 @@
     <script src="{{ asset('assets/js/dropzone/dropzone-script.js') }}"></script>
     <!-- Plugins JS end-->
     <script src="{{ asset('assets/js/script.js') }}"></script>
+    <script src="{{ asset('ajax/script.js') }}"></script>
     {{-- vanilla js --}}
     @yield('script')
 </body>

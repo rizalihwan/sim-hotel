@@ -28,14 +28,19 @@
                                     <td>{{ $category->facility }}</td>
                                     <td>
                                         <a href="{{ route('admin.category.show', $category->id) }}" style="float: left;"
-                                            class="mr-2"><i class="fa fa-eye" style="color:#2980b9;"></i></a>
-                                        <a href="{{ route('admin.category.edit', $category->id) }}" style="float: left;"><i class="fa fa-pencil-square-o"
+                                            class="mr-2 modal-show-detail"><i class="fa fa-eye"
+                                                style="color:#2980b9;"></i></a>
+                                        <a href="{{ route('admin.category.edit', $category->id) }}"
+                                            style="float: left;"><i class="fa fa-pencil-square-o"
                                                 style="color: rgb(0, 241, 12);"></i></a>
-                                        <button type="submit" onclick="deleteCategory('{{ $category->id }}')" style="background-color: transparent; border: none;"><i class="icon-trash" style="color: red;"></i></button>        
-                                        <form action="{{ route('admin.category.destroy', $category->id) }}" method="post" id="DeleteCategory{{ $category->id }}">
+                                        <button type="submit" onclick="deleteCategory('{{ $category->id }}')"
+                                            style="background-color: transparent; border: none;"><i class="icon-trash"
+                                                style="color: red;"></i></button>
+                                        <form action="{{ route('admin.category.destroy', $category->id) }}" method="post"
+                                            id="DeleteCategory{{ $category->id }}">
                                             @csrf
                                             @method('DELETE')
-                                        </form>    
+                                        </form>
                                     </td>
                                 </tbody>
                             @empty
@@ -100,6 +105,23 @@
             </div>
         </div>
     </div>
+    {{-- detail modal category --}}
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" id="modal-header">
+                    <h5 class="modal-title" id="modal-title">Detail Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body my-2" id="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- end modal --}}
 @endsection
 @section('script')
 <script>
@@ -113,20 +135,21 @@
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        title: "is Removing Category",
-                        showConfirmButton: false,
-                        timer: 2300,
-                        timerProgressBar: true,
-                        onOpen: () => {
-                            document.getElementById(`DeleteCategory${id}`).submit();
-                            Swal.showLoading();
-                        }
-                    });
-                }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "is Removing Category",
+                    showConfirmButton: false,
+                    timer: 2300,
+                    timerProgressBar: true,
+                    onOpen: () => {
+                        document.getElementById(`DeleteCategory${id}`).submit();
+                        Swal.showLoading();
+                    }
+                });
+            }
         })
     }
-</script>    
+
+</script>
 @endsection
