@@ -184,7 +184,12 @@ class BookingController extends Controller
             'payment_type' => ['required', 'max:10']
         ]);
         $booking = Booking::findOrFail($id);
-        $booking->update($attr);
+        try{
+            $booking->update($attr);
+        } catch (\Exception $e) {
+            Alert::error('Message Information', 'Updated failed!');
+            return back();
+        }
         Alert::success('Message Information', 'Data Updated');
         return redirect()->route('admin.booking.index');
     }
