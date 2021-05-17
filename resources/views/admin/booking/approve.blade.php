@@ -14,6 +14,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Email</th>
                                     <th>Booking Code</th>
                                     <th>Proof of Payment</th>
                                     <th>Checkin</th>
@@ -34,6 +35,11 @@
                                 @endphp
                                 <tbody>
                                     <th>{{ $loop->iteration + $bookings->firstItem() - 1 . '.' }}</th>
+                                    <td>
+                                        <span class="badge badge-light">
+                                            {{ $booking->email }}
+                                        </span>
+                                    </td>
                                     <td><u>{{ $booking->booking_code }}</u></td>
                                     <td>
                                         <a href="{{ route('admin.booking.detail', $booking->id) }}"
