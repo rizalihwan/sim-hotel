@@ -84,7 +84,7 @@ class BookingController extends Controller
     {
         $email = $booking->email;
         $data = array(
-            'name' => $booking->customer->name
+            'name' => $booking->customer->FullName
         );
         try {
             Mail::send('message.email', $data, function ($mail) use ($email) {
