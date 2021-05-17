@@ -6,6 +6,7 @@ use App\{Booking, Customer, Room};
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BookingRequest;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class BookingController extends Controller
@@ -81,16 +82,30 @@ class BookingController extends Controller
 
     public function approve(Booking $booking)
     {
+        $email = $booking->email;
+        $data = array(
+            'name' => $booking->customer->name
+        );
         try {
-            $booking->update([
-                'status' => 1
-            ]);
-            if ($booking->thumbnail) {
-                \Storage::delete($booking->thumbnail);
+            Mail::send('message.email', $data, function ($mail) use ($email) {
+                $mail->to($email, 'no-reply')
+                    ->subject("HRI Hotel");
+                $mail->from('hrihost99@gmail.com', 'HRI Hotel E-Mail');
+            });
+            if (Mail::failures()) {
+                Alert::error('Message Information', 'Failed to send email please check your connection!');
+                return back();
+            } else {
+                $booking->update([
+                    'status' => 1
+                ]);
+                if ($booking->thumbnail) {
+                    \Storage::delete($booking->thumbnail);
+                }
+                Room::where('id', $booking->room_id)->update([
+                    'status' => 0
+                ]);
             }
-            Room::where('id', $booking->room_id)->update([
-                'status' => 0
-            ]);
         } catch (\Exception $e) {
             Alert::error('Message Information', 'Approved failed!');
             return back();
@@ -116,7 +131,7 @@ class BookingController extends Controller
 
     public function detail(Booking $booking)
     {
-       return view('admin.booking.detail', compact('booking'));
+        return view('admin.booking.detail', compact('booking'));
     }
 
     /**
@@ -184,7 +199,7 @@ class BookingController extends Controller
             'payment_type' => ['required', 'max:10']
         ]);
         $booking = Booking::findOrFail($id);
-        try{
+        try {
             $booking->update($attr);
         } catch (\Exception $e) {
             Alert::error('Message Information', 'Updated failed!');
