@@ -68,7 +68,8 @@ class RoomSurveyController extends Controller
             'phone' => 'required',
             'address' => 'required',
             'check_in' => 'required',
-            'check_out' => 'required'
+            'check_out' => 'required',
+            'email' => 'required|email'
         ]);
         return view('customer.booking', $this->get($room));
     }
@@ -94,9 +95,10 @@ class RoomSurveyController extends Controller
             'payment_type' => $request->payment_type,
             'status' => $request->status,
             'thumbnail' => $thumb,
+            'email' => $request->email,
             'payment_date' => Carbon::now()
         ]);
-        Alert::success('Information Message', 'Your order is successfull, please wait until admin verification!');
+        Alert::success('Information Message', 'Your order is successfull, wait up to 2 hours for a notification to your email!');
         return redirect()->route('customer.survey');
     }
 
