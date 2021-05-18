@@ -11,66 +11,77 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class BookingController extends Controller
 {
-    protected function booking_code()
+    public $kode;
+    public $now;
+    private $rooms;
+    private $check_room;
+    private $customers;
+
+    public function __construct()
     {
         $number = Booking::count();
-        if ($number > 0) {
+        if($number > 0)
+        {
             $number = Booking::max('booking_code');
             $strnum = substr($number, 24, 25);
             $strnum = $strnum + 1;
-            if (strlen($strnum) == 4) {
-                return 'BKNG' . $strnum;
-            } else if (strlen($strnum) == 3) {
-                return 'BKNG' . "0" . $strnum;
+            if(strlen($strnum) == 4)
+            {
+                $kode = 'BKNG' . $strnum;
+            }else if (strlen($strnum) == 3) {
+                $kode = 'BKNG' . "0" . $strnum;
             } else if (strlen($strnum) == 2) {
-                return 'BKNG' . "00" . $strnum;
+                $kode = 'BKNG' . "00" . $strnum;
             } else if (strlen($strnum) == 1) {
-                return 'BKNG' . "000" . $strnum;
+                $kode = 'BKNG' . "000" . $strnum;
             }
         } else {
-            return 'BKNG' . "0001";
+            $kode = 'BKNG' . "0001";
         }
+        $this->kode = $kode;
+        $this->now = Carbon::now();
+        $this->rooms = Room::where('status', 1)->orderBy('room_code', 'ASC')->get();
+        $this->check_room = Room::orderBy('room_code', 'ASC')->get();
+        $this->customers = Customer::orderBy('first_name', 'ASC')->get();
+    }
+    
+    public function get()
+    {
+        if(request()->is('admin/booking'))
+        {
+            $bookings = Booking::whereIn('status', ['0', '1'])->latest()->paginate(5);
+        } else if(request()->is('admin/already_paid'))
+        {
+            $bookings = Booking::where('status', 1)->orderBy('booking_code', 'ASC')->paginate(5);
+        } else if(request()->is('admin/not_yet_paid'))
+        {
+            $bookings = Booking::where('status', 0)->orderBy('booking_code', 'ASC')->paginate(5);
+        } else {
+            return "System Error!";
+        }
+        return [
+            'kode' => $this->kode,
+            'bookings' => $bookings,
+            'now' => $this->now,
+            'rooms' => $this->rooms,
+            'check_room' => $this->check_room,
+            'customers' => $this->customers
+        ];
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return view('admin.booking.index', [
-            'kode' => $this->booking_code(),
-            'now' => Carbon::now(),
-            'bookings' => Booking::whereIn('status', ['0', '1'])->latest()->paginate(5),
-            'rooms' => Room::where('status', 1)->orderBy('room_code', 'ASC')->get(),
-            'check_room' => Room::orderBy('room_code', 'ASC')->get(),
-            'customers' => Customer::orderBy('first_name', 'ASC')->get()
-        ]);
+        return view('admin.booking.index', $this->get());
     }
 
     public function already_paid()
     {
-        return view('admin.booking.index', [
-            'kode' => $this->booking_code(),
-            'now' => Carbon::now(),
-            'bookings' => Booking::where('status', 1)->orderBy('booking_code', 'ASC')->paginate(5),
-            'rooms' => Room::where('status', 1)->orderBy('room_code', 'ASC')->get(),
-            'check_room' => Room::orderBy('room_code', 'ASC')->get(),
-            'customers' => Customer::orderBy('first_name', 'ASC')->get()
-        ]);
+        return view('admin.booking.index', $this->get());
     }
 
     public function not_yet_paid()
     {
-        return view('admin.booking.index', [
-            'kode' => $this->booking_code(),
-            'now' => Carbon::now(),
-            'bookings' => Booking::where('status', 0)->orderBy('booking_code', 'ASC')->paginate(5),
-            'rooms' => Room::where('status', 1)->orderBy('room_code', 'ASC')->get(),
-            'check_room' => Room::orderBy('room_code', 'ASC')->get(),
-            'customers' => Customer::orderBy('first_name', 'ASC')->get()
-        ]);
+        return view('admin.booking.index', $this->get());
     }
 
     public function approve_booking()
