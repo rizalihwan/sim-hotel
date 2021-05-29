@@ -20,15 +20,13 @@ class BookingController extends Controller
     public function __construct()
     {
         $number = Booking::count();
-        if($number > 0)
-        {
+        if ($number > 0) {
             $number = Booking::max('booking_code');
             $strnum = substr($number, 24, 25);
             $strnum = $strnum + 1;
-            if(strlen($strnum) == 4)
-            {
+            if (strlen($strnum) == 4) {
                 $kode = 'BKNG' . $strnum;
-            }else if (strlen($strnum) == 3) {
+            } else if (strlen($strnum) == 3) {
                 $kode = 'BKNG' . "0" . $strnum;
             } else if (strlen($strnum) == 2) {
                 $kode = 'BKNG' . "00" . $strnum;
@@ -44,17 +42,14 @@ class BookingController extends Controller
         $this->check_room = Room::orderBy('room_code', 'ASC')->get();
         $this->customers = Customer::orderBy('first_name', 'ASC')->get();
     }
-    
+
     public function get()
     {
-        if(request()->is('admin/booking'))
-        {
+        if (request()->is('admin/booking')) {
             $bookings = Booking::whereIn('status', ['0', '1'])->latest()->paginate(5);
-        } else if(request()->is('admin/already_paid'))
-        {
+        } else if (request()->is('admin/already_paid')) {
             $bookings = Booking::where('status', 1)->orderBy('booking_code', 'ASC')->paginate(5);
-        } else if(request()->is('admin/not_yet_paid'))
-        {
+        } else if (request()->is('admin/not_yet_paid')) {
             $bookings = Booking::where('status', 0)->orderBy('booking_code', 'ASC')->paginate(5);
         } else {
             return "System Error!";
@@ -93,9 +88,10 @@ class BookingController extends Controller
 
     public function approve(Booking $booking)
     {
-        $email = $booking->email;
+        $email = $booking->user->email;
         $data = array(
-            'name' => $booking->customer->FullName
+            'name' => $booking->customer->FullName,
+            'booking' => $booking
         );
         try {
             Mail::send('message.email', $data, function ($mail) use ($email) {

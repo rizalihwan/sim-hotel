@@ -14,7 +14,7 @@ class AddUserIdToBookingsTable extends Migration
     public function up()
     {
         Schema::table('bookings', function (Blueprint $table) {
-            $table->foreignId('user_id')->nullable()->default(null)->after('thumbnail');
+            $table->uuid('user_id')->nullable()->default(null)->after('thumbnail');
         });
     }
 

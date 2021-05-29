@@ -68,8 +68,7 @@ class RoomSurveyController extends Controller
             'phone' => 'required',
             'address' => 'required',
             'check_in' => 'required',
-            'check_out' => 'required',
-            'email' => 'required|email'
+            'check_out' => 'required'
         ]);
         return view('customer.booking', $this->get($room));
     }
@@ -86,7 +85,7 @@ class RoomSurveyController extends Controller
 
         $time = date("H:i:s");
         $thumb = request()->file('thumbnail')->store("images/uploadproof");
-        Booking::create([
+        auth()->user()->booking()->create([
             'booking_code' => $request->booking_code,
             'check_in' => $request->check_in . $time,
             'check_out' => $request->check_out . $time,
@@ -95,7 +94,7 @@ class RoomSurveyController extends Controller
             'payment_type' => $request->payment_type,
             'status' => $request->status,
             'thumbnail' => $thumb,
-            'email' => $request->email,
+            // 'user_id' => $request->email,
             'payment_date' => Carbon::now()
         ]);
         Alert::success('Information Message', 'Your order is successfull, wait up to 2 hours for a notification to your email!');

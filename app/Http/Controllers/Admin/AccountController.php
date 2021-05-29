@@ -187,6 +187,7 @@ class AccountController extends Controller
         {
             \Storage::delete($user->avatar);
         }
+        $user->booking->delete();
         $user->delete();
         Alert::success('Information Message', 'Data Deleted');
         return back();

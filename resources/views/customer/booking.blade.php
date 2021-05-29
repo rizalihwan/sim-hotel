@@ -65,7 +65,6 @@
                                 <input type="hidden" name="booking_code" value="{{ $now . '-' . $kode }}">
                                 <input type="hidden" name="check_in" value="{{ request('check_in') }}">
                                 <input type="hidden" name="check_out" value="{{ request('check_out') }}">
-                                <input type="hidden" name="email" value="{{ request('email') }}">
                                 <input type="hidden" name="room_id" value="{{ $room->id }}">
                                 <input type="hidden" name="payment_type" value="Now">
                                 <input type="hidden" name="status" value="3">
@@ -102,14 +101,8 @@
                                 <div class="form-group">
                                     <label>Your Email( <strong style="color: red;">*For approved notifications </strong>
                                         ):</label>
-                                    <input type="emaik" name="email" id="email"
-                                        class="form-control @error('email') is-invalid @enderror"
-                                        value="{{ old('email') }}" placeholder="your email" autofocus>
-                                    @error('email')
-                                        <span class="invalid-feedback">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
+                                    <input type="email" class="form-control"
+                                        value="{{ auth()->user()->email }}" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="nik">Nik:</label>

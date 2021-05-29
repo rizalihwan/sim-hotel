@@ -9,7 +9,60 @@
                         <div class="row p-5">
                             <div class="col-md-12">
                                 <h4>{{ $greeting }},</h4><span class="text-secondary">Hallo
-                                    {{ Str::upper(auth()->user()->name) }} Have a nice day & choose the right room package and make you comfortable.</span>
+                                    {{ Str::upper(auth()->user()->name) }} Have a nice day & choose the right room package
+                                    and make you comfortable.</span>
+                            </div>
+                            <div class="col-md-12 mt-5">
+                                <h6><u>&middot; Your Booking Order</u></h6>
+                                @if ($booking_user)
+                                    @if ($booking_user->status == 1)
+                                        @php
+                                            $check_in = date_create($booking_user['check_in']);
+                                            $check_out = date_create($booking_user['check_out']);
+                                            $calculate = date_diff($check_out, $check_in);
+                                            $day = $calculate->format('%a');
+                                            $price = $day * $booking_user->room->price;
+                                        @endphp
+                                        <h1 class="badge badge-success">
+                                            {{ Str::upper('your order has been successfully verified') }} ✅</h1>
+                                        <table>
+                                            <tr>
+                                                <td><small>Booking Code</small></td>
+                                                <td><small>:</small></td>
+                                                <td><small><strong>{{ $booking_user->booking_code }}</strong></small></td>
+                                            </tr>
+                                            <tr>
+                                                <td><small>Room</small></td>
+                                                <td><small>:</small></td>
+                                                <td><small><strong>{{ $booking_user->room->name }}[ {{ $day }}
+                                                        @if ($day == 1) Day @else Days
+                                                            @endif]</strong></small></td>
+                                            </tr>
+                                            <tr>
+                                                <td><small>Total Payment</small></td>
+                                                <td><small>:</small></td>
+                                                <td><small><strong>{{ 'Rp. ' . number_format($price, 0, ',', '.') }}</strong></small>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><small>Check In </small></td>
+                                                <td><small>:</small></td>
+                                                <td><small><strong>{{ $booking_user->check_in }}</strong></small></td>
+                                            </tr>
+                                            <tr>
+                                                <td><small>Check Out</small></td>
+                                                <td><small>:</small></td>
+                                                <td><small><strong>{{ $booking_user->check_out }}</strong></small></td>
+                                            </tr>
+                                        </table>
+                                    @endif
+                                @else
+                                    <center>
+                                        <img src="{{ asset('assets/images/notfound.svg') }}" alt="thumbnail" width="300"
+                                            srcset="">
+                                        <p class="text-danger">Anda belum melakukan Booking Kamar!</p>
+                                    </center>
+                                @endif
                             </div>
                         </div>
                         @endrole
@@ -108,7 +161,8 @@
                                                                 <tr>
                                                                     <td></td>
                                                                     <th><a href="@role('admin'){{ route('admin.report.finance') }}@endrole @role('boss'){{ route('manager.report.finance') }}@endrole"
-                                                                            class="btn badge-secondary"><i class="fa fa-money"></i> See all
+                                                                            class="btn badge-secondary"><i
+                                                                                class="fa fa-money"></i> See all
                                                                             Transaction</a>
                                                                     </th>
                                                                 </tr>

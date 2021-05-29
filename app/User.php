@@ -48,6 +48,11 @@ class User extends Authenticatable
         return "/storage/".$this->avatar;
     }
 
+    public function booking()
+    {
+        return $this->hasOne(Booking::class);
+    }
+
     public function getRoleSectionAttribute()
     {
         if($this->hasRole('admin'))

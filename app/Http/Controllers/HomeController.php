@@ -30,7 +30,8 @@ class HomeController extends Controller
             'customers' => Customer::count(),
             'categories' => Category::orderBy('name', 'ASC')->get(),
             'finances' => Booking::where('status', 1)->latest()->take(3)->get(),
-            'greeting' => $this->greeting()
+            'greeting' => $this->greeting(),
+            'booking_user' => auth()->user()->booking
         ]);
     }
 }

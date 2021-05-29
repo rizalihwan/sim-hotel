@@ -37,7 +37,7 @@
                                     <th>{{ $loop->iteration + $bookings->firstItem() - 1 . '.' }}</th>
                                     <td>
                                         <span class="badge badge-light">
-                                            {{ $booking->email }}
+                                            {{ $booking->user->email }}
                                         </span>
                                     </td>
                                     <td><u>{{ $booking->booking_code }}</u></td>
