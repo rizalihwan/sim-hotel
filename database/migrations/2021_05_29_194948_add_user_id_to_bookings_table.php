@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddEmailToBookingsTable extends Migration
+class AddUserIdToBookingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddEmailToBookingsTable extends Migration
     public function up()
     {
         Schema::table('bookings', function (Blueprint $table) {
-            $table->string('email')->nullable()->after('thumbnail');
+            $table->foreignId('user_id')->nullable()->default(null)->after('thumbnail');
         });
     }
 
@@ -26,7 +26,7 @@ class AddEmailToBookingsTable extends Migration
     public function down()
     {
         Schema::table('bookings', function (Blueprint $table) {
-            $table->dropColumn('email');
+            $table->dropColumn('user_id');
         });
     }
 }
