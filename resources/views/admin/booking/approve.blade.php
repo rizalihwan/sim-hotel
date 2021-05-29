@@ -84,7 +84,7 @@
                             @empty
                                 <tbody>
                                     <tr>
-                                        <th colspan="8" style="color: red; text-align: center;">Data Empty!</th>
+                                        <th colspan="10" style="color: red; text-align: center;">Data Empty!</th>
                                     </tr>
                                 </tbody>
                             @endforelse
