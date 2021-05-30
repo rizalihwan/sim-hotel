@@ -60,7 +60,7 @@
                                     <center>
                                         <img src="{{ asset('assets/images/notfound.svg') }}" alt="thumbnail" width="300"
                                             srcset="">
-                                        <p class="text-danger">Anda belum melakukan Booking Kamar!</p>
+                                        <p class="text-danger">You haven't booked a room!</p>
                                     </center>
                                 @endif
                             </div>
