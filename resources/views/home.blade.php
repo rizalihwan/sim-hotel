@@ -13,7 +13,9 @@
                                     and make you comfortable.</span>
                             </div>
                             <div class="col-md-12 mt-5">
-                                <h6><u>&middot; Your Booking Order</u></h6>
+                                <center>
+                                    <h6><u>YOUR BOOKING HISTORY</u></h6>
+                                </center>
                                 @if ($booking_user)
                                     @if ($booking_user->status == 1)
                                         @php
@@ -23,38 +25,43 @@
                                             $day = $calculate->format('%a');
                                             $price = $day * $booking_user->room->price;
                                         @endphp
-                                        <h1 class="badge badge-success">
-                                            {{ Str::upper('your order has been successfully verified') }} ✅</h1>
-                                        <table>
-                                            <tr>
-                                                <td><small>Booking Code</small></td>
-                                                <td><small>:</small></td>
-                                                <td><small><strong>{{ $booking_user->booking_code }}</strong></small></td>
-                                            </tr>
-                                            <tr>
-                                                <td><small>Room</small></td>
-                                                <td><small>:</small></td>
-                                                <td><small><strong>{{ $booking_user->room->name }}[ {{ $day }}
-                                                        @if ($day == 1) Day @else Days
-                                                            @endif]</strong></small></td>
-                                            </tr>
-                                            <tr>
-                                                <td><small>Total Payment</small></td>
-                                                <td><small>:</small></td>
-                                                <td><small><strong>{{ 'Rp. ' . number_format($price, 0, ',', '.') }}</strong></small>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><small>Check In </small></td>
-                                                <td><small>:</small></td>
-                                                <td><small><strong>{{ $booking_user->check_in }}</strong></small></td>
-                                            </tr>
-                                            <tr>
-                                                <td><small>Check Out</small></td>
-                                                <td><small>:</small></td>
-                                                <td><small><strong>{{ $booking_user->check_out }}</strong></small></td>
-                                            </tr>
-                                        </table>
+                                        <center>
+                                            <div class="mt-4 mb-1">
+                                                <div class="mb-1">
+                                                    <i class="fa fa-check-circle fa-3x"
+                                                        style="color: rgb(30, 184, 38);"></i>
+                                                </div>
+                                                <h6 class="text-secondary">-- Booking Success --</h6>
+                                            </div>
+                                            <div>
+                                                <small>Booking Code</small>
+                                                <small>:</small>
+                                                <small><strong>{{ $booking_user->booking_code }}</strong></small>
+                                            </div>
+                                            <div>
+                                                <small>Room</small>
+                                                <small>:</small>
+                                                <small><strong>{{ $booking_user->room->name }}[ {{ $day }}
+                                                    @if ($day == 1) Day @else Days
+                                                        @endif]
+                                                    </strong></small>
+                                            </div>
+                                            <div>
+                                                <small>Total Payment</small>
+                                                <small>:</small>
+                                                <small><strong>{{ 'Rp. ' . number_format($price, 0, ',', '.') }}</strong></small>
+                                            </div>
+                                            <div>
+                                                <small>Check In </small>
+                                                <small>:</small>
+                                                <small><strong>{{ $booking_user->check_in }}</strong></small>
+                                            </div>
+                                            <div>
+                                                <small>Check Out</small>
+                                                <small>:</small>
+                                                <small><strong>{{ $booking_user->check_out }}</strong></small>
+                                            </div>
+                                        </center>
                                     @endif
                                 @else
                                     <center>
