@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-hover" width="100%">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -20,41 +20,10 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            @forelse ($categories as $category)
-                                <tbody>
-                                    <th>{{ $loop->iteration + $categories->firstItem() - 1 . '.' }}</th>
-                                    <td>{{ Str::limit($category->name, 30) }}</td>
-                                    <td>{!! Str::limit($category->description, 55) !!}</td>
-                                    <td>{{ $category->facility }}</td>
-                                    <td>
-                                        <a href="{{ route('admin.category.show', $category->id) }}" style="float: left;"
-                                            class="mr-2 modal-show-detail"><i class="fa fa-eye"
-                                                style="color:#2980b9;"></i></a>
-                                        <a href="{{ route('admin.category.edit', $category->id) }}"
-                                            style="float: left;"><i class="fa fa-pencil-square-o"
-                                                style="color: rgb(0, 241, 12);"></i></a>
-                                        <button type="submit" onclick="deleteCategory('{{ $category->id }}')"
-                                            style="background-color: transparent; border: none;"><i class="icon-trash"
-                                                style="color: red;"></i></button>
-                                        <form action="{{ route('admin.category.destroy', $category->id) }}" method="post"
-                                            id="DeleteCategory{{ $category->id }}">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
-                                    </td>
-                                </tbody>
-                            @empty
-                                <tbody>
-                                    <tr>
-                                        <th colspan="5" style="color: red; text-align: center;">Data Empty!</th>
-                                    </tr>
-                                </tbody>
-                            @endforelse
+                            <tbody>
+                            </tbody>
                         </table>
                     </div>
-                </div>
-                <div class="card-footer">
-                    {{ $categories->links() }}
                 </div>
             </div>
         </div>
@@ -123,33 +92,89 @@
     </div>
     {{-- end modal --}}
 @endsection
-@section('script')
-<script>
-    CKEDITOR.replace('description');
-    function deleteCategory(id) {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: "is Removing Category",
-                    showConfirmButton: false,
-                    timer: 2300,
-                    timerProgressBar: true,
-                    onOpen: () => {
-                        document.getElementById(`DeleteCategory${id}`).submit();
-                        Swal.showLoading();
-                    }
-                });
-            }
-        })
-    }
+@push('datatable')
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js "></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script>
+        const dataUrl = '{{ route('admin.category.index') }}'
+        const csrf = '{{ csrf_token() }}'
 
-</script>
+        jQuery(function($) {
+            const table = $("table").DataTable({
+                responsive: true,
+                serverSide: true,
+                processing: true,
+                ajax: {
+                    url: dataUrl,
+                    type: "get",
+                    error: (response) => {
+                        console.log(response);
+                    },
+                },
+                searching: true,
+                columns: [{
+                        data: null,
+                        sortable: false,
+                        searchable: false,
+                        render: function(data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        },
+                    },
+                    {
+                        data: "name"
+                    },
+                    {
+                        data: "description"
+                    },
+                    {
+                        data: "facility"
+                    },
+                    {
+                        data: "action",
+                        sortable: false,
+                        searchable: false,
+                    },
+                ],
+            });
+
+        });
+
+    </script>
+@endpush
+@section('script')
+    <script>
+        CKEDITOR.replace('description');
+
+        function deleteCategory(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "is Removing Category",
+                        showConfirmButton: false,
+                        timer: 2300,
+                        timerProgressBar: true,
+                        onOpen: () => {
+                            document.getElementById(`DeleteCategory${id}`).submit();
+                            Swal.showLoading();
+                        }
+                    });
+                }
+            })
+        }
+
+    </script>
 @endsection
