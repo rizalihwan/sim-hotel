@@ -8,6 +8,8 @@ use App\Http\Requests\BookingRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
+use DataTables;
+use Illuminate\Support\Facades\DB;
 
 class BookingController extends Controller
 {
@@ -45,18 +47,8 @@ class BookingController extends Controller
 
     public function get()
     {
-        if (request()->is('admin/booking')) {
-            $bookings = Booking::whereIn('status', ['0', '1'])->latest()->paginate(5);
-        } else if (request()->is('admin/already_paid')) {
-            $bookings = Booking::where('status', 1)->orderBy('booking_code', 'ASC')->paginate(5);
-        } else if (request()->is('admin/not_yet_paid')) {
-            $bookings = Booking::where('status', 0)->orderBy('booking_code', 'ASC')->paginate(5);
-        } else {
-            return "System Error!";
-        }
         return [
             'kode' => $this->kode,
-            'bookings' => $bookings,
             'now' => $this->now,
             'rooms' => $this->rooms,
             'check_room' => $this->check_room,
@@ -66,16 +58,133 @@ class BookingController extends Controller
 
     public function index()
     {
+        if (request()->ajax()) {
+            $bookings = Booking::with(['room', 'customer'])->whereIn('status', ['0', '1']);
+            $datatables = DataTables::eloquent($bookings)
+                ->editColumn('booking_code', function ($booking) {
+                    return '<u>' . $booking->booking_code . '</u>';
+                })
+                ->editColumn('room_id', function ($booking) {
+                    return '<span class="badge badge-info">' . \Str::upper($booking->room->name) . '(' . $booking->room->category->name . ') <span>';
+                })
+                ->editColumn('customer_id', function ($booking) {
+                    return \Str::upper($booking->customer->FullName);
+                })
+                ->editColumn('payment_type', function ($booking) {
+                    return \Str::upper($booking->payment_type);
+                })
+                ->editColumn('PaymentStatus', function ($booking) {
+                    return $booking->status === 0 ? '<span class="badge badge-danger">NOT YET PAID<span>' : '<span class="badge badge-success">ALREADY PAID<span>';
+                })->addColumn('action', function ($booking) {
+                    if ($booking->status == 0) {
+                        return '
+                        <a href="' . route('admin.booking.edit', $booking->id) . '" style="float: left;"><i class="fa fa-pencil-square-o" style="color: rgb(0, 241, 12);"></i></a>
+                        <button type="submit" onclick="deleteBooking(\'' . $booking->id . '\')" style="background-color: transparent; border: none; margin: -7px 0 0 -5px;"><i class="icon-trash" style="color: red;"></i></button>   
+                        <form action="' . route('admin.booking.destroy', $booking->id) . '" method="post" id="DeleteBooking' . $booking->id . '">
+                            ' . csrf_field() . '
+                            ' . method_field("DELETE") . '
+                        </form>
+                    ';
+                    } else {
+                        return '
+                        <button type="submit" onclick="deleteBooking(\'' . $booking->id . '\')" style="background-color: transparent; border: none; margin: -7px 0 0 -5px;"><i class="icon-trash" style="color: red;"></i></button>   
+                        <form action="' . route('admin.booking.destroy', $booking->id) . '" method="post" id="DeleteBooking' . $booking->id . '">
+                            ' . csrf_field() . '
+                            ' . method_field("DELETE") . '
+                        </form>
+                    ';
+                    }
+                })->rawColumns(['booking_code', 'room_id', 'customer_id', 'payment_type', 'PaymentStatus', 'action'])->toJson();
+            return $datatables;
+        }
         return view('admin.booking.index', $this->get());
     }
 
     public function already_paid()
     {
+        if (request()->ajax()) {
+            $bookings = Booking::with(['room', 'customer'])->where('status', 1);
+            $datatables = DataTables::eloquent($bookings)
+                ->editColumn('booking_code', function ($booking) {
+                    return '<u>' . $booking->booking_code . '</u>';
+                })
+                ->editColumn('room_id', function ($booking) {
+                    return '<span class="badge badge-info">' . \Str::upper($booking->room->name) . '(' . $booking->room->category->name . ') <span>';
+                })
+                ->editColumn('customer_id', function ($booking) {
+                    return \Str::upper($booking->customer->FullName);
+                })
+                ->editColumn('payment_type', function ($booking) {
+                    return \Str::upper($booking->payment_type);
+                })
+                ->editColumn('PaymentStatus', function ($booking) {
+                    return $booking->status === 0 ? '<span class="badge badge-danger">NOT YET PAID<span>' : '<span class="badge badge-success">ALREADY PAID<span>';
+                })->addColumn('action', function ($booking) {
+                    if ($booking->status == 0) {
+                        return '
+                        <a href="' . route('admin.booking.edit', $booking->id) . '" style="float: left;"><i class="fa fa-pencil-square-o" style="color: rgb(0, 241, 12);"></i></a>
+                        <button type="submit" onclick="deleteBooking(\'' . $booking->id . '\')" style="background-color: transparent; border: none; margin: -7px 0 0 -5px;"><i class="icon-trash" style="color: red;"></i></button>   
+                        <form action="' . route('admin.booking.destroy', $booking->id) . '" method="post" id="DeleteBooking' . $booking->id . '">
+                            ' . csrf_field() . '
+                            ' . method_field("DELETE") . '
+                        </form>
+                    ';
+                    } else {
+                        return '
+                        <button type="submit" onclick="deleteBooking(\'' . $booking->id . '\')" style="background-color: transparent; border: none; margin: -7px 0 0 -5px;"><i class="icon-trash" style="color: red;"></i></button>   
+                        <form action="' . route('admin.booking.destroy', $booking->id) . '" method="post" id="DeleteBooking' . $booking->id . '">
+                            ' . csrf_field() . '
+                            ' . method_field("DELETE") . '
+                        </form>
+                    ';
+                    }
+                })->rawColumns(['booking_code', 'room_id', 'customer_id', 'payment_type', 'PaymentStatus', 'action'])->toJson();
+            return $datatables;
+        }
         return view('admin.booking.index', $this->get());
     }
 
     public function not_yet_paid()
     {
+        if (request()->ajax()) {
+            $bookings = Booking::with(['room', 'customer'])->where('status', 0);
+            $datatables = DataTables::eloquent($bookings)
+                ->editColumn('booking_code', function ($booking) {
+                    return '<u>' . $booking->booking_code . '</u>';
+                })
+                ->editColumn('room_id', function ($booking) {
+                    return '<span class="badge badge-info">' . \Str::upper($booking->room->name) . '(' . $booking->room->category->name . ') <span>';
+                })
+                ->editColumn('customer_id', function ($booking) {
+                    return \Str::upper($booking->customer->FullName);
+                })
+                ->editColumn('payment_type', function ($booking) {
+                    return \Str::upper($booking->payment_type);
+                })
+                ->editColumn('PaymentStatus', function ($booking) {
+                    return $booking->status === 0 ? '<span class="badge badge-danger">NOT YET PAID<span>' : '<span class="badge badge-success">ALREADY PAID<span>';
+                })->addColumn('action', function ($booking) {
+                    if ($booking->status == 0) {
+                        return '
+                        <a href="' . route('admin.booking.edit', $booking->id) . '" style="float: left;"><i class="fa fa-pencil-square-o" style="color: rgb(0, 241, 12);"></i></a>
+                        <button type="submit" onclick="deleteBooking(\'' . $booking->id . '\')" style="background-color: transparent; border: none; margin: -7px 0 0 -5px;"><i class="icon-trash" style="color: red;"></i></button>   
+                        <form action="' . route('admin.booking.destroy', $booking->id) . '" method="post" id="DeleteBooking' . $booking->id . '">
+                            ' . csrf_field() . '
+                            ' . method_field("DELETE") . '
+                        </form>
+                    ';
+                    } else {
+                        return '
+                        <button type="submit" onclick="deleteBooking(\'' . $booking->id . '\')" style="background-color: transparent; border: none; margin: -7px 0 0 -5px;"><i class="icon-trash" style="color: red;"></i></button>   
+                        <form action="' . route('admin.booking.destroy', $booking->id) . '" method="post" id="DeleteBooking' . $booking->id . '">
+                            ' . csrf_field() . '
+                            ' . method_field("DELETE") . '
+                        </form>
+                    ';
+                    }
+                })->rawColumns(['booking_code', 'room_id', 'customer_id', 'payment_type', 'PaymentStatus', 'action'])->toJson();
+            return $datatables;
+        }
         return view('admin.booking.index', $this->get());
     }
 

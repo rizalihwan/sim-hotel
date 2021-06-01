@@ -47,7 +47,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-hover" width="100%">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -61,17 +61,9 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            @forelse ($bookings as $booking)
-                                <tbody>
-                                    <th>{{ $loop->iteration + $bookings->firstItem() - 1 . '.' }}</th>
-                                    <td><u>{{ $booking->booking_code }}</u></td>
-                                    <td>{!! $booking->PaymentStatus !!}</td>
-                                    <td>{{ $booking->check_in }}</td>
-                                    <td>{{ $booking->check_out }}</td>
-                                    <td>
-                                        <span
-                                            class="badge badge-info">{{ Str::upper($booking->room->name . ' (' . $booking->room->category->name . ')') }}<span>
-                                    </td>
+                            <tbody>
+                            </tbody>
+                            {{-- @forelse ($bookings as $booking)
                                     <td>
                                         <span
                                             class="badge badge-warning">{{ Str::upper($booking->customer->FullName) }}<span>
@@ -101,13 +93,13 @@
                                         <th colspan="8" style="color: red; text-align: center;">Data Empty!</th>
                                     </tr>
                                 </tbody>
-                            @endforelse
+                            @endforelse --}}
                         </table>
                     </div>
                 </div>
-                <div class="card-footer">
+                {{-- <div class="card-footer">
                     {{ $bookings->links() }}
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="col-md-4">
@@ -229,61 +221,139 @@
     </div>
     </div>
 @stop
+@push('datatable')
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js "></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script>
+        @if (request()->is('admin/booking'))
+            const dataUrl = '{{ route('admin.booking.index') }}'
+        @endif
+        @if (request()->is('admin/already_paid'))
+            const dataUrl = '{{ route('admin.booking.already_paid') }}'
+        @endif
+        @if (request()->is('admin/not_yet_paid'))
+            const dataUrl = '{{ route('admin.booking.not_paid') }}'
+        @endif
+
+        const csrf = '{{ csrf_token() }}'
+
+        jQuery(function($) {
+            const table = $("table").DataTable({
+                responsive: true,
+                serverSide: true,
+                processing: true,
+                ajax: {
+                    url: dataUrl,
+                    type: "get",
+                    error: (response) => {
+                        console.log(response);
+                    },
+                },
+                searching: true,
+                columns: [{
+                        data: null,
+                        sortable: false,
+                        searchable: false,
+                        render: function(data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        },
+                    },
+                    {
+                        data: "booking_code"
+                    },
+                    {
+                        data: "PaymentStatus",
+                        sortable: false,
+                        searchable: false,
+                    },
+                    {
+                        data: "check_in"
+                    },
+                    {
+                        data: "check_out"
+                    },
+                    {
+                        data: "room_id"
+                    },
+                    {
+                        data: "customer_id"
+                    },
+                    {
+                        data: "payment_type"
+                    },
+                    {
+                        data: "action",
+                        sortable: false,
+                        searchable: false,
+                    },
+                ],
+            });
+
+        });
+
+    </script>
+@endpush
 @section('script')
-<script>
-    $(".select2").select2({
-        dropdownParent: $('#addModal')
-    });
+    <script>
+        $(".select2").select2({
+            dropdownParent: $('#addModal')
+        });
 
-    function deleteBooking(id) {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: "is Removing Booking",
-                    showConfirmButton: false,
-                    timer: 2300,
-                    timerProgressBar: true,
-                    onOpen: () => {
-                        document.getElementById(`DeleteBooking${id}`).submit();
-                        Swal.showLoading();
-                    }
-                });
-            }
-        })
-    }
+        function deleteBooking(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "is Removing Booking",
+                        showConfirmButton: false,
+                        timer: 2300,
+                        timerProgressBar: true,
+                        onOpen: () => {
+                            document.getElementById(`DeleteBooking${id}`).submit();
+                            Swal.showLoading();
+                        }
+                    });
+                }
+            })
+        }
 
-    function refreshBooking() {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "Refresh booking will update the room status to filled, are you sure?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, refresh it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: "Refresh Booking...",
-                    showConfirmButton: false,
-                    timer: 2300,
-                    timerProgressBar: true,
-                    onOpen: () => {
-                        document.getElementById('RefreshBooking').submit();
-                        Swal.showLoading();
-                    }
-                });
-            }
-        })
-    }
+        function refreshBooking() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Refresh booking will update the room status to filled, are you sure?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, refresh it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Refresh Booking...",
+                        showConfirmButton: false,
+                        timer: 2300,
+                        timerProgressBar: true,
+                        onOpen: () => {
+                            document.getElementById('RefreshBooking').submit();
+                            Swal.showLoading();
+                        }
+                    });
+                }
+            })
+        }
 
-</script>
+    </script>
 @endsection

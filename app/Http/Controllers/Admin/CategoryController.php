@@ -23,22 +23,21 @@ class CategoryController extends Controller
         if (request()->ajax()) {
             $categories = DB::table('categories');
             $datatables = DataTables::queryBuilder($categories)
-            ->editColumn('name', function($category){
-                return \Str::limit($category->name, 30);
-            })->editColumn('description', function($category){
-                return nl2br(\Str::limit($category->description, 55));
-            })->addColumn('action', function($category){
-                return '
-                <a href="'. route('admin.category.show', $category->id) .'" style="float: left;" class="mr-2 modal-show-detail"><i class="fa fa-eye" style="color: #2980b9;"></i></a>
-                <a href="'. route('admin.category.edit', $category->id) .'" style="float: left;"><i class="fa fa-pencil-square-o" style="color: rgb(0, 241, 12);"></i></a>
-                <button type="submit" onclick="deleteCategory(\''.$category->id.'\')" style="background-color: transparent; border: none; margin: -7px 0 0 -5px;"><i class="icon-trash" style="color: red;"></i></button>   
-                <form action="'. route('admin.category.destroy', $category->id) .'" method="post" id="DeleteCategory'.$category->id.'">
-                    '.csrf_field().'
-                    '.method_field("DELETE").'
+                ->editColumn('name', function ($category) {
+                    return \Str::limit($category->name, 30);
+                })->editColumn('description', function ($category) {
+                    return nl2br(\Str::limit($category->description, 55));
+                })->addColumn('action', function ($category) {
+                    return '
+                <a href="' . route('admin.category.show', $category->id) . '" style="float: left;" class="mr-2 modal-show-detail"><i class="fa fa-eye" style="color: #2980b9;"></i></a>
+                <a href="' . route('admin.category.edit', $category->id) . '" style="float: left;"><i class="fa fa-pencil-square-o" style="color: rgb(0, 241, 12);"></i></a>
+                <button type="submit" onclick="deleteCategory(\'' . $category->id . '\')" style="background-color: transparent; border: none; margin: -7px 0 0 -5px;"><i class="icon-trash" style="color: red;"></i></button>   
+                <form action="' . route('admin.category.destroy', $category->id) . '" method="post" id="DeleteCategory' . $category->id . '">
+                    ' . csrf_field() . '
+                    ' . method_field("DELETE") . '
                 </form>
             ';
-            })->rawColumns(['name', 'description', 'action'])->toJson();
-
+                })->rawColumns(['name', 'description', 'action'])->toJson();
             return $datatables;
         }
         return view('admin.category.index');
@@ -74,7 +73,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        return view('admin.category.edit',compact('category'));
+        return view('admin.category.edit', compact('category'));
     }
 
     /**
@@ -89,7 +88,7 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $attr = $request->all();
         $request->validate([
-            'name' => ['required', 'string', 'unique:categories,name,'.$id],
+            'name' => ['required', 'string', 'unique:categories,name,' . $id],
             'facility' => ['required', 'string'],
             'description' => ['required', 'string',]
         ]);
@@ -98,7 +97,7 @@ class CategoryController extends Controller
         return redirect()->route('admin.category.index');
     }
 
-     public function show(Category $category)
+    public function show(Category $category)
     {
         return view('admin.category.detail', compact('category'));
     }
@@ -109,7 +108,7 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-   public function destroy($id)
+    public function destroy($id)
     {
         $category = Category::findOrFail($id);
         $roomIds = Room::where('category_id', $category->id)->pluck('id');
