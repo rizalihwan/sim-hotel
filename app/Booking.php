@@ -12,7 +12,7 @@ class Booking extends Model
     protected $keyType = 'string';
     public $incrementing = false;
     protected $guarded = [];
-    protected $dates = ['check_in', 'check_out'];
+    protected $casts = ['check_in', 'check_out'];
 
     protected $with = ['room', 'customer'];
 
