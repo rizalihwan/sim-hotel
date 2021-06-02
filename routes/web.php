@@ -3,10 +3,12 @@
 date_default_timezone_set('Asia/Jakarta');
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('auth.login');
-})->middleware('guest');
+// Route::get('/', function () {
+//     return view('customer.landing.index');
+// })->middleware('guest');
+
 Auth::routes();
+
 // general option
 Route::middleware('auth')->group(function () {
     // dashboard
@@ -81,6 +83,16 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->name
 });
 
 // customer access
+
+Route::prefix('/')->namespace('Customer')->name('customer.')->group(function () {
+    Route::get('', 'LandingController@index')->name('landing');
+    Route::get('/rooms','LandingController@rooms')->name('landing.rooms');
+    Route::get('/packages','LandingController@packages')->name('landing.packages');
+    Route::get('/gallery','LandingController@gallery')->name('landing.gallery');
+    Route::get('/contact','LandingController@contact')->name('landing.contact');
+    Route::get('/rooms/room-detail','LandingController@roomDetail')->name('landing.room-detail');
+});
+
 Route::prefix('customer')->name('customer.')->middleware(['auth', 'role:customer'])->namespace('Customer')->group(function () {
     // survey room
     Route::get('/survey/room', 'RoomSurveyController@index')->name('survey');
