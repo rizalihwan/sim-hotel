@@ -34,4 +34,6 @@ class HomeController extends Controller
             'booking_user' => auth()->user()->booking
         ]);
     }
+
+
 }

@@ -41,8 +41,8 @@ class RoomSurveyController extends Controller
     protected function get($room)
     {
         return [
-            'room' => $room, 
-            'kode' => $this->kode, 
+            'room' => $room,
+            'kode' => $this->kode,
             'now' => $this->now
         ];
     }
@@ -53,6 +53,7 @@ class RoomSurveyController extends Controller
             'rooms' => Room::orderBy('name', 'ASC')->where('status', 1)->paginate(4)
         ]);
     }
+
 
     public function booking(Room $room)
     {

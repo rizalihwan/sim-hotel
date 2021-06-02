@@ -20,7 +20,7 @@
                                     placeholder="your username">
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>Username / Password yang dimasukan salah!</strong>
+                                        <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
