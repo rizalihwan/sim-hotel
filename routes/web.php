@@ -83,7 +83,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->name
 });
 
 // customer access
-
 Route::prefix('/')->namespace('Customer')->name('customer.')->group(function () {
     Route::get('', 'LandingController@index')->name('landing');
     Route::get('/rooms','LandingController@rooms')->name('landing.rooms');
