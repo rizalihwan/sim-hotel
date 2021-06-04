@@ -3,11 +3,7 @@
         <div class="row">
             <div class="col-sm-5">
                 <h4>HRI Hotel</h4>
-                <p>HRI Hotel was these three and songs arose whose. Of in vicinity contempt together in possible
-                    branched. Assured company hastily looking garrets in oh. Most have love my gone to this so.
-                    Discovered interested prosperous the our affronting insipidity day. Missed lovers way one vanity
-                    wishes nay but. Use shy seemed within twenty wished old few regret passed. Absolute one hastened mrs
-                    any sensible. </p>
+                <p>HRI Hotel is a hotel that is the most comfortable inn that can make you calm and even tired. HRI Hotel has been built since 2025 and now has 5 branches in 5 cities. Use your free time to relax at this hotel.</p>
             </div>
 
             <div class="col-sm-3">
