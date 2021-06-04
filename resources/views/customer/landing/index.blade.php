@@ -7,7 +7,7 @@
             <div class="information">
                 <h1 class="animated fadeInDown">Best Relaxing Place</h1>
                 <p class="animated fadeInUp">This is the best place for you. You can relax and happy.</p>
-                <a class="btn btn-primary btn-sm tombol" href="{{ route('login') }}">Sign In</a>
+                <a class="btn btn-primary btn-sm tombol" href="{{ route('login') }}">BOOK NOW</a>
             </div>
             <a href="#information" class="arrow-nav scroll wowload fadeInDownBig"><i class="fa fa-angle-down"></i></a>
         </div>
