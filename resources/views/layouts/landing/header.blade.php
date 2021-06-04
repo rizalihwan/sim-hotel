@@ -61,7 +61,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ route('customer.landing') }}"><img src="{{ asset('landing/images/logo.png') }}" alt="holiday crown"></a>
+                <a class="navbar-brand" href="{{ route('customer.landing') }}"><img src="{{ asset('assets/images/logo/logoweb.png') }}" width="200" style="margin-top: -7rem;" alt="holiday crown"></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
