@@ -55,7 +55,7 @@ class LoginController extends Controller
     {
         $this->guard()->logout();
         Alert::success('Information Message', 'Logout Success!');
-        return redirect()->route('login');
+        return redirect()->route('customer.landing');
     }
 
 }
