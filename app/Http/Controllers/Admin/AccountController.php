@@ -16,7 +16,7 @@ class AccountController extends Controller
     {
         return $this->userRepo = $userRepo;
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -45,7 +45,7 @@ class AccountController extends Controller
             'accounts' => $account
         ]);
     }
-    
+
     public function boss_index_account()
     {
         $account = $this->userRepo->getWhereRole('boss');
@@ -187,7 +187,9 @@ class AccountController extends Controller
         {
             \Storage::delete($user->avatar);
         }
-        $user->booking->delete();
+        if($user->booking){
+            $user->booking->delete();
+        }
         $user->delete();
         Alert::success('Information Message', 'Data Deleted');
         return back();
